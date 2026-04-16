@@ -19,6 +19,7 @@
 
 # production
 /build
+/temp-recover/
 
 # misc
 .DS_Store
@@ -30,8 +31,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env (allow committing templates like .env.example)
+.env
+.env*.local
 
 # vercel
 .vercel
