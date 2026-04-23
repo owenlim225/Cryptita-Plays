@@ -151,6 +151,8 @@ Use these statements consistently in copy/decks/web:
 - OKX Wallet
 - Coinex Charity
 - TrustWallet
+- Gate Web3
+- Morph
 
 ### Community Partners
 - NEN Digital
@@ -161,6 +163,7 @@ Use these statements consistently in copy/decks/web:
 - Stocksify
 - The Cryptology Academy
 - House of Degens
+- GN club
 
 **Shared framing line:** "Different ecosystems, one shared mission."
 
