@@ -1,26 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { siteConfig } from "../site-data";
 
 export function HeroSection() {
   return (
-    <section id="hero" className="bg-gradient-to-b from-amber-50 to-white px-6 py-20">
+    <section id="hero" className="relative overflow-hidden bg-gradient-to-b from-[var(--primary-soft)] to-white px-6 py-20">
+      <Image
+        src="/brand/photos/hero.jpg"
+        alt="Cryptita Plays community learners"
+        fill
+        priority
+        className="object-cover opacity-20"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white" />
       <div className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-2 lg:items-center">
-        <div>
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-amber-600">
-            Binance-charity-inspired movement
+        <div className="relative z-10">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--primary)]">
+            Community-driven initiative
           </p>
-          <h1 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="text-4xl font-black tracking-tight text-[var(--foreground)] sm:text-5xl">
             {siteConfig.tagline}
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">{siteConfig.mission}</p>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--text-muted)]">{siteConfig.mission}</p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <a href="#programs" className="rounded-full bg-slate-900 px-6 py-3 text-white">
-              Explore Programs
+            <a
+              href="#programs"
+              className="rounded-full bg-[var(--primary)] px-6 py-3 text-white transition hover:bg-[var(--primary-hover)]"
+            >
+              Support our Mini-Library and ACIS programs
             </a>
-            <a href="#contact" className="rounded-full border border-slate-300 px-6 py-3 text-slate-700">
-              Contact Team
+            <a
+              href="#contact"
+              className="rounded-full border border-[var(--border-subtle)] px-6 py-3 text-[var(--text-muted)] transition hover:border-[var(--primary)] hover:text-[var(--primary)]"
+            >
+              Volunteer or collaborate on educational initiatives
             </a>
           </div>
         </div>
@@ -29,13 +44,20 @@ export function HeroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-3xl border border-amber-100 bg-white p-8 shadow-xl shadow-amber-100/40"
+          className="relative z-10 rounded-3xl border border-[var(--primary)] bg-[var(--primary)] p-8 shadow-xl"
         >
-          <p className="text-sm font-medium text-slate-500">Current Campaign</p>
-          <h2 className="mt-2 text-2xl font-bold text-slate-900">Code, Play, and Care 2026</h2>
-          <p className="mt-4 text-slate-600">
-            A national fundraiser connecting creators, gamers, and civic groups to sponsor digital
-            education and emergency relief for underserved communities.
+          <Image
+            src="/brand/primary-logo.png"
+            alt="Cryptita Plays logo"
+            width={172}
+            height={48}
+            className="h-10 w-auto brightness-0 invert"
+          />
+          <p className="mt-4 text-sm font-medium text-white/80">Mission</p>
+          <h2 className="mt-2 text-2xl font-bold text-white">Education First, Hype Last</h2>
+          <p className="mt-4 text-white/85">
+            We make learning accessible, safe, and inclusive through beginner-friendly materials,
+            community-based outreach, and long-term support for underserved youth.
           </p>
         </motion.div>
       </div>

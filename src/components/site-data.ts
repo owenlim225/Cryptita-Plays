@@ -1,92 +1,74 @@
 export const siteConfig = {
   name: "Cryptita Plays",
-  tagline: "Gaming kindness into real-world impact",
+  tagline: "Bridging Web3 Education and Social Impact",
   mission:
-    "Inspired by Binance Charity, Cryptita Plays turns community energy into transparent and measurable social impact programs.",
+    "Cryptita Plays is a community-driven social impact initiative in the Philippines that bridges Web3 education and social development for youth and underserved communities.",
   contactEmail: "cryptitaplays@gmail.com",
   socialHandle: "@cryptitaplays",
   phoneNumber: "+63-906-0925-761",
 };
 
 export const navItems = [
-  { label: "About", href: "#about" },
+  { label: "Who We Are", href: "#about" },
   { label: "Programs", href: "#programs" },
   { label: "Impact", href: "#impact" },
-  { label: "Events", href: "#events" },
   { label: "Partners", href: "#partners" },
-  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const programs = [
   {
-    title: "Play2Give Grants",
+    title: "Mini-Library Mission and Outreach Program",
     description:
-      "Monthly micro-grants funded by campaigns to support student creators and local tech communities.",
+      "Creates community-based mini libraries with educational books, Web3 learning materials, and QR-based digital resources.",
   },
   {
-    title: "Community Relief Drops",
+    title: "Web3 Education and University Programs",
     description:
-      "Rapid-response support packs distributed with verified local organizations during emergencies.",
+      "Conducts beginner-friendly seminars and workshops on blockchain basics, digital safety, and responsible participation.",
   },
   {
-    title: "Digital Skills Boost",
+    title: "Web3 Learning Materials",
     description:
-      "Hands-on workshops that help youth and parents learn online safety, freelancing, and digital earning basics.",
+      "Produces age-appropriate learning content, including books and activity materials for safe and practical digital learning.",
+  },
+  {
+    title: "Adopt-a-Child Iskolar Program (ACIS)",
+    description:
+      "Provides monthly educational assistance, school supplies and learning materials, and Mini-Library access for selected students.",
   },
 ];
 
-export const impactStats = [
-  { label: "Families Supported", value: "1,250+" },
-  { label: "Scholarship Grants", value: "320" },
-  { label: "Active Volunteers", value: "90+" },
-  { label: "Cities Reached", value: "18" },
+export const impactStatements = [
+  "Active Mini-Library communities across multiple provinces",
+  "Thousands of students reached through outreach and seminars",
+  "Partnerships with educational and Web3 organizations",
+  "Continuous support through learning materials and programs",
 ];
 
-export const events = [
-  {
-    title: "Play for Purpose Live Stream",
-    date: "May 12, 2026",
-    location: "Online",
-  },
-  {
-    title: "Cryptita Community Day",
-    date: "June 8, 2026",
-    location: "Cebu City",
-  },
-  {
-    title: "Women in Web3 Charity Match",
-    date: "July 20, 2026",
-    location: "Manila",
-  },
+export const educationalPartners = [
+  { name: "Blockchain4Youth", logo: "/brand/partners/educational/blockchain4youth.png" },
+  { name: "Blockchain4Her", logo: "/brand/partners/educational/blockchain4her.png" },
+  { name: "MEXC Foundation", logo: "/brand/partners/educational/mexc-foundation.png" },
+  { name: "Avalanche", logo: "/brand/partners/educational/avalanche.png" },
+  { name: "BASE Philippines", logo: "/brand/partners/educational/base-philippines.png" },
+  { name: "OKX Wallet", logo: "/brand/partners/educational/okx-wallet.png" },
+  { name: "Coinex Charity", logo: "/brand/partners/educational/coinex-charity.png" },
+  { name: "TrustWallet", logo: "/brand/partners/educational/trustwallet.png" },
 ];
 
-export const partners = [
-  "BlockWave Foundation",
-  "Level Up Learning Hub",
-  "ChainCare Alliance",
-  "Digital Bayanihan Network",
-];
-
-export const faqs = [
-  {
-    question: "How does Cryptita Plays stay transparent?",
-    answer:
-      "Every campaign is published with a clear goal, timeline, and updates so supporters can see where resources go.",
-  },
-  {
-    question: "Can brands or groups collaborate with your programs?",
-    answer:
-      "Yes. We welcome aligned partners for sponsorships, in-kind donations, and volunteer activations.",
-  },
-  {
-    question: "Do I need crypto knowledge to join your events?",
-    answer:
-      "No. Most events are beginner-friendly and designed for anyone who wants to support community initiatives.",
-  },
+export const communityPartners = [
+  { name: "NEN Digital", logo: "/brand/partners/community/nen-digital.png" },
+  { name: "BlockTides", logo: "/brand/partners/community/blocktides.png" },
+  { name: "The SafeHouse", logo: "/brand/partners/community/the-safehouse.png" },
+  { name: "Brgy Tamago", logo: "/brand/partners/community/brgy-tamago.png" },
+  { name: "Museigen.io", logo: "/brand/partners/community/museigen-io.png" },
+  { name: "Stocksify", logo: "/brand/partners/community/stocksify.png" },
+  { name: "The Cryptology Academy", logo: "/brand/partners/community/the-cryptology-academy.png" },
+  { name: "House of Degens", logo: null },
 ];
 
 export const founder = {
-  name: "Sherwin, Founder of Cryptita Plays",
-  bio: "Built from a gamer-first community, Cryptita Plays was created to prove that digital culture can drive meaningful social good in the Philippines and beyond.",
+  name: "Arshelene R. Lingao",
+  bio: "Cryptita Plays was founded to make learning accessible, safe, and inclusive through values-driven community programs focused on youth empowerment and digital literacy.",
 };

@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Cryptita Plays | Binance-Charity-Inspired Community Giving",
+  title: "Cryptita Plays | Bridging Web3 Education and Social Impact",
   description:
-    "Cryptita Plays is a one-page community impact platform inspired by Binance Charity, focused on transparent programs, events, and social good partnerships.",
+    "Cryptita Plays is a community-driven social impact initiative in the Philippines that bridges Web3 education and social development for youth and underserved communities.",
+  icons: {
+    icon: "/brand/icon-mark.ico",
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-slate-900">
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
