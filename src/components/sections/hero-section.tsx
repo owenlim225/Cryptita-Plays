@@ -29,13 +29,13 @@ export function HeroSection() {
               href="#programs"
               className="rounded-full bg-[var(--primary)] px-6 py-3 text-white transition hover:bg-[var(--primary-hover)]"
             >
-              Support our Mini-Library and ACIS programs
+              Sponsor Us
             </a>
             <a
               href="#contact"
               className="rounded-full border border-[var(--border-subtle)] px-6 py-3 text-[var(--text-muted)] transition hover:border-[var(--primary)] hover:text-[var(--primary)]"
             >
-              Volunteer or collaborate on educational initiatives
+              Volunteer With Us
             </a>
           </div>
         </div>
@@ -46,13 +46,6 @@ export function HeroSection() {
           transition={{ duration: 0.6 }}
           className="relative z-10 rounded-3xl border border-[var(--primary)] bg-[var(--primary)] p-8 shadow-xl"
         >
-          <Image
-            src="/brand/primary-logo.png"
-            alt="Cryptita Plays logo"
-            width={172}
-            height={48}
-            className="h-10 w-auto brightness-0 invert"
-          />
           <p className="mt-4 text-sm font-medium text-white/80">Mission</p>
           <h2 className="mt-2 text-2xl font-bold text-white">Education First, Hype Last</h2>
           <p className="mt-4 text-white/85">
