@@ -2,8 +2,8 @@ import { impactStatements } from "../site-data";
 
 export function ImpactSection() {
   return (
-    <section id="impact" className="px-6 py-20">
-      <div className="mx-auto w-full max-w-6xl">
+    <section id="impact" className="py-20">
+      <div className="constraint-content w-full">
         <h2 className="text-3xl font-bold text-[var(--foreground)]">Impact</h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {impactStatements.map((statement) => (

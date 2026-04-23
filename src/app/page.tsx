@@ -12,7 +12,7 @@ import SplashCursor from "@/components/SplashCursor";
 
 export default function Home() {
   return (
-    <div className="relative isolate min-h-screen bg-white text-foreground">
+    <div className="constraint-shell relative isolate min-h-screen bg-white text-foreground">
       <SplashCursor
         DENSITY_DISSIPATION={3.5}
         VELOCITY_DISSIPATION={2}
@@ -26,19 +26,37 @@ export default function Home() {
         COLOR="#A855F7"
       />
 
-      <div className="relative z-20">
+      <div className="constraint-layer relative z-20">
         <HeaderSection />
         <main>
-          <HeroSection />
-          <AboutSection />
-          <ProgramsSection />
-          <ImpactSection />
-          <PartnersSection />
-          <FounderSection />
-          <FaqSection />
-          <ContactSection />
+          <div className="constraint-divider">
+            <HeroSection />
+          </div>
+          <div className="constraint-divider">
+            <AboutSection />
+          </div>
+          <div className="constraint-divider">
+            <ProgramsSection />
+          </div>
+          <div className="constraint-divider">
+            <ImpactSection />
+          </div>
+          <div className="constraint-divider">
+            <PartnersSection />
+          </div>
+          <div className="constraint-divider">
+            <FounderSection />
+          </div>
+          <div className="constraint-divider">
+            <FaqSection />
+          </div>
+          <div className="constraint-divider">
+            <ContactSection />
+          </div>
         </main>
-        <FooterSection />
+        <div className="constraint-divider">
+          <FooterSection />
+        </div>
       </div>
     </div>
   );

@@ -5,8 +5,8 @@ import { programs } from "../site-data";
 
 export function ProgramsSection() {
   return (
-    <section id="programs" className="bg-[var(--surface-alt)] px-6 py-20">
-      <div className="mx-auto w-full max-w-6xl">
+    <section id="programs" className="bg-[var(--surface-alt)] py-20">
+      <div className="constraint-content w-full">
         <h2 className="text-3xl font-bold text-[var(--foreground)]">Core Programs</h2>
         <div className="programs-grid mt-8 grid gap-6 md:grid-cols-3">
           {programs.map((program, index) => (

@@ -9,6 +9,15 @@
   --text-muted: #475467;
   --border-subtle: #d0d5dd;
   --surface-alt: #f8fafc;
+  --constraint-line: rgba(16, 24, 40, 0.16);
+  --constraint-line-soft: rgba(16, 24, 40, 0.1);
+  --constraint-hatch: rgba(16, 24, 40, 0.09);
+  --constraint-gutter: clamp(1.5rem, 6vw, 4.5rem);
+  --constraint-max: 66rem;
+  --constraint-rail-gap: 14px;
+  --constraint-divider-gap: 6px;
+  --constraint-hatch-height: 28px;
+  --constraint-divider-offset: 2.5rem;
 }
 
 @theme inline {
@@ -22,6 +31,86 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.constraint-shell {
+  position: relative;
+}
+
+.constraint-shell::before,
+.constraint-shell::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--constraint-rail-gap) + 1px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.constraint-shell::before {
+  left: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
+  background: linear-gradient(
+    to right,
+    var(--constraint-line) 0 1px,
+    transparent 1px var(--constraint-rail-gap),
+    var(--constraint-line-soft) var(--constraint-rail-gap) calc(var(--constraint-rail-gap) + 1px)
+  );
+}
+
+.constraint-shell::after {
+  right: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
+  background: linear-gradient(
+    to left,
+    var(--constraint-line) 0 1px,
+    transparent 1px var(--constraint-rail-gap),
+    var(--constraint-line-soft) var(--constraint-rail-gap) calc(var(--constraint-rail-gap) + 1px)
+  );
+}
+
+.constraint-layer {
+  position: relative;
+  z-index: 1;
+}
+
+.constraint-content {
+  width: min(
+    calc(100% - (var(--constraint-gutter) * 2)),
+    var(--constraint-max)
+  );
+  margin-inline: auto;
+}
+
+.constraint-divider {
+  position: relative;
+  border-top: 1px solid var(--constraint-line);
+  padding-top: calc(
+    var(--constraint-hatch-height) + var(--constraint-divider-gap) +
+      var(--constraint-divider-offset)
+  );
+  overflow: clip;
+}
+
+.constraint-divider::after {
+  content: "";
+  position: absolute;
+  top: var(--constraint-divider-gap);
+  left: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
+  right: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
+  border-top: 1px solid var(--constraint-line-soft);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.constraint-divider::before {
+  content: none;
+}
+
+.constraint-divider > * {
+  position: relative;
+  z-index: 1;
 }
 
 h1,
