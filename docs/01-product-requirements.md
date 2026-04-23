@@ -54,7 +54,7 @@ Section content details and copy priorities: [Content Strategy](./02-content-str
 
 ## Mandatory Program Statements
 
-The site must include these program names exactly:
+The site must include these program names exactly, using canonical wording from `docs/00-master-context.md`:
 
 - Mini-Library Mission and Outreach Program
 - Web3 Education and University Programs
@@ -63,7 +63,7 @@ The site must include these program names exactly:
 
 ## Mandatory Impact and Partner Statements
 
-The site must include these statements exactly as written:
+The site must include these statements exactly as written in `docs/00-master-context.md`:
 
 - Active Mini-Library communities across multiple provinces
 - Thousands of students reached through outreach and seminars

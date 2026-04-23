@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Define concise, sponsor-facing messaging for the Cryptita Plays one-page website, aligned to approved source content.
+Define concise, sponsor-facing messaging for the Cryptita Plays one-page website, aligned to canonical source content in `docs/00-master-context.md`.
 
 Related docs: [README](./README.md), [Master Context](./00-master-context.md), [Product Requirements](./01-product-requirements.md), [Information Architecture](./03-information-architecture.md), [Design Brief](./04-design-brief.md)
 
@@ -79,7 +79,7 @@ Support details:
 - Access to Mini-Library resources
 
 ### Impact Block
-Use these claims exactly:
+Use these claims exactly as maintained in `docs/00-master-context.md`:
 - Active Mini-Library communities across multiple provinces
 - Thousands of students reached through outreach and seminars
 - Partnerships with educational and Web3 organizations
@@ -130,4 +130,4 @@ Contact details:
 - Keep each section self-contained for easy component mapping.
 - Ensure headings mirror navigation labels.
 - Lock mandatory claims, partner names, and program names as non-editable content tokens during implementation.
-- Reuse exact wording from this doc and [Product Requirements](./01-product-requirements.md) for final QA.
+- Validate all locked wording against [Master Context](./00-master-context.md) during final QA.

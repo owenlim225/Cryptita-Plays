@@ -8,9 +8,13 @@ This folder contains implementation-ready documentation for the **Cryptita Plays
 - Show the mission, programs, and community impact in a credible, easy-to-scan format.
 - Drive contact and partnership actions (email/social/contact number and sponsor CTA).
 
-## Source of Truth
+## Canonical Content Source
 
-Use these files as the primary content baseline:
+Maintained canonical source for project facts, approved copy, and messaging:
+
+- `docs/00-master-context.md`
+
+Archival/reference-only inputs (not maintained as canonical source documents):
 
 - `company background.txt`
 - `slides.text`

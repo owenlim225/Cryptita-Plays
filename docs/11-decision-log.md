@@ -17,6 +17,10 @@ Related docs: [Technical Specification](./05-technical-specification.md), [Relea
 - Consequences:
 - Owner:
 
+## Governance Note
+
+- If a decision changes canonical facts, claims, partner lists, program names, or contact details, update `docs/00-master-context.md` in the same PR.
+
 ## Recorded Decisions
 
 ### D-01

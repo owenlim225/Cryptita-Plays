@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Define execution, ownership, and reporting for delivering a concise one-page sponsor-facing Cryptita Plays website aligned to approved source content and slide flow.
+Define execution, ownership, and reporting for delivering a concise one-page sponsor-facing Cryptita Plays website aligned to the canonical master context and approved slide flow.
 
 Related docs: [Master Context](./00-master-context.md), [Implementation Plan](./06-implementation-plan.md), [Risk Register](./10-risk-register.md), [Decision Log](./11-decision-log.md)
 
 ## Delivery Principles
 
-- Content fidelity to approved source documents.
+- Content fidelity to `docs/00-master-context.md` as canonical source.
 - Sponsor-first clarity: fast understanding, clear trust signals, direct action paths.
 - Keep scope focused on one-page launch readiness.
 - Prioritize ACIS and core program communication without overloading the page.
@@ -28,7 +28,7 @@ Related docs: [Master Context](./00-master-context.md), [Implementation Plan](./
 
 ## Workstreams
 
-- **Content:** rewrite and approval of section copy from source-of-truth files.
+- **Content:** rewrite and approval of section copy derived from `docs/00-master-context.md`.
 - **Design:** wireframe + visual system + responsive mockups.
 - **Engineering:** one-page implementation with anchor navigation and accessible UI.
 - **QA:** content accuracy, responsive checks, accessibility and CTA flow validation.
@@ -59,7 +59,7 @@ Related docs: [Master Context](./00-master-context.md), [Implementation Plan](./
 
 ## Quality Gates
 
-- All claims and program details match source-of-truth text.
+- All claims and program details match `docs/00-master-context.md`.
 - ACIS details are present and correctly framed (up to 5 students per Mini-Library area).
 - Anchor navigation works across device sizes.
 - WCAG AA contrast and keyboard navigation pass.
@@ -78,7 +78,7 @@ Related docs: [Master Context](./00-master-context.md), [Implementation Plan](./
 
 ## Risk Watchlist
 
-- Content drift from approved source documents.
+- Content drift from `docs/00-master-context.md`.
 - Scope creep beyond one-page sponsor site.
 - Missing or outdated partner references.
 - Late approvals affecting launch sequence.

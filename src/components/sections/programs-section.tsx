@@ -8,7 +8,7 @@ export function ProgramsSection() {
     <section id="programs" className="bg-slate-50 px-6 py-20">
       <div className="mx-auto w-full max-w-6xl">
         <h2 className="text-3xl font-bold text-slate-900">Programs</h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="programs-grid mt-8 grid gap-6 md:grid-cols-3">
           {programs.map((program, index) => (
             <motion.article
               key={program.title}
