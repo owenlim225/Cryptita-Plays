@@ -1,16 +1,23 @@
-# Cryptita Plays Documentation
+# Cryptita Plays Docs
 
-This folder contains concise project documentation for the **Cryptita Plays sponsor-facing website**.
+This folder contains implementation-ready documentation for the **Cryptita Plays sponsor-facing one-page website**.
 
-## Scope
+## What This Website Must Do
 
-- Website type: one-page public website
-- Primary audience: prospective sponsors, partners, and supporters
-- Stack: Next.js + TypeScript
-- Goal: communicate mission, programs, impact, and sponsorship pathways clearly
+- Present Cryptita Plays clearly to prospective sponsors and partners.
+- Show the mission, programs, and community impact in a credible, easy-to-scan format.
+- Drive contact and partnership actions (email/social/contact number and sponsor CTA).
 
-## Document Map
+## Source of Truth
 
+Use these files as the primary content baseline:
+
+- `company background.txt`
+- `slides.text`
+
+## Documentation Map
+
+0. [Master Context](./00-master-context.md)
 1. [Product Requirements](./01-product-requirements.md)
 2. [Content Strategy](./02-content-strategy.md)
 3. [Information Architecture](./03-information-architecture.md)
@@ -24,10 +31,15 @@ This folder contains concise project documentation for the **Cryptita Plays spon
 11. [Decision Log](./11-decision-log.md)
 12. [Project Management](./12-project-management.md)
 
-## How To Use
+## Recommended Build Sequence
 
-- Start with [Product Requirements](./01-product-requirements.md) for business goals.
-- Use [Technical Specification](./05-technical-specification.md) and [Implementation Plan](./06-implementation-plan.md) during build.
-- Use [Testing and QA](./07-testing-and-qa.md), [Release and Deployment](./08-release-and-deployment.md), and [Maintenance and Operations](./09-maintenance-and-operations.md) for delivery and post-launch.
-- Update [Risk Register](./10-risk-register.md) and [Decision Log](./11-decision-log.md) continuously.
-- Track progress in [Project Management](./12-project-management.md).
+1. Align scope and acceptance criteria in [Product Requirements](./01-product-requirements.md).
+2. Finalize section-level messaging in [Content Strategy](./02-content-strategy.md).
+3. Implement structure and UI using [Information Architecture](./03-information-architecture.md) and [Design Brief](./04-design-brief.md).
+4. Build and ship using [Technical Specification](./05-technical-specification.md), [Implementation Plan](./06-implementation-plan.md), and [Testing and QA](./07-testing-and-qa.md).
+
+## Content Principles
+
+- Keep wording simple, sponsor-facing, and practical.
+- Prioritize education-first, safety, and long-term impact messaging.
+- Preserve named programs, claims, and partner statements exactly as approved in source content.
