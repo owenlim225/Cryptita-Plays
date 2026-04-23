@@ -99,6 +99,28 @@ export default function SplashCursor({
   const hueRef = useRef(280);
 
   useEffect(() => {
+    // #region agent log
+    fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "d9b104" },
+      body: JSON.stringify({
+        sessionId: "d9b104",
+        runId: "pre-fix",
+        hypothesisId: "H1",
+        location: "SplashCursor.tsx:102",
+        message: "SplashCursor mounted",
+        data: {
+          densityDissipation: DENSITY_DISSIPATION,
+          velocityDissipation: VELOCITY_DISSIPATION,
+          pressure: PRESSURE,
+          curl: CURL,
+          splatRadius: SPLAT_RADIUS,
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 

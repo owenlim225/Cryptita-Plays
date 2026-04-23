@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
+import { SmoothCursorFollower } from "@/components/smooth-cursor-follower";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -33,7 +34,10 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-slate-900">
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          <SmoothCursorFollower />
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );
