@@ -95,11 +95,21 @@ body {
   padding-inline: var(--constraint-divider-nested-pad);
 }
 
+/* Shared inset for column "margin" guides — horizontal and vertical use the same edges only. */
+.constraint-divider::before,
+.constraint-divider::after {
+  --constraint-divider-inset: max(
+    var(--constraint-gutter),
+    calc((100% - var(--constraint-max)) / 2)
+  );
+}
+
+/* Top edge: single horizontal dashed line between the two column guides (no full-bleed overlap). */
 .constraint-divider::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
+  left: var(--constraint-divider-inset);
+  right: var(--constraint-divider-inset);
   top: 0;
   height: 1px;
   border: none;
@@ -109,16 +119,17 @@ body {
     transparent 5px 12px
   );
   pointer-events: none;
-  z-index: 10000;
+  z-index: 0;
 }
 
+/* Left and right margin guides; start below the 1px top row so dashes do not stack on the horizontals. */
 .constraint-divider::after {
   content: "";
   position: absolute;
-  top: 0;
+  top: 1px;
   bottom: 0;
-  left: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
-  right: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
+  left: var(--constraint-divider-inset);
+  right: var(--constraint-divider-inset);
   border: none;
   background-image: repeating-linear-gradient(
       to bottom,
@@ -134,7 +145,7 @@ body {
   background-position: left top, right top;
   background-repeat: no-repeat;
   pointer-events: none;
-  z-index: 10000;
+  z-index: 0;
 }
 
 .constraint-divider > * {
@@ -145,6 +156,10 @@ body {
 /* When the previous section already ends with a faded constraint line (e.g. educational partners). */
 .constraint-divider--no-top-line::before {
   display: none;
+}
+
+.constraint-divider--no-top-line::after {
+  top: 0;
 }
 
 h1,
