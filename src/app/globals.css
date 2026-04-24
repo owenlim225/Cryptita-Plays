@@ -9,15 +9,14 @@
   --text-muted: #475467;
   --border-subtle: #d0d5dd;
   --surface-alt: #f8fafc;
-  --constraint-line: rgba(16, 24, 40, 0.16);
-  --constraint-line-soft: rgba(16, 24, 40, 0.1);
+  --constraint-stroke: rgba(16, 24, 40, 0.1);
   --constraint-hatch: rgba(16, 24, 40, 0.09);
   --constraint-gutter: clamp(1.5rem, 6vw, 4.5rem);
   --constraint-max: 66rem;
-  --constraint-rail-gap: 14px;
-  --constraint-divider-gap: 6px;
+  --constraint-divider-gap: 24px;
   --constraint-hatch-height: 28px;
   --constraint-divider-offset: 2.5rem;
+  --constraint-divider-nested-pad: clamp(1.5rem, 4vw, 2.75rem);
 }
 
 @theme inline {
@@ -45,29 +44,18 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: calc(var(--constraint-rail-gap) + 1px);
+  width: 1px;
+  background: var(--constraint-stroke);
   pointer-events: none;
   z-index: 0;
 }
 
 .constraint-shell::before {
   left: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
-  background: linear-gradient(
-    to right,
-    var(--constraint-line) 0 1px,
-    transparent 1px var(--constraint-rail-gap),
-    var(--constraint-line-soft) var(--constraint-rail-gap) calc(var(--constraint-rail-gap) + 1px)
-  );
 }
 
 .constraint-shell::after {
   right: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
-  background: linear-gradient(
-    to left,
-    var(--constraint-line) 0 1px,
-    transparent 1px var(--constraint-rail-gap),
-    var(--constraint-line-soft) var(--constraint-rail-gap) calc(var(--constraint-rail-gap) + 1px)
-  );
 }
 
 .constraint-layer {
@@ -85,27 +73,28 @@ body {
 
 .constraint-divider {
   position: relative;
-  border-top: 1px solid var(--constraint-line);
+  isolation: isolate;
   padding-top: calc(
     var(--constraint-hatch-height) + var(--constraint-divider-gap) +
-      var(--constraint-divider-offset)
+      var(--constraint-divider-offset) + var(--constraint-divider-nested-pad)
   );
+  padding-bottom: var(--constraint-divider-nested-pad);
   overflow: clip;
 }
 
-.constraint-divider::after {
-  content: "";
-  position: absolute;
-  top: var(--constraint-divider-gap);
-  left: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
-  right: max(var(--constraint-gutter), calc((100% - var(--constraint-max)) / 2));
-  border-top: 1px solid var(--constraint-line-soft);
-  pointer-events: none;
-  z-index: 0;
+/* Full-bleed section backgrounds stay edge-to-edge; only the constrained column gets extra padding. */
+.constraint-divider .constraint-content {
+  padding-inline: var(--constraint-divider-nested-pad);
 }
 
 .constraint-divider::before {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 0;
+  border-top: 1px solid var(--constraint-stroke);
+  pointer-events: none;
+  z-index: 10000;
 }
 
 .constraint-divider > * {

@@ -1,5 +1,6 @@
 import { AboutSection } from "@/components/sections/about-section";
 import { ContactSection } from "@/components/sections/contact-section";
+import { EducationalPartnersStrip } from "@/components/sections/educational-partners-strip";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FooterSection } from "@/components/sections/footer-section";
 import { FounderSection } from "@/components/sections/founder-section";
@@ -18,8 +19,9 @@ export default function Home() {
       <div className="constraint-layer relative z-20">
         <HeaderSection />
         <main>
-          <div className="constraint-divider">
             <HeroSection />
+          <div className="constraint-divider">
+            <EducationalPartnersStrip />
           </div>
           <div className="constraint-divider">
             <AboutSection />
