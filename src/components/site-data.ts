@@ -108,7 +108,8 @@ export const communityPartners = [
   { name: "Museigen.io", logo: "/brand/partners/community/museigen-io.png" },
   { name: "Stocksify", logo: "/brand/partners/community/stocksify.png" },
   { name: "The Cryptology Academy", logo: "/brand/partners/community/the-cryptology-academy.png" },
-  { name: "House of Degens", logo: null },
+  { name: "GN club", logo: "/brand/partners/community/gn-club.png" },
+  { name: "UPHSL GDC", logo: "/brand/partners/community/uphsl-gdc.png" },
 ];
 
 export const founder = {

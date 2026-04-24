@@ -52,7 +52,7 @@ export function ProgramsSection() {
                   fillOpacity={0.45}
                 >
                   <TiltedSurface
-                    className="relative overflow-hidden rounded-3xl border border-(--primary) bg-(--primary) p-2 shadow-xl"
+                    className="relative overflow-hidden rounded-3xl bg-(--primary) p-2 shadow-xl"
                     captionText={`Core Program ${index + 1}`}
                     rotateAmplitude={12}
                     scaleOnHover={1.05}

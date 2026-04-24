@@ -32,7 +32,7 @@
   inset: 0;
   border-radius: inherit;
   transition: opacity 0.25s ease-out;
-  z-index: -1;
+  pointer-events: none;
 }
 
 .border-glow-card:not(:hover):not(.sweep-active)::before,
@@ -43,6 +43,7 @@
 }
 
 .border-glow-card::before {
+  z-index: 2;
   border: 1px solid transparent;
   background:
     linear-gradient(var(--card-bg, #120f17) 0 100%) padding-box,
@@ -66,6 +67,7 @@
 }
 
 .border-glow-card::after {
+  z-index: 2;
   border: 1px solid transparent;
   background:
     var(--gradient-one, radial-gradient(at 80% 55%, hsl(268deg 100% 76%) 0, transparent 50%)) padding-box,
@@ -95,7 +97,7 @@
 .border-glow-card > .edge-light {
   inset: calc(var(--glow-padding) * -1);
   pointer-events: none;
-  z-index: 1;
+  z-index: 3;
   mask-image: conic-gradient(
     from var(--cursor-angle) at center,
     black 2.5%,
@@ -133,4 +135,6 @@
   flex-direction: column;
   position: relative;
   z-index: 1;
+  border-radius: inherit;
+  overflow: hidden;
 }

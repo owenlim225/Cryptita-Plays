@@ -1,4 +1,6 @@
 import { AboutSection } from "@/components/sections/about-section";
+import { ApproachOverviewSection } from "@/components/sections/approach-overview-section";
+import { CommunityPartnersStrip } from "@/components/sections/community-partners-strip";
 import { EducationalPartnersStrip } from "@/components/sections/educational-partners-strip";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FooterSection } from "@/components/sections/footer-section";
@@ -19,7 +21,9 @@ export default function Home() {
         <HeaderSection />
         <main>
             <HeroSection />
+          <ApproachOverviewSection />
           <EducationalPartnersStrip />
+          <CommunityPartnersStrip />
           <div className="constraint-divider constraint-divider--no-top-line">
             <AboutSection />
           </div>
