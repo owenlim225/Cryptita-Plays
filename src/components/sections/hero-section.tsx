@@ -1,70 +1,86 @@
 "use client";
 
-import { useId } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { HeroIllustration } from "@/components/hero-illustration";
+import Image from "next/image";
+import Particles from "@/components/particles";
+import ShinyText from "@/components/shiny-text";
+import SplitText from "@/components/split-text";
 import { siteConfig } from "../site-data";
 
-const heroFloatTransition = {
-  duration: 5.5,
-  repeat: Infinity,
-  ease: "easeInOut" as const,
-};
-
 export function HeroSection() {
-  const svgId = `hero-illu-${useId().replace(/:/g, "")}`;
-  const reduceMotion = useReducedMotion();
-
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-linear-to-br from-background via-[#fcfaf6] to-[#f2efe6] py-16 md:py-20"
+      className="relative overflow-hidden bg-background py-16 md:py-20"
     >
+      <div
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_110%_75%_at_50%_-18%,rgb(200_220_235_/_0.12),transparent_58%),radial-gradient(ellipse_80%_55%_at_100%_100%,rgb(190_210_225_/_0.08),transparent_52%),radial-gradient(ellipse_55%_40%_at_0%_88%,rgb(210_224_236_/_0.09),transparent_48%)]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        aria-hidden
+      >
+        <Particles
+          particleCount={200}
+          particleSpread={10}
+          speed={0.05}
+          particleBaseSize={100}
+          moveParticlesOnHover={false}
+          alphaParticles={false}
+          disableRotation={false}
+          pixelRatio={2}
+          className="min-h-full"
+        />
+      </div>
       <div className="constraint-content relative z-10 mx-auto w-full max-w-5xl">
-        <div className="grid w-full items-center gap-10 lg:grid-cols-2 lg:gap-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="order-2 flex justify-center lg:order-1"
-          >
-            <motion.div
-              className="w-full max-w-[min(100%,28rem)] shrink-0 will-change-transform"
-              animate={reduceMotion ? undefined : { y: [0, -12, 0] }}
-              transition={reduceMotion ? undefined : heroFloatTransition}
-            >
-              <HeroIllustration
-                idPrefix={svgId}
-                className="h-auto w-full aspect-1081/1080"
-              />
-            </motion.div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.05 }}
-            className="order-1 flex min-w-0 flex-col items-center text-center lg:order-2"
-          >
-            <div className="mb-3 flex items-center justify-center gap-3">
-              <div className="h-10 w-10 shrink-0 sm:h-11 sm:w-11" aria-hidden>
-                <HeroIllustration
-                  idPrefix={`${svgId}-eyebrow`}
-                  className="h-full w-full"
-                />
-              </div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--text-muted)">
-                Community-driven initiative
-              </p>
-            </div>
-            <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl sm:leading-tight">
-              {siteConfig.tagline}
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-7 text-(--text-muted)">
-              {siteConfig.mission}
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
+        <div className="flex min-w-0 flex-col items-center text-center">
+          <div className="flex items-center justify-center gap-2.5">
+            <Image
+              src="/brand/icon-mark.ico"
+              alt=""
+              width={20}
+              height={20}
+              className="size-4 shrink-0 object-contain"
+              aria-hidden
+            />
+            <SplitText
+              text="Community-driven initiative"
+              tag="p"
+              className="text-xs font-semibold uppercase tracking-[0.2em] text-(--text-muted)"
+              splitType="words"
+              delay={40}
+              duration={0.55}
+              ease="power3.out"
+              from={{ opacity: 0, y: 24 }}
+              to={{ opacity: 1, y: 0 }}
+              textAlign="center"
+            />
+          </div>
+          <h1 className="mt-3 w-full text-center text-3xl font-black leading-tight tracking-tight sm:text-4xl sm:leading-tight">
+            <ShinyText
+              text={siteConfig.tagline}
+              className="max-w-full text-balance"
+              color="#5b1a9e"
+              shineColor="#e9d5ff"
+              speed={2.4}
+              delay={0.35}
+              spread={110}
+              direction="left"
+            />
+          </h1>
+          <SplitText
+            text={siteConfig.mission}
+            tag="p"
+            className="mt-5 max-w-xl text-base leading-7 text-(--text-muted)"
+            splitType="words"
+            delay={28}
+            duration={0.5}
+            ease="power3.out"
+            from={{ opacity: 0, y: 20 }}
+            to={{ opacity: 1, y: 0 }}
+            textAlign="center"
+          />
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
             <a
               href="#programs"
               className="rounded-full bg-(--primary) px-5 py-2.5 text-sm text-white transition hover:bg-(--primary-hover)"
@@ -77,8 +93,7 @@ export function HeroSection() {
             >
               Volunteer
             </a>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

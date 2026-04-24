@@ -20,10 +20,8 @@ export default function Home() {
         <HeaderSection />
         <main>
             <HeroSection />
-          <div className="constraint-divider">
-            <EducationalPartnersStrip />
-          </div>
-          <div className="constraint-divider">
+          <EducationalPartnersStrip />
+          <div className="constraint-divider constraint-divider--no-top-line">
             <AboutSection />
           </div>
           <div className="constraint-divider">
