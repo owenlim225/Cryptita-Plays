@@ -36,11 +36,7 @@ export default function Home() {
           </div>
           <div className="constraint-divider">
             <TestimonialsSection />
-          </div>
-          <div className="constraint-divider">
-            <PartnersSection />
-          </div>
-          <div className="constraint-divider">
+            {/* <PartnersSection /> */}
             <FounderSection />
           </div>
           <div className="constraint-divider">
