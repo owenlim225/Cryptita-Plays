@@ -14,8 +14,8 @@ type HeroParallaxStageProps = {
 };
 
 /**
- * Osmo-style parallax (GSAP timeline + yPercent) over AVIF layers, mesh, and exit fade.
- * Parent is `absolute inset-0` in `HeroStage` (`min-h-dvh`).
+ * Osmo-style parallax (GSAP timeline + yPercent) over PNG layers, mesh, and exit fade.
+ * Parent is `absolute inset-0` in `HeroStage` (fixed hero height, e.g. 600px).
  */
 export function HeroParallaxStage({ sectionRef, className }: HeroParallaxStageProps) {
   const exitOverlayRef = useRef<HTMLDivElement>(null);

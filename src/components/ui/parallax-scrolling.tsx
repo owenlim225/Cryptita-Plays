@@ -10,12 +10,18 @@ import "./parallax-scrolling.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-/** Back (1) → front (4); yPercent targets match Osmo scroll-scrub demo. */
-const LAYERS: { id: "1" | "2" | "3" | "4"; yPercent: number; src: string; alt: string }[] = [
-  { id: "1", yPercent: 70, src: "/parallax/layer_1.avif", alt: "" },
-  { id: "2", yPercent: 55, src: "/parallax/layer_2.avif", alt: "" },
-  { id: "3", yPercent: 40, src: "/parallax/layer_3.avif", alt: "" },
-  { id: "4", yPercent: 10, src: "/parallax/layer_4.avif", alt: "" },
+/** Back (1) → front (4); yPercent = scroll parallax. offsetYPx = static stagger (20px per layer). */
+const LAYERS: {
+  id: "1" | "2" | "3" | "4";
+  yPercent: number;
+  offsetYPx: number;
+  src: string;
+  alt: string;
+}[] = [
+  { id: "1", yPercent: 70, offsetYPx: 0, src: "/parallax/layer_1.png", alt: "" },
+  { id: "2", yPercent: 55, offsetYPx: 20, src: "/parallax/layer_2.png", alt: "" },
+  { id: "3", yPercent: 40, offsetYPx: 40, src: "/parallax/layer_3.png", alt: "" },
+  { id: "4", yPercent: 10, offsetYPx: 60, src: "/parallax/layer_4.png", alt: "" },
 ];
 
 type ParallaxScrollingProps = {
@@ -89,13 +95,13 @@ export function ParallaxScrolling({ sectionRef, className }: ParallaxScrollingPr
                 key={layer.id}
                 data-parallax-layer={layer.id}
                 className="parallax__layer-wrap"
+                style={{ paddingTop: layer.offsetYPx }}
               >
                 <Image
                   src={layer.src}
                   alt={layer.alt}
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 1024px) 100vw, 64rem"
+                  fill
+                  sizes="100vw"
                   className="parallax__layer-img"
                   priority={layer.id === "1"}
                   onLoad={() => {

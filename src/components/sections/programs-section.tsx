@@ -1,10 +1,48 @@
 "use client";
 
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import TiltedCard, { TiltedSurface } from "@/components/TiltedCard";
 import { programs } from "@/features/home/data/content";
 
 export function ProgramsSection() {
+  const programsGridRef = useRef<HTMLDivElement | null>(null);
+
+  // #region agent log
+  useLayoutEffect(() => {
+    const el = programsGridRef.current;
+    fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "b0b250" },
+      body: JSON.stringify({
+        sessionId: "b0b250",
+        runId: "pre-fix",
+        hypothesisId: "H1",
+        location: "programs-section.tsx:useLayoutEffect",
+        message: "programs-grid style right after commit (layout)",
+        data: { style: el?.getAttribute("style") ?? null, tag: el?.tagName },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+  });
+  useEffect(() => {
+    const el = programsGridRef.current;
+    fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "b0b250" },
+      body: JSON.stringify({
+        sessionId: "b0b250",
+        runId: "pre-fix",
+        hypothesisId: "H2",
+        location: "programs-section.tsx:useEffect",
+        message: "programs-grid style after effects paint",
+        data: { style: el?.getAttribute("style") ?? null },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+  });
+  // #endregion
+
   return (
     <section id="programs" className="bg-[var(--surface-alt)] py-20">
       <div className="constraint-content w-full">
@@ -13,7 +51,7 @@ export function ProgramsSection() {
           Explore our flagship initiatives designed to equip learners with digital literacy, creativity,
           and future-ready skills.
         </p>
-        <div className="programs-grid mt-8 grid gap-6">
+        <div ref={programsGridRef} className="programs-grid mt-8 grid gap-6">
           {programs.map((program, index) => (
             <motion.article
               key={program.title}

@@ -13,7 +13,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-dvh overflow-x-clip bg-background pb-0"
+      className="relative min-h-0 overflow-x-clip overflow-y-hidden bg-background pb-0"
     >
       <HeroStage sectionRef={sectionRef}>
         <div className="flex min-w-0 flex-col items-center text-center">

@@ -35,6 +35,25 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     const timer = scheduleAfterHydration(() => {
       if (runtime.cancelled) return;
 
+      // #region agent log
+      {
+        const g = document.querySelector("#programs .programs-grid");
+        fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "b0b250" },
+          body: JSON.stringify({
+            sessionId: "b0b250",
+            runId: "pre-fix",
+            hypothesisId: "H3",
+            location: "smooth-scroll-provider.tsx:setTimeout(0) entry",
+            message: "programs-grid before gsap",
+            data: { style: g ? (g as HTMLElement).getAttribute("style") : null, found: Boolean(g) },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+      }
+      // #endregion
+
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         return;
       }
@@ -182,6 +201,25 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
             );
         }
       });
+
+      // #region agent log
+      {
+        const g = document.querySelector("#programs .programs-grid");
+        fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "b0b250" },
+          body: JSON.stringify({
+            sessionId: "b0b250",
+            runId: "pre-fix",
+            hypothesisId: "H4",
+            location: "smooth-scroll-provider.tsx:after gsap.context",
+            message: "programs-grid after scroll animations registered",
+            data: { style: g ? (g as HTMLElement).getAttribute("style") : null, found: Boolean(g) },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+      }
+      // #endregion
 
       runtime.context = context;
       runtime.lenis = lenis;

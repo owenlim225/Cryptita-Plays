@@ -1,8 +1,14 @@
-/* Osmo-style hero parallax: bottom-anchored artboard + yPercent (see parallax-scrolling.tsx). */
+/* 16:9 artboard + yPercent. Override in globals.css: --parallax-artboard-*, --parallax-img-*. */
 .parallax--hero-underlay {
+  --parallax-artboard-tx: 0px;
+  --parallax-artboard-ty: 0px;
+  /* object-position of each layer inside the 16:9 frame */
+  --parallax-img-x: 50%;
+  --parallax-img-y: 50%;
+
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: 0;
   pointer-events: none;
   user-select: none;
@@ -11,19 +17,20 @@
 
 .parallax--hero-underlay .parallax__header {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  display: block;
   width: 100%;
-  height: 100%;
-  min-height: min(62vh, 40rem);
+  min-height: 0;
+  transform: translate(var(--parallax-artboard-tx), var(--parallax-artboard-ty));
 }
 
+/* Full-width 16:9 artboard: height = width×9/16 (large on phone in portrait). */
 .parallax--hero-underlay .parallax__visuals {
   position: relative;
   width: 100%;
-  flex: 1 1 auto;
-  min-height: min(58vh, 36rem);
+  max-width: 100%;
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+  min-height: 0;
 }
 
 /* Top crop line (Osmo): subtle edge before the layer stack. */
@@ -39,10 +46,11 @@
 }
 
 .parallax--hero-underlay .parallax__layers {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  min-height: min(56vh, 34rem);
+  min-height: 0;
   overflow: visible;
 }
 
@@ -50,12 +58,10 @@
   will-change: transform;
 }
 
-/* Top-anchored scene: TV-style artboard at the very top of the hero. */
+/* Layers fill the 16:9 box; GSAP yPercent uses top origin. */
 .parallax--hero-underlay .parallax__layer-wrap {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
+  inset: 0;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -74,21 +80,22 @@
 .parallax--hero-underlay [data-parallax-layer="3"] {
   z-index: 3;
 }
+/* Slightly scale mid-ground layer (layer_3) for emphasis; GSAP animates the wrap, not the img. */
+.parallax--hero-underlay [data-parallax-layer="3"] .parallax__layer-img {
+  transform: scale(1.12);
+  transform-origin: 50% 55%;
+}
 .parallax--hero-underlay [data-parallax-layer="4"] {
   z-index: 4;
 }
 
+/* `fill` image: full artboard; use --parallax-img-* to re-center the composition. */
 .parallax--hero-underlay .parallax__layer-img {
-  position: relative;
-  width: min(100%, 64rem);
-  max-width: none;
-  height: auto;
-  max-height: min(52vh, 30rem);
   object-fit: contain;
-  object-position: top center;
+  object-position: var(--parallax-img-x) var(--parallax-img-y);
 }
 
-/* Soft blend into page background (no hard cut under the stack). */
+/* Soft blend into page background. */
 .parallax--hero-underlay .parallax__fade {
   position: absolute;
   left: 0;
