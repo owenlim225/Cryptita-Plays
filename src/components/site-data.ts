@@ -9,11 +9,40 @@ export const siteConfig = {
 };
 
 export const navItems = [
-  { label: "Who We Are", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Impact", href: "#impact" },
-  { label: "Partners", href: "#partners" },
-  { label: "Contact", href: "#contact" },
+  { label: "Who We Are", href: "/#about" },
+  { label: "Programs", href: "/#programs" },
+  { label: "Impact", href: "/#impact" },
+  { label: "Partners", href: "/#partners" },
+  { label: "Contact", href: "/#contact" },
+  { label: "Our Story", href: "/our-story" },
+];
+
+export const footerSitemapLinks = [
+  { label: "Who We Are", href: "/#about" },
+  { label: "Programs", href: "/#programs" },
+  { label: "Impact", href: "/#impact" },
+  { label: "Partners", href: "/#partners" },
+  { label: "Our Story", href: "/our-story" },
+];
+
+export const footerInfoLinks = [
+  { label: "Mission", href: "/#about" },
+  { label: "Approach", href: "/#programs" },
+  { label: "Commitments", href: "/#impact" },
+  { label: "Contact", href: "/#contact" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+];
+
+export const footerContactLinks = [
+  { label: "General Inquiry", href: "mailto:cryptitaplays@gmail.com" },
+  { label: "Partnership Inquiry", href: "mailto:cryptitaplays@gmail.com" },
+];
+
+export const footerSocialLinks = [
+  { label: "Twitter", href: "https://x.com/cryptitaplays" },
+  { label: "Instagram", href: "https://www.instagram.com/cryptitaplays/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/cryptitaplays/https://www.linkedin.com/company/cryptitaplays/" },
+  { label: "Telegram", href: "t.me/cryptitaplays" },
 ];
 
 export const programs = [
@@ -47,7 +76,7 @@ export const impactStatements = [
 ];
 
 export const educationalPartners = [
-  { name: "Blockchain4Youth", logo: "/brand/partners/educational/blockchain4youth.png" },
+  { name: "Blockchain4Youth", logo: "/brand/partners/educational/blockchain4youth.gif" },
   { name: "Blockchain4Her", logo: "/brand/partners/educational/blockchain4her.png" },
   { name: "MEXC Foundation", logo: "/brand/partners/educational/mexc-foundation.png" },
   { name: "Avalanche", logo: "/brand/partners/educational/avalanche.png" },
@@ -55,6 +84,8 @@ export const educationalPartners = [
   { name: "OKX Wallet", logo: "/brand/partners/educational/okx-wallet.png" },
   { name: "Coinex Charity", logo: "/brand/partners/educational/coinex-charity.png" },
   { name: "TrustWallet", logo: "/brand/partners/educational/trustwallet.png" },
+  { name: "Gate Web3", logo: "/brand/partners/educational/gate-web3.png" },
+  { name: "Morph", logo: "/brand/partners/educational/morph.png" },
 ];
 
 export const communityPartners = [

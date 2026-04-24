@@ -56,6 +56,8 @@ She is also an active supporter of women-led initiatives in technology and educa
 
 ## Collaboration And Partnerships
 
+The authoritative partner list and the mapping to `assets/Partner logo files/…` and `public/brand/partners/…` is maintained in [docs/00-master-context.md](docs/00-master-context.md) (see §8).
+
 Cryptita Plays works with educational institutions, community leaders, foundations, and Web3 organizations that share the mission of ethical education and long-term social impact.
 
 If your organization is interested in sponsoring, collaborating, or co-developing community education programs, we welcome partnership discussions.

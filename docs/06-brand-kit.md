@@ -169,9 +169,13 @@ Cryptita Plays is a community-driven social impact initiative in the Philippines
 - Use visual normalization (padding and container alignment), not geometric distortion.
 
 ### Partner List Compliance Rule
-Only display partner names approved in `docs/00-master-context.md`.
+Only display partner names approved in `docs/00-master-context.md`, and use logo files from the published set only.
 
-Educational partners (approved):
+**Source library:** `assets/Partner logo files/Educational Partners/` and `assets/Partner logo files/Community Partners/` (see `docs/00-master-context.md` §8 for the name-to-filename table).
+
+**Site delivery:** `public/brand/partners/educational/` and `public/brand/partners/community/`; UI lists `name` and `/brand/partners/...` paths in `src/components/site-data.ts`.
+
+Educational partners (approved, with a source file in the Educational Partners folder):
 - Blockchain4Youth
 - Blockchain4Her
 - MEXC Foundation
@@ -180,6 +184,8 @@ Educational partners (approved):
 - OKX Wallet
 - Coinex Charity
 - TrustWallet
+- Gate Web3
+- Morph
 
 Community partners (approved):
 - NEN Digital
@@ -189,9 +195,11 @@ Community partners (approved):
 - Museigen.io
 - Stocksify
 - The Cryptology Academy
-- House of Degens
+- GN club
+- UPHSL GDC
+- House of Degens (copy-approved only until a file exists in the Community Partners folder)
 
-If additional logo files exist in `assets`, treat them as unpublished until they are added to the master context.
+If new files appear under `assets/Partner logo files/…` that are not listed in the master context, treat them as unpublished until `docs/00-master-context.md` and the site data are updated.
 
 ## Website Application Map (One-Page Flow)
 

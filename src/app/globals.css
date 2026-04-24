@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f8fafd;
   --foreground: #101828;
   --primary: #971ce6;
   --primary-hover: #7d12c8;
-  --primary-soft: #f4e9fd;
+  --primary-soft: #ffffff;
   --text-muted: #475467;
   --border-subtle: #d0d5dd;
   --surface-alt: #f8fafc;
   --constraint-stroke: rgba(16, 24, 40, 0.1);
+  --constraint-divider-stroke: rgba(16, 24, 40, 0.045);
   --constraint-hatch: rgba(16, 24, 40, 0.09);
   --constraint-gutter: clamp(1.5rem, 6vw, 4.5rem);
   --constraint-max: 66rem;
-  --constraint-divider-gap: 24px;
-  --constraint-hatch-height: 28px;
-  --constraint-divider-offset: 2.5rem;
+  --constraint-divider-gap: 18px;
+  --constraint-hatch-height: 16px;
+  --constraint-divider-offset: 1.75rem;
   --constraint-divider-nested-pad: clamp(1.5rem, 4vw, 2.75rem);
 }
 
@@ -32,6 +33,13 @@ body {
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   font-size: 15px;
   line-height: 1.5;
+}
+
+/* SplitText: animatable character/word/line units */
+.split-parent .split-char,
+.split-parent .split-word,
+.split-parent .split-line {
+  display: inline-block;
 }
 
 .constraint-shell {
@@ -90,9 +98,16 @@ body {
 .constraint-divider::before {
   content: "";
   position: absolute;
-  inset: 0 0 auto 0;
-  height: 0;
-  border-top: 1px solid var(--constraint-stroke);
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  border: none;
+  background: repeating-linear-gradient(
+    to right,
+    var(--constraint-divider-stroke) 0 5px,
+    transparent 5px 12px
+  );
   pointer-events: none;
   z-index: 10000;
 }
@@ -100,6 +115,11 @@ body {
 .constraint-divider > * {
   position: relative;
   z-index: 1;
+}
+
+/* When the previous section already ends with a faded constraint line (e.g. educational partners). */
+.constraint-divider--no-top-line::before {
+  display: none;
 }
 
 h1,

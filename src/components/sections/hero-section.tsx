@@ -1,59 +1,100 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
+import Particles from "@/components/particles";
+import ShinyText from "@/components/shiny-text";
+import SplitText from "@/components/split-text";
 import { siteConfig } from "../site-data";
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative overflow-hidden bg-linear-to-b from-(--primary-soft) to-white py-16">
-      <Image
-        src="/brand/photos/hero.jpg"
-        alt="Cryptita Plays community learners"
-        fill
-        priority
-        className="object-cover opacity-20"
+    <section
+      id="hero"
+      className="relative overflow-hidden bg-background py-16 md:py-20"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_110%_75%_at_50%_-18%,rgb(200_220_235_/_0.12),transparent_58%),radial-gradient(ellipse_80%_55%_at_100%_100%,rgb(190_210_225_/_0.08),transparent_52%),radial-gradient(ellipse_55%_40%_at_0%_88%,rgb(210_224_236_/_0.09),transparent_48%)]"
+        aria-hidden
       />
-      <div className="absolute inset-0 bg-linear-to-b from-white/90 via-white/85 to-white" />
-      <div className="constraint-content relative z-10 grid w-full gap-8 lg:grid-cols-2 lg:items-center">
-        <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-(--primary)">
-            Community-driven initiative
-          </p>
-          <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl">
-            {siteConfig.tagline}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        aria-hidden
+      >
+        <Particles
+          particleCount={200}
+          particleSpread={10}
+          speed={0.05}
+          particleBaseSize={100}
+          moveParticlesOnHover={false}
+          alphaParticles={false}
+          disableRotation={false}
+          pixelRatio={2}
+          className="min-h-full"
+        />
+      </div>
+      <div className="constraint-content relative z-10 mx-auto w-full max-w-5xl">
+        <div className="flex min-w-0 flex-col items-center text-center">
+          <div className="flex items-center justify-center gap-2.5">
+            <Image
+              src="/brand/icon-mark.ico"
+              alt=""
+              width={20}
+              height={20}
+              className="size-4 shrink-0 object-contain"
+              aria-hidden
+            />
+            <SplitText
+              text="Community-driven initiative"
+              tag="p"
+              className="text-xs font-semibold uppercase tracking-[0.2em] text-(--text-muted)"
+              splitType="words"
+              delay={40}
+              duration={0.55}
+              ease="power3.out"
+              from={{ opacity: 0, y: 24 }}
+              to={{ opacity: 1, y: 0 }}
+              textAlign="center"
+            />
+          </div>
+          <h1 className="mt-3 w-full text-center text-3xl font-black leading-tight tracking-tight sm:text-4xl sm:leading-tight">
+            <ShinyText
+              text={siteConfig.tagline}
+              className="max-w-full text-balance"
+              color="#5b1a9e"
+              shineColor="#e9d5ff"
+              speed={2.4}
+              delay={0.35}
+              spread={110}
+              direction="left"
+            />
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-(--text-muted)">{siteConfig.mission}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <SplitText
+            text={siteConfig.mission}
+            tag="p"
+            className="mt-5 max-w-xl text-base leading-7 text-(--text-muted)"
+            splitType="words"
+            delay={28}
+            duration={0.5}
+            ease="power3.out"
+            from={{ opacity: 0, y: 20 }}
+            to={{ opacity: 1, y: 0 }}
+            textAlign="center"
+          />
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
             <a
               href="#programs"
               className="rounded-full bg-(--primary) px-5 py-2.5 text-sm text-white transition hover:bg-(--primary-hover)"
             >
-              Sponsor Us
+              Sponsor
             </a>
             <a
               href="#contact"
               className="rounded-full border border-(--border-subtle) px-5 py-2.5 text-sm text-(--text-muted) transition hover:border-(--primary) hover:text-(--primary)"
             >
-              Volunteer With Us
+              Volunteer
             </a>
           </div>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-3xl border border-(--primary) bg-(--primary) p-7 shadow-xl"
-        >
-          <div className="absolute top-0 -right-4 h-full w-4 bg-size-[10px_10px] text-(--primary)/10 bg-[repeating-linear-gradient(315deg,currentColor_0_1px,#0000_0_50%)] md:-right-14 md:w-14" />
-          <p className="mt-3 text-xs font-medium text-white/80">Mission</p>
-          <h2 className="mt-2 text-xl font-bold text-white">Education First, Hype Last</h2>
-          <p className="mt-4 text-sm leading-6 text-white/85">
-            We make learning accessible, safe, and inclusive through beginner-friendly materials,
-            community-based outreach, and long-term support for underserved youth.
-          </p>
-        </motion.div>
       </div>
     </section>
   );

@@ -81,6 +81,8 @@ EDUCATIONAL PARTNERS:
 - OKX Wallet
 - Coinex Charity
 - TrustWallet
+- Gate Web3
+- Morph
 
 COMMUNITY PARTNERS:
 - NEN Digital
@@ -90,7 +92,11 @@ COMMUNITY PARTNERS:
 - Museigen.io
 - Stocksify
 - The Cryptology Academy
+- GN club
+- UPHSL GDC
 - House of Degens
+
+**Logo sources:** `assets/Partner logo files/…` and web exports under `public/brand/partners/…` (see `docs/00-master-context.md` §8 for filenames and the note on House of Degens).
 
 ## Functional Requirements
 

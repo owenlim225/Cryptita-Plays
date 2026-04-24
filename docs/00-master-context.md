@@ -162,10 +162,53 @@ Use these statements consistently in copy/decks/web:
 - Museigen.io
 - Stocksify
 - The Cryptology Academy
-- House of Degens
 - GN club
+- UPHSL GDC
+- House of Degens (approved name; there is no logo file yet under the paths below)
 
 **Shared framing line:** "Different ecosystems, one shared mission."
+
+### Partner logo file locations (repository)
+
+Source originals and partner-supplied files live in:
+
+- `assets/Partner logo files/Educational Partners/`
+- `assets/Partner logo files/Community Partners/`
+
+(IDEs such as Cursor may treat `@assets` as an alias for the `assets/` folder; the physical paths above are the canonical tree.)
+
+**Educational — source files on disk (10):**
+
+| Display name     | File in `.../Educational Partners/` |
+|-----------------|--------------------------------------|
+| Blockchain4Youth | `Blockchain4Youth.gif`               |
+| Blockchain4Her   | `Blockchain4Her.png`                 |
+| MEXC Foundation  | `MEXC Foundation.png`                |
+| Avalanche        | `Avalanche.png`                      |
+| BASE Philippines | `BASE Philippines.png`              |
+| OKX Wallet       | `OKX Wallet.png`                      |
+| Coinex Charity   | `Coinex Charity.png`                  |
+| TrustWallet      | `TrustWallet.png`                   |
+| Gate Web3        | `Gate Web3.png`                      |
+| Morph            | `Morph.png`                          |
+
+**Community — source files on disk (9):**
+
+| Display name            | File in `.../Community Partners/` |
+|-------------------------|-----------------------------------|
+| NEN Digital             | `NEN Digital.png`                 |
+| BlockTides              | `BlockTides.png`                  |
+| The SafeHouse           | `The SafeHouse.png`               |
+| Brgy Tamago             | `Brgy Tamago.png`                 |
+| Museigen.io             | `Museigen.io.png`                 |
+| Stocksify               | `Stocksify.png`                   |
+| The Cryptology Academy  | `The Cryptology Academy.png`      |
+| GN club                 | `GN club.png`                     |
+| UPHSL GDC               | `UPHSL GDC.png`                   |
+
+**Web-optimized exports for the site** are kept under `public/brand/partners/educational/` and `public/brand/partners/community/` (kebab-case filenames, typically `.png`). The React site reads logo URLs from `src/components/site-data.ts` as paths like `/brand/partners/educational/...` — keep those in sync with this document when names or files change.
+
+**House of Degens** is an approved community partner in copy, but it does not yet have a file in `assets/Partner logo files/`. Add a logo there before showing it in logo grids.
 
 ---
 

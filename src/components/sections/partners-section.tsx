@@ -4,7 +4,8 @@ import { communityPartners, educationalPartners } from "../site-data";
 export function PartnersSection() {
   const partnerCardClassName =
     "group flex min-h-[116px] cursor-pointer items-center justify-center rounded-xl border border-[var(--primary)] bg-transparent p-5 text-center shadow-sm transition-colors duration-300 hover:bg-[var(--primary)]/5";
-  const partnerLogoClassName =
+  const educationalPartnerLogoClassName = "h-11 w-auto max-w-[200px] object-contain";
+  const communityPartnerLogoClassName =
     "h-11 w-auto object-contain grayscale brightness-0 transition duration-300 group-hover:grayscale-0 group-hover:brightness-100";
 
   return (
@@ -26,7 +27,7 @@ export function PartnersSection() {
                 alt={partner.name}
                 width={160}
                 height={52}
-                className={partnerLogoClassName}
+                className={educationalPartnerLogoClassName}
               />
             </article>
           ))}
@@ -46,7 +47,7 @@ export function PartnersSection() {
                   alt={partner.name}
                   width={160}
                   height={52}
-                  className={partnerLogoClassName}
+                  className={communityPartnerLogoClassName}
                 />
               ) : (
                 <span className="text-sm font-semibold text-[var(--foreground)] transition-colors duration-300 group-hover:text-[var(--primary)]">

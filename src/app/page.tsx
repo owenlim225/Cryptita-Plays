@@ -1,5 +1,4 @@
 import { AboutSection } from "@/components/sections/about-section";
-import { ContactSection } from "@/components/sections/contact-section";
 import { EducationalPartnersStrip } from "@/components/sections/educational-partners-strip";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FooterSection } from "@/components/sections/footer-section";
@@ -13,17 +12,15 @@ import { ProgramsSection } from "@/components/sections/programs-section";
 
 export default function Home() {
   return (
-    <div className="constraint-shell relative isolate min-h-screen bg-white text-foreground">
+    <div className="constraint-shell relative isolate min-h-screen bg-background text-foreground">
       
 
       <div className="constraint-layer relative z-20">
         <HeaderSection />
         <main>
             <HeroSection />
-          <div className="constraint-divider">
-            <EducationalPartnersStrip />
-          </div>
-          <div className="constraint-divider">
+          <EducationalPartnersStrip />
+          <div className="constraint-divider constraint-divider--no-top-line">
             <AboutSection />
           </div>
           <div className="constraint-divider">
@@ -41,13 +38,8 @@ export default function Home() {
           <div className="constraint-divider">
             <FaqSection />
           </div>
-          <div className="constraint-divider">
-            <ContactSection />
-          </div>
         </main>
-        <div className="constraint-divider">
-          <FooterSection />
-        </div>
+        <FooterSection />
       </div>
     </div>
   );
