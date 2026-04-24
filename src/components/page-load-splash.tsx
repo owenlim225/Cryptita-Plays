@@ -81,18 +81,18 @@ export function PageLoadSplash() {
   const [logoPhase, setLogoPhase] = useState<"primary" | "long">("primary");
   const [exitOverlay, setExitOverlay] = useState(false);
   const [gone, setGone] = useState(false);
-  const exitTimerRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
+  const exitTimerRef = useRef<number | null>(null);
 
   const runExitAndDismiss = useCallback((exitS: number) => {
     setExitOverlay(true);
-    if (exitTimerRef.current) window.clearTimeout(exitTimerRef.current);
+    if (exitTimerRef.current !== null) window.clearTimeout(exitTimerRef.current);
     exitTimerRef.current = window.setTimeout(
       () => {
         exitTimerRef.current = null;
         setGone(true);
       },
       Math.max(0, exitS * 1000) + 32,
-    );
+    ) as unknown as number;
   }, []);
 
   useEffect(() => {
@@ -101,7 +101,7 @@ export function PageLoadSplash() {
     );
 
     let cancelled = false;
-    let crossTimer: ReturnType<typeof window.setTimeout> | null = null;
+    let crossTimer: number | null = null;
 
     void (async () => {
       await Promise.all([waitForWindowLoad(), minDelay(t.minMs)]);
@@ -118,10 +118,13 @@ export function PageLoadSplash() {
 
       setLogoPhase("long");
       if (t.crossS > 0) {
-        crossTimer = window.setTimeout(() => {
-          if (cancelled) return;
-          runExitAndDismiss(t.exitS);
-        }, t.crossS * 1000);
+        crossTimer = window.setTimeout(
+          () => {
+            if (cancelled) return;
+            runExitAndDismiss(t.exitS);
+          },
+          t.crossS * 1000,
+        ) as unknown as number;
       } else {
         runExitAndDismiss(t.exitS);
       }

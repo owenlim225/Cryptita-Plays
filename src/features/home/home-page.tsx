@@ -18,9 +18,9 @@ export function HomePage() {
         <HeaderSection />
         <main>
           <HeroSection />
+          <ApproachOverviewSection />
           <EducationalPartnersStrip />
           <CommunityPartnersStrip />
-          {/* <ApproachOverviewSection /> */}
           <div className="constraint-divider">
             <AboutSection />
           </div>
