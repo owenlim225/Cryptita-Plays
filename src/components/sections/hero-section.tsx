@@ -1,46 +1,18 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import { HeroFeatureCards } from "@/components/sections/hero-feature-cards";
-import { HeroParallaxStage } from "@/components/sections/hero-parallax-stage";
-import Particles from "@/components/particles";
+import { HeroLogoPinnedStage } from "@/components/sections/hero-logo-pinned-stage";
 import ShinyText from "@/components/shiny-text";
 import SplitText from "@/components/split-text";
 import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
   return (
     <section
-      ref={sectionRef}
       id="hero"
-      className="relative overflow-hidden bg-background pb-0 pt-16 md:pt-20"
+      className="relative overflow-x-clip bg-background pb-0"
     >
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[min(50vh,28rem)] overflow-hidden"
-        aria-hidden
-      >
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_110%_75%_at_50%_-18%,rgb(200_220_235_/_0.12),transparent_58%),radial-gradient(ellipse_80%_55%_at_100%_100%,rgb(190_210_225_/_0.08),transparent_52%),radial-gradient(ellipse_55%_40%_at_0%_88%,rgb(210_224_236_/_0.09),transparent_48%)]"
-        />
-        <div className="absolute inset-0 z-[1]">
-          <Particles
-            particleCount={200}
-            particleSpread={10}
-            speed={0.05}
-            particleBaseSize={100}
-            moveParticlesOnHover={false}
-            alphaParticles={false}
-            disableRotation={false}
-            pixelRatio={2}
-            className="min-h-full"
-          />
-        </div>
-      </div>
-
-      <div className="constraint-content relative z-20 mx-auto w-full max-w-5xl">
+      <HeroLogoPinnedStage>
         <div className="flex min-w-0 flex-col items-center text-center">
           <div className="flex items-center justify-center gap-2.5">
             <Image
@@ -103,13 +75,7 @@ export function HeroSection() {
             </a>
           </div>
         </div>
-      </div>
-
-      {/* <HeroFeatureCards />
-
-      <div className="relative z-10 mt-6 w-full md:mt-8">
-        <HeroParallaxStage sectionRef={sectionRef} />
-      </div> */}
+      </HeroLogoPinnedStage>
     </section>
   );
 }

@@ -57,7 +57,7 @@ export function AboutSection() {
         </div>
         <div
           id="approach"
-          className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-2xl border border-(--border-subtle) bg-(--surface-alt) p-6 sm:p-8"
+          className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-2xl bg-(--surface-alt) p-6 sm:p-8"
         >
           <h3 className="text-2xl font-bold text-foreground">Our Approach</h3>
           <p className="mt-4 text-(--text-muted)">
