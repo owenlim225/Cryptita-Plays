@@ -11,8 +11,8 @@
   --text-muted: #475467;
   --border-subtle: #d0d5dd;
   --surface-alt: #f8fafc;
-  --constraint-stroke: rgba(16, 24, 40, 0.1);
-  --constraint-divider-stroke: rgba(16, 24, 40, 0.3);
+  --constraint-stroke: rgba(16, 24, 40, 0.05);
+  --constraint-divider-stroke: rgba(16, 24, 40, 0.12);
   --constraint-hatch: rgba(16, 24, 40, 0.09);
   --constraint-gutter: clamp(1.5rem, 6vw, 4.5rem);
   --constraint-max: 66rem;
@@ -97,17 +97,12 @@ body {
   padding-inline: var(--constraint-divider-nested-pad);
 }
 
-/* Shared inset for column "margin" guides — horizontal and vertical use the same edges only. */
-.constraint-divider::before,
-.constraint-divider::after {
+/* One horizontal between column guides; verticals come from `.constraint-shell` only (no doubled edges). */
+.constraint-divider::before {
   --constraint-divider-inset: max(
     var(--constraint-gutter),
     calc((100% - var(--constraint-max)) / 2)
   );
-}
-
-/* Top edge: single horizontal dashed line between the two column guides (no full-bleed overlap). */
-.constraint-divider::before {
   content: "";
   position: absolute;
   left: var(--constraint-divider-inset);
@@ -117,35 +112,9 @@ body {
   border: none;
   background: repeating-linear-gradient(
     to right,
-    var(--constraint-divider-stroke) 0 5px,
-    transparent 5px 12px
+    var(--constraint-divider-stroke) 0 4px,
+    transparent 4px 16px
   );
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Left and right margin guides; start below the 1px top row so dashes do not stack on the horizontals. */
-.constraint-divider::after {
-  content: "";
-  position: absolute;
-  top: 1px;
-  bottom: 0;
-  left: var(--constraint-divider-inset);
-  right: var(--constraint-divider-inset);
-  border: none;
-  background-image: repeating-linear-gradient(
-      to bottom,
-      var(--constraint-divider-stroke) 0 5px,
-      transparent 5px 12px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      var(--constraint-divider-stroke) 0 5px,
-      transparent 5px 12px
-    );
-  background-size: 1px 100%, 1px 100%;
-  background-position: left top, right top;
-  background-repeat: no-repeat;
   pointer-events: none;
   z-index: 0;
 }
@@ -155,13 +124,8 @@ body {
   z-index: 1;
 }
 
-/* When the previous section already ends with a faded constraint line (e.g. educational partners). */
 .constraint-divider--no-top-line::before {
   display: none;
-}
-
-.constraint-divider--no-top-line::after {
-  top: 0;
 }
 
 h1,

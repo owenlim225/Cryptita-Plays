@@ -22,9 +22,7 @@ export function HomePage() {
           <EducationalPartnersStrip />
           <div className="constraint-divider">
             <AboutSection />
-          <CommunityPartnersStrip />
-          </div>
-          <div className="constraint-divider">
+            <CommunityPartnersStrip />
             <ProgramsSection />
           </div>
           <div className="constraint-divider">

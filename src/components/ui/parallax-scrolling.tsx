@@ -20,12 +20,12 @@ const LAYERS: { id: "1" | "2" | "3" | "4"; yPercent: number; src: string; alt: s
 
 type ParallaxScrollingProps = {
   /** Section that drives scroll range (e.g. hero) — not duplicate Lenis; uses app SmoothScrollProvider. */
-  sectionRef: RefObject<HTMLElement | null>;
+  sectionRef: RefObject<HTMLDivElement | null>;
   className?: string;
 };
 
 /**
- * Osmo-style multi-layer parallax: one timeline, staggered yPercent, bottom-anchored artboard.
+ * Osmo-style multi-layer parallax: one timeline, staggered yPercent, top-anchored artboard.
  * Does not create Lenis (root layout already wires Lenis + ScrollTrigger.update).
  */
 export function ParallaxScrolling({ sectionRef, className }: ParallaxScrollingProps) {

@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 type HeroParallaxMeshProps = {
-  sectionRef: RefObject<HTMLElement | null>;
+  sectionRef: RefObject<HTMLDivElement | null>;
   className?: string;
 };
 

@@ -9,7 +9,7 @@ import { ParallaxScrolling } from "@/components/ui/parallax-scrolling";
 gsap.registerPlugin(ScrollTrigger);
 
 type HeroParallaxStageProps = {
-  sectionRef: RefObject<HTMLElement | null>;
+  sectionRef: RefObject<HTMLDivElement | null>;
   className?: string;
 };
 
@@ -56,7 +56,7 @@ export function HeroParallaxStage({ sectionRef, className }: HeroParallaxStagePr
       aria-hidden
     >
       <HeroParallaxMesh sectionRef={sectionRef} />
-      <ParallaxScrolling sectionRef={sectionRef} className="z-5" />
+      <ParallaxScrolling sectionRef={sectionRef} className="z-[5]" />
 
       {/** Top-only scrim for nav / headline contrast — avoid full-bleed gradients that
           paint solid background over the whole hero and hide the layered images. */}

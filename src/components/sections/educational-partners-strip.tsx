@@ -11,7 +11,7 @@ const educationalPartnerLogos = educationalPartners.map((partner) => ({
 export function EducationalPartnersStrip() {
   return (
     <section
-      className="overflow-hidden border-t border-(--border-subtle) bg-background/90"
+      className="overflow-hidden border-t border-(--border-subtle) bg-background"
       aria-labelledby={headingId}
     >
       <div className="constraint-content w-full px-(--constraint-divider-nested-pad) pt-10 pb-16 sm:pt-12 sm:pb-20">
@@ -21,23 +21,22 @@ export function EducationalPartnersStrip() {
         >
           Our educational partners
         </h2>
-        <div className="mt-6 w-full min-h-12 sm:mt-8">
+        <div className="mt-6 w-full min-h-12 translate-y-1.5 sm:mt-8 sm:translate-y-2">
           <LogoLoop
             logos={educationalPartnerLogos}
+            className="[&_img]:filter-none [&_img]:[image-rendering:auto]"
             width="100%"
             logoHeight={44}
             gap={56}
             direction="left"
             speed={58}
             pauseOnHover={false}
+            fadeOut={false}
+            scaleOnHover={false}
             ariaLabel="Educational partner logos"
           />
         </div>
       </div>
-      <div
-        className="h-px w-full shrink-0 bg-[linear-gradient(90deg,transparent_0%,var(--constraint-stroke)_50%,transparent_100%)]"
-        aria-hidden
-      />
     </section>
   );
 }

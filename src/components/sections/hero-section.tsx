@@ -8,12 +8,11 @@ import SplitText from "@/components/split-text";
 import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function HeroSection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <section
       id="hero"
-      ref={sectionRef}
       className="relative min-h-dvh overflow-x-clip bg-background pb-0"
     >
       <HeroStage sectionRef={sectionRef}>

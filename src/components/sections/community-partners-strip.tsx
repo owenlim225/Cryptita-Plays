@@ -37,7 +37,7 @@ export function CommunityPartnersStrip() {
         >
           Our community partners
         </h2>
-        <div className="mt-6 w-full min-h-12 sm:mt-8">
+        <div className="mt-6 w-full min-h-12 translate-y-1.5 sm:mt-8 sm:translate-y-2">
           <LogoLoop
             logos={communityPartnerLogos}
             className="[&_img]:filter-none [&_img]:[image-rendering:auto]"
@@ -53,10 +53,6 @@ export function CommunityPartnersStrip() {
           />
         </div>
       </div>
-      <div
-        className="h-px w-full shrink-0 bg-[linear-gradient(90deg,transparent_0%,var(--constraint-stroke)_50%,transparent_100%)]"
-        aria-hidden
-      />
     </section>
   );
 }

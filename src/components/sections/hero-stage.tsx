@@ -6,14 +6,17 @@ import { HeroParallaxStage } from "@/components/sections/hero-parallax-stage";
 
 type HeroStageProps = {
   children: ReactNode;
-  sectionRef: RefObject<HTMLElement | null>;
+  sectionRef: RefObject<HTMLDivElement | null>;
 };
 
 /** Full-viewport hero: parallax underlay, soft gradients, particles, content column. */
 export function HeroStage({ children, sectionRef }: HeroStageProps) {
   return (
-    <div className="relative w-full [contain:layout_paint]">
-      <div className="relative w-full min-h-dvh min-h-svh overflow-hidden bg-transparent">
+    <div className="relative w-full">
+      <div
+        ref={sectionRef}
+        className="relative w-full min-h-dvh min-h-svh overflow-x-clip overflow-y-visible bg-transparent"
+      >
         {/** Underlay is inside the same `min-h-dvh` box so % / `h-full` chain cannot collapse. */}
         <HeroParallaxStage sectionRef={sectionRef} />
         <div

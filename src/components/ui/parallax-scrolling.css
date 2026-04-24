@@ -13,7 +13,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
   min-height: min(62vh, 40rem);
@@ -50,17 +50,18 @@
   will-change: transform;
 }
 
-/* Bottom-anchored scene: layers share one horizon instead of a “hole” in the middle. */
+/* Top-anchored scene: TV-style artboard at the very top of the hero. */
 .parallax--hero-underlay .parallax__layer-wrap {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  top: 0;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
   height: 100%;
+  transform-origin: top center;
   pointer-events: none;
 }
 
@@ -84,7 +85,7 @@
   height: auto;
   max-height: min(52vh, 30rem);
   object-fit: contain;
-  object-position: bottom center;
+  object-position: top center;
 }
 
 /* Soft blend into page background (no hard cut under the stack). */

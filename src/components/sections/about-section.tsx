@@ -11,17 +11,17 @@ export function AboutSection() {
   return (
     <section id="about" className="py-20">
       <div className="constraint-content w-full">
-        <div className="mx-auto grid max-w-5xl items-center gap-10 lg:grid-cols-2 lg:gap-12">
-          <div className="mx-auto max-w-4xl text-center lg:mx-0 lg:max-w-none lg:text-left">
-            <h2 className="text-3xl font-bold text-foreground">Who We Are</h2>
-            <p className="mt-5 text-lg leading-8 text-(--text-muted)">{siteConfig.mission}</p>
-          </div>
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-bold text-foreground">Who We Are</h2>
+          <p className="mt-5 text-lg leading-8 text-(--text-muted)">{siteConfig.mission}</p>
+        </div>
+        <div className="mx-auto mt-10 max-w-3xl lg:mt-12">
           <motion.div
+            className="min-w-0"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="min-w-0"
           >
             <TiltedSurface
               className="relative overflow-hidden rounded-3xl border border-(--primary) bg-(--primary) p-2 shadow-xl"
@@ -59,12 +59,14 @@ export function AboutSection() {
           id="approach"
           className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-2xl bg-(--surface-alt) p-6 sm:p-8"
         >
-          <h3 className="text-2xl font-bold text-foreground">Our Approach</h3>
-          <p className="mt-4 text-(--text-muted)">
-            We combine traditional and digital learning methods including books, storytelling,
-            workshops, and simplified Web3 materials to keep learning beginner-friendly, safe,
-            and community-based.
-          </p>
+          <div className="mx-auto max-w-3xl text-center">
+            <h3 className="text-2xl font-bold text-foreground">Our Approach</h3>
+            <p className="mt-4 text-lg leading-8 text-(--text-muted)">
+              We combine traditional and digital learning methods including books, storytelling,
+              workshops, and simplified Web3 materials to keep learning beginner-friendly, safe,
+              and community-based.
+            </p>
+          </div>
           <div id="problem" className="mt-8 min-w-0">
             <MagicBento
               className="w-full"
