@@ -2,12 +2,65 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { cn } from "@/lib/utils";
+
 const DOT_SMOOTHNESS = 0.2;
 const BORDER_DOT_SMOOTHNESS = 0.1;
 
 const INTERACTIVE_SELECTOR = "a, button, img, input, textarea, select, [role='button']";
 
+/** sRGB relative luminance (0–1). */
+function relativeLuminance(r: number, g: number, b: number) {
+  const l = [r, g, b].map((c) => {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * l[0]! + 0.7152 * l[1]! + 0.0722 * l[2]!;
+}
+
+function parseCssColor(value: string): { r: number; g: number; b: number; a: number } | null {
+  const t = value.trim().toLowerCase();
+  if (t === "transparent" || t === "") return null;
+  const m = t.match(
+    /rgba?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)(?:\s*[/,]\s*([\d.]+))?\s*\)/
+  );
+  if (!m) return null;
+  const a = m[4] !== undefined && m[4] !== "" ? parseFloat(m[4]) : 1;
+  return { r: +m[1]!, g: +m[2]!, b: +m[3]!, a };
+}
+
+const LUMINANCE_THRESHOLD = 0.5;
+
+/** Resolve stacked backgrounds; returns luminance 0–1, or null to fall back to theme. */
+function getBackgroundLuminanceAtPoint(x: number, y: number): number | null {
+  const el = document.elementFromPoint(x, y);
+  if (!el) return null;
+
+  let node: Element | null = el;
+  while (node) {
+    const bg = getComputedStyle(node).backgroundColor;
+    const parsed = parseCssColor(bg);
+    if (parsed && parsed.a > 0.12) {
+      if (parsed.a < 0.5) {
+        node = node.parentElement;
+        continue;
+      }
+      return relativeLuminance(parsed.r, parsed.g, parsed.b);
+    }
+    node = node.parentElement;
+  }
+
+  for (const n of [document.body, document.documentElement]) {
+    const parsed = parseCssColor(getComputedStyle(n).backgroundColor);
+    if (parsed) return relativeLuminance(parsed.r, parsed.g, parsed.b);
+  }
+  return null;
+}
+
 type Position = { x: number; y: number };
+
+/** null = use global light/dark theme; otherwise follow sampled background. */
+type CursorContrast = "light" | "dark" | null;
 
 export function SmoothCursorFollower() {
   const mousePosition = useRef<Position>({ x: 0, y: 0 });
@@ -21,6 +74,9 @@ export function SmoothCursorFollower() {
   });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [contrast, setContrast] = useState<CursorContrast>(null);
+  const lastClient = useRef<Position>({ x: 0, y: 0 });
+  const contrastRef = useRef<CursorContrast>(null);
 
   useEffect(() => {
     // #region agent log
@@ -47,6 +103,16 @@ export function SmoothCursorFollower() {
 
     const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
 
+    const updateContrast = () => {
+      const { x, y } = lastClient.current;
+      const L = getBackgroundLuminanceAtPoint(x, y);
+      const next: CursorContrast = L === null ? null : L > LUMINANCE_THRESHOLD ? "light" : "dark";
+      if (contrastRef.current !== next) {
+        contrastRef.current = next;
+        setContrast(next);
+      }
+    };
+
     const handleMouseMove = (event: MouseEvent) => {
       if (!isVisible) {
         // #region agent log
@@ -67,7 +133,9 @@ export function SmoothCursorFollower() {
         setIsVisible(true);
       }
 
+      lastClient.current = { x: event.clientX, y: event.clientY };
       mousePosition.current = { x: event.clientX, y: event.clientY };
+      updateContrast();
     };
 
     const handleMouseOver = (event: MouseEvent) => {
@@ -106,6 +174,8 @@ export function SmoothCursorFollower() {
     window.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseover", handleMouseOver);
     document.addEventListener("mouseout", handleMouseOut);
+    window.addEventListener("scroll", updateContrast, true);
+    window.addEventListener("resize", updateContrast);
 
     animationFrameId.current = requestAnimationFrame(animate);
 
@@ -113,6 +183,8 @@ export function SmoothCursorFollower() {
       window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
+      window.removeEventListener("scroll", updateContrast, true);
+      window.removeEventListener("resize", updateContrast);
 
       if (animationFrameId.current !== null) {
         cancelAnimationFrame(animationFrameId.current);
@@ -123,7 +195,12 @@ export function SmoothCursorFollower() {
   return (
     <div data-cursor-follower="v2" className="pointer-events-none fixed inset-0 z-100 hidden md:block">
       <div
-        className="absolute rounded-full bg-black dark:bg-white"
+        className={cn(
+          "absolute rounded-full transition-colors duration-150",
+          contrast === "light" && "bg-black",
+          contrast === "dark" && "bg-white",
+          contrast === null && "bg-black dark:bg-white",
+        )}
         style={{
           width: "8px",
           height: "8px",
@@ -131,12 +208,17 @@ export function SmoothCursorFollower() {
           left: `${renderPos.dot.x}px`,
           top: `${renderPos.dot.y}px`,
           opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.2s ease-out",
+          transition: "opacity 0.2s ease-out, background-color 0.15s ease-out",
         }}
       />
 
       <div
-        className="absolute rounded-full border border-black dark:border-white"
+        className={cn(
+          "absolute rounded-full border transition-colors duration-150",
+          contrast === "light" && "border-black",
+          contrast === "dark" && "border-white",
+          contrast === null && "border-black dark:border-white",
+        )}
         style={{
           width: isHovering ? "44px" : "28px",
           height: isHovering ? "44px" : "28px",
@@ -144,7 +226,7 @@ export function SmoothCursorFollower() {
           left: `${renderPos.border.x}px`,
           top: `${renderPos.border.y}px`,
           opacity: isVisible ? 1 : 0,
-          transition: "width 0.3s, height 0.3s, opacity 0.2s ease-out",
+          transition: "width 0.3s, height 0.3s, opacity 0.2s ease-out, border-color 0.15s ease-out",
         }}
       />
     </div>

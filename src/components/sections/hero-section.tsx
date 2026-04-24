@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { TiltedSurface } from "@/components/TiltedCard";
 import { siteConfig } from "../site-data";
 
 export function HeroSection() {
@@ -44,15 +45,38 @@ export function HeroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-3xl border border-(--primary) bg-(--primary) p-7 shadow-xl"
+          className="min-w-0"
         >
-          <div className="absolute top-0 -right-4 h-full w-4 bg-size-[10px_10px] text-(--primary)/10 bg-[repeating-linear-gradient(315deg,currentColor_0_1px,#0000_0_50%)] md:-right-14 md:w-14" />
-          <p className="mt-3 text-xs font-medium text-white/80">Mission</p>
-          <h2 className="mt-2 text-xl font-bold text-white">Education First, Hype Last</h2>
-          <p className="mt-4 text-sm leading-6 text-white/85">
-            We make learning accessible, safe, and inclusive through beginner-friendly materials,
-            community-based outreach, and long-term support for underserved youth.
-          </p>
+          <TiltedSurface
+            className="relative overflow-hidden rounded-3xl border border-(--primary) bg-(--primary) p-2 shadow-xl"
+            captionText="Mission — Education First, Hype Last"
+            rotateAmplitude={12}
+            scaleOnHover={1.05}
+            showMobileWarning={false}
+            showTooltip
+          >
+            <div
+              className="pointer-events-none absolute top-0 -right-3 z-10 h-full w-3 bg-size-[10px_10px] text-white/20 bg-[repeating-linear-gradient(315deg,currentColor_0_1px,#0000_0_50%)] md:-right-10 md:w-10"
+              aria-hidden
+            />
+            <div className="relative h-[220px] w-full overflow-hidden rounded-2xl">
+              <Image
+                src="/brand/photos/hero.jpg"
+                alt="Learners in the Cryptita Plays community"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 42vw, 100vw"
+              />
+              <div className="absolute inset-0 z-1 flex flex-col justify-end bg-linear-to-t from-(--primary)/95 via-(--primary)/55 to-transparent p-5 md:p-6">
+                <p className="text-xs font-medium text-white/80">Mission</p>
+                <h2 className="mt-2 text-lg font-bold text-white md:text-xl">Education First, Hype Last</h2>
+                <p className="mt-3 text-sm leading-6 text-white/90">
+                  We make learning accessible, safe, and inclusive through beginner-friendly materials,
+                  community-based outreach, and long-term support for underserved youth.
+                </p>
+              </div>
+            </div>
+          </TiltedSurface>
         </motion.div>
       </div>
     </section>
