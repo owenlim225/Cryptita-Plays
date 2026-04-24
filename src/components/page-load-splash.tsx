@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { siteConfig } from "@/features/shared-content/data/site-config";
 
+/** Above all in-app overlays (e.g. global mascot portal at z-200). */
+const SPLASH_Z = 10000;
+
 const DEFAULT_MIN_MS = 2000;
 const DEFAULT_CROSS_S = 0.55;
 const DEFAULT_EXIT_S = 0.5;
@@ -146,9 +149,10 @@ export function PageLoadSplash() {
 
   return (
     <motion.div
-      className={`fixed inset-0 z-200 flex flex-col items-center justify-center bg-white ${
+      className={`fixed inset-0 flex flex-col items-center justify-center bg-white ${
         exitOverlay ? "pointer-events-none" : "pointer-events-auto"
       }`}
+      style={{ zIndex: SPLASH_Z }}
       role="status"
       aria-busy
       initial={{ opacity: 1 }}
