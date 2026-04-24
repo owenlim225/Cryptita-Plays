@@ -3,25 +3,29 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useRef, type RefObject } from "react";
 import { cn } from "@/lib/utils";
+import layer1 from "../../../public/parallax/layer_1.png";
+import layer2 from "../../../public/parallax/layer_2.png";
+import layer3 from "../../../public/parallax/layer_3.png";
+import layer4 from "../../../public/parallax/layer_4.png";
 import "./parallax-scrolling.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-/** Back (1) → front (4); yPercent = scroll parallax. offsetYPx = static stagger (20px per layer). */
+/** Back (1) → front (4), matching `public/parallax/layer_*.png`. yPercent = scroll parallax. offsetYPx = static nudge. */
 const LAYERS: {
   id: "1" | "2" | "3" | "4";
   yPercent: number;
   offsetYPx: number;
-  src: string;
+  src: StaticImageData;
   alt: string;
 }[] = [
-  { id: "1", yPercent: 70, offsetYPx: 0, src: "/parallax/layer_1.png", alt: "" },
-  { id: "2", yPercent: 55, offsetYPx: 20, src: "/parallax/layer_2.png", alt: "" },
-  { id: "3", yPercent: 40, offsetYPx: 40, src: "/parallax/layer_3.png", alt: "" },
-  { id: "4", yPercent: 10, offsetYPx: 60, src: "/parallax/layer_4.png", alt: "" },
+  { id: "1", yPercent: 100, offsetYPx: 250, src: layer1, alt: "" },
+  { id: "2", yPercent: 155, offsetYPx: 400, src: layer2, alt: "" },
+  { id: "3", yPercent: 100, offsetYPx: 500, src: layer3, alt: "" },
+  { id: "4", yPercent: 10, offsetYPx: 400, src: layer4, alt: "" },
 ];
 
 type ParallaxScrollingProps = {
@@ -95,23 +99,27 @@ export function ParallaxScrolling({ sectionRef, className }: ParallaxScrollingPr
                 key={layer.id}
                 data-parallax-layer={layer.id}
                 className="parallax__layer-wrap"
-                style={{ paddingTop: layer.offsetYPx }}
               >
-                <Image
-                  src={layer.src}
-                  alt={layer.alt}
-                  fill
-                  sizes="100vw"
-                  className="parallax__layer-img"
-                  priority={layer.id === "1"}
-                  onLoad={() => {
-                    ScrollTrigger.refresh();
-                  }}
-                />
+                {/** `fill` images ignore padding; static Y offset must live on an inner so GSAP yPercent (outer) still applies. */}
+                <div
+                  className="parallax__layer-offset"
+                  style={{ transform: `translateY(${layer.offsetYPx}px)` }}
+                >
+                  <Image
+                    src={layer.src}
+                    alt={layer.alt}
+                    fill
+                    sizes="100vw"
+                    className="parallax__layer-img"
+                    priority={layer.id === "1"}
+                    onLoad={() => {
+                      ScrollTrigger.refresh();
+                    }}
+                  />
+                </div>
               </div>
             ))}
           </div>
-          <div className="parallax__fade" />
         </div>
       </div>
     </div>

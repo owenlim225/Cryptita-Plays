@@ -71,6 +71,15 @@
   pointer-events: none;
 }
 
+/* `fill` image parent; Y offset is translate (padding does not nudge abspos fill). */
+.parallax--hero-underlay .parallax__layer-offset {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 .parallax--hero-underlay [data-parallax-layer="1"] {
   z-index: 1;
 }
@@ -95,19 +104,3 @@
   object-position: var(--parallax-img-x) var(--parallax-img-y);
 }
 
-/* Soft blend into page background. */
-.parallax--hero-underlay .parallax__fade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: min(40%, 12rem);
-  background: linear-gradient(
-    to top,
-    var(--background) 0%,
-    color-mix(in srgb, var(--background) 55%, transparent) 50%,
-    transparent 100%
-  );
-  z-index: 6;
-  pointer-events: none;
-}

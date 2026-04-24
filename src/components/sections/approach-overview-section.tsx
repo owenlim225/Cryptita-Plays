@@ -117,7 +117,7 @@ export function ApproachOverviewSection() {
   return (
     <section
       id="approach-overview"
-      className="relative -mt-3 overflow-hidden bg-(--surface-alt) py-12 md:py-18"
+      className="relative -mt-3 overflow-hidden bg-(--surface-alt) bg-[url('/parallax/layer_4.png')] bg-size-[100%_auto] bg-top bg-no-repeat py-12 md:py-18"
     >
       <div className="constraint-content relative z-10 w-full">
         <aside className="relative mx-auto mb-6 grid w-full max-w-[673px] grid-cols-3 gap-3 px-4 py-6 text-center md:mb-8 md:gap-6 md:px-12 md:py-8">

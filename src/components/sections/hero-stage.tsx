@@ -15,7 +15,7 @@ export function HeroStage({ children, sectionRef }: HeroStageProps) {
     <div className="relative w-full">
       <div
         ref={sectionRef}
-        className="relative h-[600px] w-full min-h-0 overflow-hidden bg-transparent"
+        className="relative h-[1000px] w-full min-h-0 overflow-hidden bg-transparent"
       >
         {/** Underlay is inside the same fixed-height box so % / `h-full` chain cannot collapse. */}
         <HeroParallaxStage sectionRef={sectionRef} />
