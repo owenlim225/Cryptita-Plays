@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/banner.png" alt="Cryptita Plays banner: stylized character with purple headphones beside the CRYPTITA PLAYS wordmark on a black background" width="100%" />
+</div>
+
 # Cryptita Plays
 
 Cryptita Plays is a community-driven social impact initiative bridging Web3 education and social development for underserved communities in the Philippines.
