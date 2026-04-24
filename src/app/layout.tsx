@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
-import { GlobalMascotOverlay } from "@/components/global-mascot-overlay";
+import GlobalMascotOverlay from "@/components/global-mascot-overlay";
 import { PageLoadSplash } from "@/components/page-load-splash";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import { SmoothCursorFollower } from "@/components/smooth-cursor-follower";

@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import BorderGlow from "@/components/BorderGlow";
 import CountUp from "@/components/CountUp";
+import SpotlightCard from "@/components/SpotlightCard";
 
 const summaryCards: { title: string; copy: ReactNode; cta: string }[] = [
   {
@@ -74,54 +75,43 @@ function SummaryCard({ title, copy, cta }: { title: string; copy: ReactNode; cta
         colors={["#a855f7", "#c084fc", "#7c3aed"]}
         fillOpacity={0.2}
       >
-        <article className="flex h-full min-h-0 flex-col rounded-2xl border border-(--border-subtle)/80 bg-white px-5 py-5 shadow-[0_10px_26px_rgba(105,65,198,0.10)]">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <span
-                aria-hidden
-                className="relative mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-(--primary)/10"
-              >
-                <span className="absolute -top-1 -left-1 h-3 w-3 rounded-full bg-(--primary)/55" />
-                <span className="h-2 w-5 rounded bg-(--primary)" />
-              </span>
-              <h3 className="text-xl font-bold text-foreground">{title}</h3>
-            </div>
-            <a
-              href="#about"
-              className="shrink-0 text-sm font-semibold text-(--primary) transition hover:text-(--primary-hover)"
-            >
-              {cta}
-            </a>
-          </div>
-          <p className="mt-3 flex-1 text-sm leading-6 text-(--text-muted)">{copy}</p>
-        </article>
+        <SpotlightCard
+          flush
+          className="h-full min-h-0 rounded-2xl"
+          spotlightColor="rgba(124, 58, 237, 0.16)"
+        >
+          <>
+            <div
+              aria-hidden
+              className="absolute inset-0 z-0 rounded-2xl border border-(--border-subtle)/80 bg-white shadow-[0_10px_26px_rgba(105,65,198,0.10)]"
+            />
+            <article className="relative z-2 flex h-full min-h-0 flex-col px-5 py-5">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span
+                    aria-hidden
+                    className="relative mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-(--primary)/10"
+                  >
+                    <span className="absolute -top-1 -left-1 h-3 w-3 rounded-full bg-(--primary)/55" />
+                    <span className="h-2 w-5 rounded bg-(--primary)" />
+                  </span>
+                  <h3 className="text-xl font-bold text-foreground">{title}</h3>
+                </div>
+                <a
+                  href="#about"
+                  className="shrink-0 text-sm font-semibold text-(--primary) transition hover:text-(--primary-hover)"
+                >
+                  {cta}
+                </a>
+              </div>
+              <p className="mt-3 flex-1 text-sm leading-6 text-(--text-muted)">{copy}</p>
+            </article>
+          </>
+        </SpotlightCard>
       </BorderGlow>
     </div>
   );
 }
-
-const approachItems = [
-  {
-    title: "Direct Giving",
-    copy:
-      "We transfer support directly to beneficiaries, so more of every donation reaches those who need it most.",
-  },
-  {
-    title: "Transparency",
-    copy:
-      "We make giving transparent by addressing process inefficiencies and improving accountability across aid delivery.",
-  },
-  {
-    title: "Transformative Tech",
-    copy:
-      "We repurpose emerging technologies as practical tools for social good and long-term community impact.",
-  },
-  {
-    title: "Research",
-    copy:
-      "We invest in innovation and research to better understand and support scalable Web3 solutions.",
-  },
-];
 
 export function ApproachOverviewSection() {
   return (

@@ -1,4 +1,4 @@
-import type { Partner, Program } from "@/types/content";
+import type { GalleryCardItem, Partner, Program } from "@/types/content";
 
 export const programs: Program[] = [
   {
@@ -35,12 +35,38 @@ export const programs: Program[] = [
   },
 ];
 
-export const impactStatements: string[] = [
-  "Active Mini-Library communities across multiple provinces",
-  "Thousands of students reached through outreach and seminars",
-  "Partnerships with educational and Web3 organizations",
-  "Continuous support through learning materials and programs",
+export const impactGalleryItems: GalleryCardItem[] = [
+  {
+    id: "mini-libraries",
+    title: "Community libraries",
+    description: "Active Mini-Library communities across multiple provinces",
+    href: "/#programs",
+    image: "/brand/photos/hero.jpg",
+  },
+  {
+    id: "student-outreach",
+    title: "Student outreach",
+    description: "Thousands of students reached through outreach and seminars",
+    href: "/#programs",
+    image: "/brand/photos/why.jpg",
+  },
+  {
+    id: "partnerships",
+    title: "Strong partnerships",
+    description: "Partnerships with educational and Web3 organizations",
+    href: "/#partners",
+    image: "/brand/photos/hero.jpg",
+  },
+  {
+    id: "ongoing-support",
+    title: "Lasting support",
+    description: "Continuous support through learning materials and programs",
+    href: "/#programs",
+    image: "/brand/photos/why.jpg",
+  },
 ];
+
+export const impactStatements: string[] = impactGalleryItems.map((item) => item.description);
 
 export const educationalPartners: Partner[] = [
   { name: "Blockchain4Youth", logo: "/brand/partners/educational/blockchain4youth.gif" },

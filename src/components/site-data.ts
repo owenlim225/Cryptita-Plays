@@ -10,6 +10,7 @@ export {
   communityPartners,
   educationalPartners,
   founder,
+  impactGalleryItems,
   impactStatements,
   programs,
 } from "@/features/home/data/content";

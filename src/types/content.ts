@@ -29,3 +29,12 @@ export type Partner = {
   name: string;
   logo: string;
 };
+
+/** Image cards (e.g. impact carousel / gallery blocks) */
+export type GalleryCardItem = {
+  id: string;
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+};

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,6 +16,8 @@ const MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const MAIN_ID = "site-main";
 /** Above sticky header (z-40) and other UI; pointer-events still none. */
 const OVERLAY_Z = 200;
+
+const emptySubscribe = () => () => {};
 
 type Pose = {
   x: string;
@@ -100,19 +103,11 @@ function getActiveTopSectionIndex(sections: HTMLElement[], focusYRatio = 0.3): n
   return sections.length - 1;
 }
 
-/**
- * Full-viewport fixed overlay: mascot stays visible, tilts to pointer, moves and
- * shrinks on scroll. Rendered in a document.body portal; does not use pin.
- */
-export function GlobalMascotOverlay() {
-  const [mounted, setMounted] = useState(false);
+function MascotOverlayPortal() {
+  const isClient = useSyncExternalStore(emptySubscribe, () => true, () => false);
   const scrollDrivenRef = useRef<HTMLDivElement>(null);
   const sectionFadeRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    setMounted(true);
-  }, []);
 
   useGSAP(
     () => {
@@ -231,7 +226,7 @@ export function GlobalMascotOverlay() {
         rotateYTo(0);
       };
     },
-    { dependencies: [mounted] }
+    { dependencies: [isClient] }
   );
 
   const reduced =
@@ -239,7 +234,7 @@ export function GlobalMascotOverlay() {
       ? window.matchMedia(MOTION_QUERY).matches
       : false;
 
-  if (!mounted) {
+  if (!isClient) {
     return null;
   }
 
@@ -292,8 +287,19 @@ export function GlobalMascotOverlay() {
     </div>
   );
 
-  if (typeof document === "undefined") {
-    return null;
-  }
   return createPortal(inner, document.body);
 }
+
+/**
+ * Full-viewport fixed overlay: mascot stays visible, tilts to pointer, moves and
+ * shrinks on scroll. Rendered in a `document.body` portal; does not use pin.
+ * Omitted on the home route (`/`) so the hero stays mascot-free; other routes
+ * get the same overlay as before.
+ */
+export function GlobalMascotOverlay() {
+  const pathname = usePathname();
+  if (pathname === "/") return null;
+  return <MascotOverlayPortal />;
+}
+
+export default GlobalMascotOverlay;

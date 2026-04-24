@@ -3,15 +3,12 @@
 import { type ReactNode } from "react";
 import Particles from "@/components/particles";
 
-type HeroLogoPinnedStageProps = {
+type HeroStageProps = {
   children: ReactNode;
 };
 
-/**
- * Hero background (particles, gradients) and content. The site mascot is
- * rendered in `GlobalMascotOverlay` (portal) so it is not clipped by this section.
- */
-export function HeroLogoPinnedStage({ children }: HeroLogoPinnedStageProps) {
+/** Full-viewport hero background (soft gradients, particles) and content column. */
+export function HeroStage({ children }: HeroStageProps) {
   return (
     <div className="relative w-full [contain:layout_paint]">
       <div className="relative w-full min-h-dvh min-h-svh overflow-hidden bg-background">

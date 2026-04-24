@@ -1,18 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { HeroLogoPinnedStage } from "@/components/sections/hero-logo-pinned-stage";
+import { HeroStage } from "@/components/sections/hero-stage";
 import ShinyText from "@/components/shiny-text";
 import SplitText from "@/components/split-text";
 import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function HeroSection() {
   return (
-    <section
-      id="hero"
-      className="relative overflow-x-clip bg-background pb-0"
-    >
-      <HeroLogoPinnedStage>
+    <section id="hero" className="relative overflow-x-clip bg-background pb-0">
+      <HeroStage>
         <div className="flex min-w-0 flex-col items-center text-center">
           <div className="flex items-center justify-center gap-2.5">
             <Image
@@ -75,7 +72,7 @@ export function HeroSection() {
             </a>
           </div>
         </div>
-      </HeroLogoPinnedStage>
+      </HeroStage>
     </section>
   );
 }
