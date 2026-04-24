@@ -56,6 +56,7 @@ export function AboutSection() {
         </div>
         <div id="problem" className="mx-auto mt-14 max-w-5xl rounded-2xl bg-(--surface-alt) p-8">
           <h3 className="text-2xl font-bold text-foreground">The Problem</h3>
+          <p className="mt-4 text-(--text-muted)">Many communities face overlapping barriers:</p>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             <article className="rounded-xl border border-(--border-subtle) bg-white p-5">
               <p className="text-lg font-semibold text-foreground">01</p>
