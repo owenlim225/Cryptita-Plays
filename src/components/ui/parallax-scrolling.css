@@ -91,7 +91,9 @@
   width: 100%;
   max-width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* Layer 3 img uses scale(1.12); clip horizontal bleed without cropping vertical parallax. */
+  overflow-x: clip;
+  overflow-y: visible;
   pointer-events: none;
 }
 

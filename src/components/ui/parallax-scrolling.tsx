@@ -89,7 +89,7 @@ export function ParallaxScrolling({ sectionRef, className }: ParallaxScrollingPr
 
   return (
     <div
-      className={cn("parallax parallax--hero-underlay", className)}
+      className={cn("parallax parallax--hero-underlay w-full min-w-0 max-w-full", className)}
       ref={parallaxRef}
     >
       <div className="parallax__header">

@@ -12,10 +12,10 @@ type HeroStageProps = {
 /** Full-viewport hero: parallax underlay, soft gradients, particles, content column. */
 export function HeroStage({ children, sectionRef }: HeroStageProps) {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full min-w-0 max-w-full">
       <div
         ref={sectionRef}
-        className="relative min-h-[max(32rem,56.25vw)] w-full min-h-0 overflow-x-clip overflow-y-visible bg-transparent"
+        className="relative min-h-[max(32rem,56.25vw)] w-full min-w-0 max-w-full overflow-x-clip overflow-y-visible bg-transparent"
       >
         {/** Underlay is inside the same fixed-height box so % / `h-full` chain cannot collapse. */}
         <HeroParallaxStage sectionRef={sectionRef} />
