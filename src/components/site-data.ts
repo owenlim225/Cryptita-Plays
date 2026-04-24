@@ -39,10 +39,10 @@ export const footerContactLinks = [
 ];
 
 export const footerSocialLinks = [
-  { label: "Twitter", href: "https://twitter.com/BinanceBCF" },
-  { label: "Instagram", href: "https://www.instagram.com/cryptitaplays" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/binance-charity-foundation" },
-  { label: "Telegram", href: "https://t.me/joinchat/tscsriF31lk1ZWJh" },
+  { label: "Twitter", href: "https://x.com/cryptitaplays" },
+  { label: "Instagram", href: "https://www.instagram.com/cryptitaplays/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/cryptitaplays/https://www.linkedin.com/company/cryptitaplays/" },
+  { label: "Telegram", href: "t.me/cryptitaplays" },
 ];
 
 export const programs = [

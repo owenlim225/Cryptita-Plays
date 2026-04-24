@@ -12,7 +12,7 @@ export function FooterSection() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-(--primary-soft)">
+    <footer id="contact" className="border-t border-black/20 bg-(--primary-soft)">
       <div className="constraint-content relative z-10 pt-12 pb-5 md:pt-14">
         <div className="grid gap-10 pb-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[minmax(0,1.7fr)_repeat(4,minmax(0,1fr))] lg:gap-8">
           <div className="space-y-5 md:max-w-sm lg:col-span-3 xl:col-span-1">
@@ -43,7 +43,7 @@ export function FooterSection() {
           />
 
           <div>
-            <h3 className="mb-4 text-sm font-bold text-black">Follow Us</h3>
+            <h3 className="mb-4 text-sm font-bold text-[#971CE6]">Follow Us</h3>
             <div className="flex items-center gap-2.5">
               {footerSocialLinks.map((item) => (
                 <Link
@@ -61,7 +61,7 @@ export function FooterSection() {
           </div>
         </div>
 
-        <div className="border-t border-black/20 pt-4 text-center text-xs text-black md:text-sm">
+        <div className="pt-4 text-center text-xs text-gray-500 md:text-sm">
           Copyright © 2018-{currentYear} {siteConfig.name}. All rights reserved.
         </div>
       </div>
@@ -138,7 +138,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="mb-4 text-sm font-bold text-black">{title}</h3>
+      <h3 className="mb-4 text-sm font-bold text-[#971CE6]">{title}</h3>
       <ul className="space-y-2.5">
         {links.map((item) => {
           const isExternal =
