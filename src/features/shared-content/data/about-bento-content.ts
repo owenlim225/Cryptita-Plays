@@ -1,48 +1,46 @@
 import type { MagicBentoItem } from "@/components/magic-bento/magic-bento";
 
-/** Order: left top, left bottom, center (spans 2 rows), right top, right bottom. */
+/**
+ * 3×2 grid order: 01, 02, center, 03, 04.
+ * Surfaces are fixed hexes (primary #971ce6 and neutrals) for reliable inline `backgroundColor`.
+ */
 export const aboutBentoItems: MagicBentoItem[] = [
   {
-    id: "connect",
-    label: "Outreach",
-    color: "#2D0066",
+    id: "barrier-01",
+    label: "01",
+    color: "#4a1d7a",
     textTone: "light",
-    title: "Meet youth where they are",
-    description: "School visits, community partners, and beginner-friendly entry points to Web3 ideas.",
+    title: "Limited access to quality educational resources.",
   },
   {
-    id: "resources",
-    label: "Learning",
-    color: "#E0CFFF",
+    id: "barrier-02",
+    label: "02",
+    color: "#e8def4",
     textTone: "dark",
-    title: "Clear materials, not noise",
-    description: "Simplified content and storytelling so new learners are not left behind.",
+    title: "Limited digital literacy and Web3 awareness.",
   },
   {
-    id: "hero",
-    color: "#FFFFFF",
+    id: "problem-center",
+    color: "#ffffff",
     textTone: "dark",
-    className: "border border-black/5 shadow-sm",
+    className: "magic-bento-card--problem-center",
     contentClassName: "magic-bento-card__content--stack",
-    title: "Get more from\nweb3 for good",
-    titleClassName: "magic-bento-card__title--center-hero",
-    description:
-      "We bridge education and social impact—helping young people and underserved communities use technology with confidence and care.",
+    title: "The Problem",
+    titleClassName: "magic-bento-card__title--problem-hero",
+    description: "Many communities face overlapping barriers:",
   },
   {
-    id: "programs",
-    label: "Programs",
-    color: "#002B24",
+    id: "barrier-03",
+    label: "03",
+    color: "#1f1833",
     textTone: "light",
-    title: "Workshops & long-term support",
-    description: "Hands-on sessions and follow-through so learning sticks beyond a single event.",
+    title: "High exposure to misinformation and online risks.",
   },
   {
-    id: "safety",
-    label: "Trust",
-    color: "#FFB38A",
+    id: "barrier-04",
+    label: "04",
+    color: "#edd6e8",
     textTone: "dark",
-    title: "Safety and consent first",
-    description: "We emphasize misinformation awareness, online safety, and healthy participation.",
+    title: "Financial constraints that disrupt school continuity.",
   },
 ];

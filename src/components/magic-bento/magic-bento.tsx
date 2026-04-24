@@ -506,7 +506,8 @@ function cardBaseStyle(glowColor: string, color: string): CSSProperties {
 }
 
 function BentoCardBody({ card }: { card: MagicBentoItem }) {
-  const centerHero = card.titleClassName?.includes("center-hero");
+  const centerHero =
+    card.titleClassName?.includes("center-hero") || card.titleClassName?.includes("problem-hero");
   return (
     <>
       {card.label ? (
@@ -518,7 +519,7 @@ function BentoCardBody({ card }: { card: MagicBentoItem }) {
         className={[
           "magic-bento-card__content",
           card.contentClassName,
-          !card.label && "mt-auto",
+          !card.label && !card.className?.includes("magic-bento-card--problem-center") && "mt-auto",
           (card.contentClassName?.includes("stack") || centerHero) && "magic-bento-card__content--stack",
         ]
           .filter(Boolean)

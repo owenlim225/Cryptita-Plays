@@ -55,33 +55,9 @@ export function AboutSection() {
             </TiltedSurface>
           </motion.div>
         </div>
-        <div id="problem" className="mx-auto mt-14 max-w-5xl rounded-2xl bg-(--surface-alt) p-8">
-          <h3 className="text-2xl font-bold text-foreground">The Problem</h3>
-          <p className="mt-4 text-(--text-muted)">Many communities face overlapping barriers:</p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <article className="rounded-xl border border-(--border-subtle) bg-white p-5">
-              <p className="text-lg font-semibold text-foreground">01</p>
-              <p className="mt-3 text-(--text-muted)">Limited access to quality educational resources.</p>
-            </article>
-            <article className="rounded-xl border border-(--border-subtle) bg-white p-5">
-              <p className="text-lg font-semibold text-foreground">02</p>
-              <p className="mt-3 text-(--text-muted)">Limited digital literacy and Web3 awareness.</p>
-            </article>
-            <article className="rounded-xl border border-(--border-subtle) bg-white p-5">
-              <p className="text-lg font-semibold text-foreground">03</p>
-              <p className="mt-3 text-(--text-muted)">High exposure to misinformation and online risks.</p>
-            </article>
-            <article className="rounded-xl border border-(--border-subtle) bg-white p-5">
-              <p className="text-lg font-semibold text-foreground">04</p>
-              <p className="mt-3 text-(--text-muted)">
-                Financial constraints that disrupt school continuity.
-              </p>
-            </article>
-          </div>
-        </div>
         <div
           id="approach"
-          className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-2xl border border-(--border-subtle) bg-(--surface-alt) p-6 sm:p-8"
+          className="mx-auto mt-14 max-w-5xl overflow-hidden rounded-2xl border border-(--border-subtle) bg-(--surface-alt) p-6 sm:p-8"
         >
           <h3 className="text-2xl font-bold text-foreground">Our Approach</h3>
           <p className="mt-4 text-(--text-muted)">
@@ -89,7 +65,7 @@ export function AboutSection() {
             workshops, and simplified Web3 materials to keep learning beginner-friendly, safe,
             and community-based.
           </p>
-          <div className="mt-8 min-w-0">
+          <div id="problem" className="mt-8 min-w-0">
             <MagicBento
               className="w-full"
               items={aboutBentoItems}
