@@ -142,51 +142,48 @@ export function ApproachOverviewSection() {
           ))}
         </div>
 
-        <div className="mt-7 grid gap-6 lg:grid-cols-[max-content_1fr] lg:items-start">
-          <aside className="relative flex w-fit max-w-[673px] flex-wrap items-center justify-center gap-8 self-start p-10 text-center">
-            <div className="shrink-0 text-center">
-              <p className="text-5xl font-extrabold tracking-tight text-(--primary)">
+        <aside className="relative mx-auto mt-6 flex w-full max-w-[673px] flex-wrap items-center justify-center gap-12 p-10 text-center">
+            <div className="flex shrink-0 flex-col items-center justify-center text-center">
+              <p className="text-2xl font-extrabold tracking-tight text-(--primary)">
                 <CountUp
                   from={0}
-                  to={2_085_823}
+                  to={8}
                   direction="up"
                   duration={1}
                   className="count-up-text"
                   separator=","
                 />
               </p>
-              <p className="mt-2 text-sm text-(--text-muted)">Total Beneficiaries</p>
+              <p className="mt-1 text-2xl font-medium text-(--text-muted)">Years of Service</p>
             </div>
-            <div className="shrink-0 text-center">
-              <p className="text-4xl font-extrabold tracking-tight text-(--primary)">
+            <div className="flex shrink-0 flex-col items-center justify-center text-center">
+              <p className="text-2xl font-extrabold tracking-tight text-(--primary)">
                 <CountUp
                   from={0}
-                  to={12_453}
+                  to={10_000}
                   direction="up"
                   duration={1}
                   className="count-up-text"
                   separator=","
                 />
               </p>
-              <p className="mt-2 text-sm text-(--text-muted)">Amount Donations</p>
+              <p className="mt-1 text-2xl font-medium text-(--text-muted)">Beneficiaries</p>
             </div>
-            <div className="shrink-0 text-center">
-              <p className="text-4xl font-extrabold tracking-tight text-(--primary)">
+            <div className="flex shrink-0 flex-col items-center justify-center text-center">
+              <p className="text-2xl font-extrabold tracking-tight text-(--primary)">
                 <CountUp
                   from={0}
-                  to={1524}
+                  to={500}
                   direction="up"
                   duration={1}
                   className="count-up-text"
                   separator=","
                 />{" "}
-                BTC
+                +
               </p>
-              <p className="mt-2 text-sm text-(--text-muted)">Bitcoin Donations Raised</p>
+              <p className="mt-1 text-2xl font-medium text-(--text-muted)">Events held</p>
             </div>
           </aside>
-
-        </div>
       </div>
     </section>
   );
