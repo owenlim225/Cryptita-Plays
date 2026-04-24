@@ -10,6 +10,7 @@ import { HeroSection } from "@/components/sections/hero-section";
 import { ImpactSection } from "@/components/sections/impact-section";
 import { PartnersSection } from "@/components/sections/partners-section";
 import { ProgramsSection } from "@/components/sections/programs-section";
+import { TestimonialsSection } from "@/components/sections/testimonials-section";
 
 
 export default function Home() {
@@ -32,6 +33,9 @@ export default function Home() {
           </div>
           <div className="constraint-divider">
             <ImpactSection />
+          </div>
+          <div className="constraint-divider">
+            <TestimonialsSection />
           </div>
           <div className="constraint-divider">
             <PartnersSection />
