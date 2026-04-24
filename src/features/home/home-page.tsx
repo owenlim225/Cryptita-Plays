@@ -27,7 +27,7 @@ export function HomePage() {
             <CommunityPartnersStrip />
             <ProgramsSection />
           </div>
-          <div className="constraint-divider">
+          <div className="constraint-divider constraint-divider--softer-top">
             <ImpactSection />
             <TestimonialsSection />
             {/* <FounderSection /> */}

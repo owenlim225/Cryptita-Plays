@@ -186,6 +186,14 @@ body {
   );
 }
 
+/* Less air above the first block than default, without going as tight as --tight-top */
+.constraint-divider--softer-top {
+  padding-top: calc(
+    var(--constraint-hatch-height) + var(--constraint-divider-gap) + 1rem +
+      var(--constraint-divider-nested-pad)
+  );
+}
+
 .constraint-divider--no-top-line::before {
   display: none;
 }

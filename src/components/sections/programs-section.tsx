@@ -1,9 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { TiltedSurface } from "@/components/TiltedCard";
+import {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { programs } from "@/features/home/data/content";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +23,155 @@ const programSubcardTiltClass = cn(
   "shadow-md transition-shadow motion-safe:hover:shadow-xl",
   programSubgridCardWidthClass,
 );
+
+const MATERIALS_IMAGE = {
+  imageSrc: "/brand/young-learners-encyclopedia.png",
+  imageAlt:
+    "Barya to Blockchain: Young Learners Encyclopedia — Web3 Young Learners book cover",
+} as const;
+
+/** One step per line from the original “Educational Materials” card; same cover for each. */
+const MATERIALS_SLIDES = [
+  {
+    bullets: ["Young Learners Encyclopedia & Web3 activity books for kids"] as const,
+  },
+  {
+    bullets: ["Coloring, storytelling, and digital safety handouts"] as const,
+  },
+] as const;
+
+const EMBLA_SMOOTH_OPTS = { loop: true, duration: 40 } as const;
+const EMBLA_REDUCE_MOTION_OPTS = { loop: true, duration: 18 } as const;
+
+function ProgramMaterialsCarouselCard({ id, staticTiltClassName }: { id: string; staticTiltClassName: string }) {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const emblaOpts = reduceMotion ? EMBLA_REDUCE_MOTION_OPTS : EMBLA_SMOOTH_OPTS;
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+    onSelect();
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  const active = MATERIALS_SLIDES[current] ?? MATERIALS_SLIDES[0];
+  const textTransition = reduceMotion
+    ? { duration: 0 }
+    : { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const };
+
+  return (
+    <div
+      id={id}
+      className={cn("transform-3d flex min-w-0 scroll-mt-20 justify-center", staticTiltClassName)}
+    >
+      <TiltedSurface
+        className={programSubcardTiltClass}
+        figureClassName="!m-0 w-full !max-w-none"
+        containerHeight="auto"
+        containerWidth="100%"
+        rotateAmplitude={12}
+        scaleOnHover={1.05}
+        showMobileWarning={false}
+        showTooltip={false}
+      >
+        <div className="absolute inset-0 z-0 min-h-0">
+          <Carousel
+            setApi={setApi}
+            opts={emblaOpts}
+            className="h-full min-h-0 w-full"
+            aria-label="Educational materials book carousel"
+          >
+            <CarouselContent className="ml-0 h-full min-h-0 will-change-transform">
+              {MATERIALS_SLIDES.map((_, index) => (
+                <CarouselItem key={index} className="h-full min-h-0 basis-full pl-0">
+                  <div className="relative h-full min-h-0 w-full">
+                    <Image
+                      src={MATERIALS_IMAGE.imageSrc}
+                      alt={MATERIALS_IMAGE.imageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 40vw"
+                      priority={index === 0}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+        <div
+          className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-t from-[#0f0518]/96 via-(--primary)/20 to-(--primary)/5"
+          aria-hidden
+        />
+        <p className="sr-only" aria-live="polite">
+          Book {current + 1} of {MATERIALS_SLIDES.length}
+        </p>
+        <div className="absolute inset-0 z-2 flex min-h-0 flex-col justify-end p-4 sm:p-5">
+          <div className="pointer-events-none min-w-0">
+            <motion.div
+              key={current}
+              className="min-w-0"
+              initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={textTransition}
+            >
+              <h3 className="text-base font-bold text-white drop-shadow-sm sm:text-lg md:text-xl">
+                Educational Materials
+              </h3>
+              <ul className="mt-2 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-white/90 marker:text-(--primary) sm:text-[0.9375rem]">
+                {active.bullets.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+          <nav
+            className="pointer-events-auto mt-4 flex items-center justify-center gap-1.5 sm:mt-5"
+            aria-label="Book slides"
+          >
+            {MATERIALS_SLIDES.map((_, i) => {
+              const isActive = i === current;
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`${isActive ? "Current slide: " : "Go to slide "}${i + 1} of ${MATERIALS_SLIDES.length}`}
+                  aria-current={isActive ? "true" : undefined}
+                  onClick={() => api?.scrollTo(i)}
+                  className={cn(
+                    "inline-flex h-9 min-w-9 shrink-0 items-center justify-center rounded-full p-0",
+                    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80",
+                    "motion-reduce:transition-none",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "block h-2 rounded-full transition-all duration-300 ease-out",
+                      isActive
+                        ? "w-6 bg-(--primary) shadow-[0_0_10px_rgba(151,28,230,0.5)]"
+                        : "w-2 bg-white/50 hover:bg-white/75",
+                    )}
+                    aria-hidden
+                  />
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+      </TiltedSurface>
+    </div>
+  );
+}
 
 function ProgramSpotlightCard({
   id,
@@ -49,14 +204,16 @@ function ProgramSpotlightCard({
         showTooltip={false}
       >
         <div className="absolute inset-0 z-0">
-          <Image
-            src={imageSrc}
-            alt={imageAlt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 40vw"
-            priority={priority}
-          />
+          <div className="relative h-full w-full">
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 40vw"
+              priority={priority}
+            />
+          </div>
         </div>
         <div
           className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#120618]/95 via-[#120618]/40 to-[#120618]/15"
@@ -123,21 +280,17 @@ export function ProgramsSection() {
           ))}
         </div>
         <div className="mt-10 p-6 md:px-6 md:pb-12 md:pt-6 lg:px-8">
+          <div className="mx-auto mb-8 max-w-2xl text-center md:mb-10">
+            <h3 className="text-2xl font-bold text-[var(--primary)] sm:text-3xl">
+              Learning resources &amp; scholar support
+            </h3>
+            <p className="mt-3 text-[var(--text-muted)] sm:text-base">
+              Printed and digital materials for young learners, plus the Adopt-a-Child Iskolar Program
+              for ongoing educational assistance.
+            </p>
+          </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch md:gap-3 md:perspective-[1000px]">
-            <ProgramSpotlightCard
-              id="materials"
-              staticTiltClassName="md:transform-[rotateY(20deg)]"
-              imageSrc="/brand/young-learners-encyclopedia.png"
-              imageAlt="Barya to Blockchain: Young Learners Encyclopedia — Web3 Young Learners book cover"
-            >
-              <h3 className="text-base font-bold text-white drop-shadow-sm sm:text-lg md:text-xl">
-                Educational Materials
-              </h3>
-              <ul className="mt-2 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-white/90 marker:text-white/60 sm:text-[0.9375rem]">
-                <li>Young Learners Encyclopedia &amp; Web3 activity books for kids</li>
-                <li>Coloring, storytelling, and digital safety handouts</li>
-              </ul>
-            </ProgramSpotlightCard>
+            <ProgramMaterialsCarouselCard id="materials" staticTiltClassName="md:transform-[rotateY(20deg)]" />
             <ProgramSpotlightCard
               id="acis"
               staticTiltClassName="md:transform-[rotateY(-20deg)]"

@@ -11,6 +11,7 @@ const educationalPartnerLogos = educationalPartners.map((partner) => ({
 export function EducationalPartnersStrip() {
   return (
     <section
+      id="partners"
       className="overflow-hidden border-t border-(--border-subtle) bg-background"
       aria-labelledby={headingId}
     >

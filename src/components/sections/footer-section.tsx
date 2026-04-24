@@ -12,18 +12,30 @@ export function FooterSection() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="border-t border-black/20 bg-(--primary-soft)">
+    <footer
+      id="contact"
+      aria-label="Contact and site links"
+      className="border-t border-(--border-subtle) bg-background"
+    >
       <div className="constraint-content relative z-10 pt-12 pb-5 md:pt-14">
         <div className="grid gap-10 pb-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[minmax(0,1.7fr)_repeat(4,minmax(0,1fr))] lg:gap-8">
-          <div className="space-y-5 md:max-w-sm lg:col-span-3 xl:col-span-1">
-            <Image
-              src="/brand/long-logo.png"
-              alt={siteConfig.name}
-              width={210}
-              height={42}
-              className="h-10 w-auto"
-            />
-
+          <div className="space-y-4 md:max-w-sm lg:col-span-3 xl:col-span-1">
+            <Link href="/" className="inline-block">
+              <Image
+                src="/brand/long-logo.png"
+                alt={siteConfig.name}
+                width={210}
+                height={42}
+                className="h-10 w-auto"
+              />
+            </Link>
+            <p className="max-w-sm text-sm leading-relaxed text-(--text-muted)">{siteConfig.tagline}</p>
+            <a
+              href={`mailto:${siteConfig.contactEmail}`}
+              className="inline-flex text-sm font-medium text-(--primary) transition hover:text-(--primary-hover)"
+            >
+              {siteConfig.contactEmail}
+            </a>
           </div>
 
           <FooterColumn
@@ -43,7 +55,7 @@ export function FooterSection() {
           />
 
           <div>
-            <h3 className="mb-4 text-sm font-bold text-[#971CE6]">Follow Us</h3>
+            <h3 className="mb-4 text-sm font-bold text-(--primary)">Follow us</h3>
             <div className="flex items-center gap-2.5">
               {footerSocialLinks.map((item) => (
                 <Link
@@ -52,7 +64,7 @@ export function FooterSection() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={item.label}
-                  className="flex h-8 w-8 items-center justify-center text-black transition hover:text-black/70"
+                  className="flex h-8 w-8 items-center justify-center text-(--text-muted) transition hover:text-(--primary)"
                 >
                   <SocialIcon label={item.label} />
                 </Link>
@@ -61,8 +73,8 @@ export function FooterSection() {
           </div>
         </div>
 
-        <div className="pt-4 text-center text-xs text-gray-500 md:text-sm">
-          Copyright © 2018-{currentYear} {siteConfig.name}. All rights reserved.
+        <div className="border-t border-(--border-subtle) pt-5 text-center text-xs text-(--text-muted) md:text-sm">
+          Copyright © 2018–{currentYear} {siteConfig.name}. All rights reserved.
         </div>
       </div>
     </footer>
@@ -138,21 +150,19 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="mb-4 text-sm font-bold text-[#971CE6]">{title}</h3>
+      <h3 className="mb-4 text-sm font-bold text-(--primary)">{title}</h3>
       <ul className="space-y-2.5">
         {links.map((item) => {
-          const isExternal =
-            externalOnly ||
-            item.href.startsWith("http") ||
-            item.href.startsWith("mailto:");
+          const isHttp = item.href.startsWith("http://") || item.href.startsWith("https://");
+          const openInNewTab = externalOnly && isHttp;
 
           return (
-            <li key={item.label}>
+            <li key={`${item.label}-${item.href}`}>
               <Link
                 href={item.href}
-                target={isExternal ? "_blank" : undefined}
-                rel={isExternal ? "noreferrer" : undefined}
-                className="text-sm text-black transition hover:text-black/70"
+                target={openInNewTab ? "_blank" : undefined}
+                rel={openInNewTab ? "noreferrer" : undefined}
+                className="text-sm text-(--text-muted) transition hover:text-(--primary)"
               >
                 {item.label}
               </Link>
