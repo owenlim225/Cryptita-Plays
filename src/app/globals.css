@@ -42,17 +42,6 @@ body {
   display: inline-block;
 }
 
-/* Hero logo stage: peek-from-below pose; remove when prefers-reduced-motion */
-.hero-logo-mascot-initial {
-  transform: translate3d(0, 40vh, 0) rotate(-1.2deg) scale(0.84);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-logo-mascot-initial {
-    transform: none !important;
-  }
-}
-
 .constraint-shell {
   position: relative;
 }

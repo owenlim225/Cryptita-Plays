@@ -16,7 +16,7 @@ export function HomePage() {
     <div className="constraint-shell relative isolate min-h-screen bg-background text-foreground">
       <div className="constraint-layer relative z-20">
         <HeaderSection />
-        <main>
+        <main id="site-main">
           <HeroSection />
           <ApproachOverviewSection />
           <EducationalPartnersStrip />

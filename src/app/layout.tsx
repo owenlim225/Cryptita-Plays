@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { GlobalMascotOverlay } from "@/components/global-mascot-overlay";
 import { PageLoadSplash } from "@/components/page-load-splash";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import { SmoothCursorFollower } from "@/components/smooth-cursor-follower";
@@ -36,6 +37,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col overflow-x-hidden bg-background text-slate-900">
         <SmoothScrollProvider>
+          <GlobalMascotOverlay />
           <SmoothCursorFollower />
           {children}
           <PageLoadSplash />
