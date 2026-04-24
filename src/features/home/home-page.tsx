@@ -19,8 +19,10 @@ export function HomePage() {
         <main id="site-main">
           <HeroSection />
           <ApproachOverviewSection />
-          <EducationalPartnersStrip />
           <div className="constraint-divider">
+          <EducationalPartnersStrip />
+          </div>
+          <div className="constraint-divider constraint-divider--tight-top">
             <AboutSection />
             <CommunityPartnersStrip />
             <ProgramsSection />

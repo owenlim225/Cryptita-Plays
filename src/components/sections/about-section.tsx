@@ -9,7 +9,7 @@ import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20">
+    <section id="about" className="pt-10 pb-16 sm:pt-12 sm:pb-20">
       <div className="constraint-content w-full">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-bold text-foreground">Who We Are</h2>

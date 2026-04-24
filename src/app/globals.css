@@ -20,6 +20,13 @@
   --constraint-hatch-height: 16px;
   --constraint-divider-offset: 1.75rem;
   --constraint-divider-nested-pad: clamp(1.5rem, 4vw, 2.75rem);
+  /* Programs sub-card face: soft purple wash from --primary */
+  --program-subcard-face-gradient: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    color-mix(in srgb, var(--primary) 8%, #ffffff) 52%,
+    color-mix(in srgb, var(--primary) 14%, #f2edfb) 100%
+  );
 }
 
 @theme inline {
@@ -35,6 +42,55 @@ body {
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   font-size: 15px;
   line-height: 1.5;
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes program-subcard-border-rotate {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+/* Programs sub-cards: brand face + animated conic ring (Cruip-style, --border-angle). */
+.program-subcard-animated-border {
+  --border-angle: 0deg;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  background: var(--program-subcard-face-gradient) padding-box,
+    conic-gradient(
+      from var(--border-angle),
+      color-mix(in srgb, var(--primary) 22%, #e5e7eb) 0%,
+      var(--primary) 14%,
+      color-mix(in srgb, var(--primary) 45%, #e9d5ff) 40%,
+      var(--primary) 64%,
+      color-mix(in srgb, var(--primary) 35%, #c4b5fd) 86%,
+      color-mix(in srgb, var(--primary) 22%, #e5e7eb) 100%
+    )
+    border-box;
+  background-clip: padding-box, border-box;
+}
+
+.program-subcard-face {
+  background: var(--program-subcard-face-gradient);
+}
+
+/* Tutorial-style name: spinning border; pairs with .program-subcard-animated-border */
+.program-subcard-animated-border.animate-border {
+  animation: program-subcard-border-rotate 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .program-subcard-animated-border.animate-border {
+    animation: none;
+  }
+  .program-subcard-animated-border {
+    --border-angle: 210deg;
+  }
 }
 
 /* SplitText: animatable character/word/line units */
@@ -122,6 +178,12 @@ body {
 .constraint-divider > * {
   position: relative;
   z-index: 1;
+}
+
+.constraint-divider--tight-top {
+  padding-top: calc(
+    var(--constraint-hatch-height) + var(--constraint-divider-gap) + 1rem
+  );
 }
 
 .constraint-divider--no-top-line::before {

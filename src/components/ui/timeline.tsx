@@ -34,11 +34,11 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     >
       <div className="constraint-content py-20">
         <h2 className="max-w-4xl text-3xl font-bold text-foreground md:text-5xl">
-          Changelog from my journey
+          Cryptita Plays origin
         </h2>
         <p className="mt-4 max-w-sm text-sm text-(--text-muted) md:text-base">
-          I&apos;ve been working on Aceternity for the past 2 years. Here&apos;s
-          a timeline of my journey.
+          How Cryptita Plays started and the milestones that shaped us—step by
+          step.
         </p>
       </div>
 

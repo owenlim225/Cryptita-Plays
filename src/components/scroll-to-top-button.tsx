@@ -25,18 +25,18 @@ export function ScrollToTopButton() {
   }, [lenis]);
 
   useEffect(() => {
-    updateVisible();
-  }, [updateVisible]);
-
-  useEffect(() => {
+    const id = requestAnimationFrame(() => updateVisible());
+    // Keep window listener even when Lenis is active: scroll signal can be more
+    // reliable on desktop, and we read position from `lenis` in `getScrollY` when set.
     if (lenis) {
       lenis.on("scroll", updateVisible);
-      return () => {
-        lenis.off("scroll", updateVisible);
-      };
     }
     window.addEventListener("scroll", updateVisible, { passive: true });
     return () => {
+      cancelAnimationFrame(id);
+      if (lenis) {
+        lenis.off("scroll", updateVisible);
+      }
       window.removeEventListener("scroll", updateVisible);
     };
   }, [lenis, updateVisible]);
@@ -55,7 +55,9 @@ export function ScrollToTopButton() {
       type="button"
       onClick={goTop}
       aria-label="Back to top"
-      className={`pointer-events-auto fixed z-50 flex h-12 w-12 items-center justify-center rounded-full bg-(--primary) text-white shadow-md transition duration-200 hover:bg-(--primary-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--primary) ${
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
+      className={`pointer-events-auto fixed z-110 flex h-12 w-12 items-center justify-center rounded-full bg-(--primary) text-white shadow-md transition duration-200 hover:bg-(--primary-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--primary) ${
         visible
           ? "bottom-[max(1.5rem,env(safe-area-inset-bottom,0px))] right-[max(1.5rem,env(safe-area-inset-right,0px))] translate-y-0 opacity-100"
           : "pointer-events-none bottom-[max(1.5rem,env(safe-area-inset-bottom,0px))] right-[max(1.5rem,env(safe-area-inset-right,0px))] translate-y-2 opacity-0"

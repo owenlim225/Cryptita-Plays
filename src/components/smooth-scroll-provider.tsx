@@ -48,14 +48,19 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         const g = document.querySelector("#programs .programs-grid");
         fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
           method: "POST",
-          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "b0b250" },
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "eab48f" },
           body: JSON.stringify({
-            sessionId: "b0b250",
+            sessionId: "eab48f",
             runId: "pre-fix",
             hypothesisId: "H3",
             location: "smooth-scroll-provider.tsx:setTimeout(0) entry",
             message: "programs-grid before gsap",
-            data: { style: g ? (g as HTMLElement).getAttribute("style") : null, found: Boolean(g) },
+            data: {
+              style: g ? (g as HTMLElement).getAttribute("style") : null,
+              found: Boolean(g),
+              scrollY: window.scrollY,
+              hash: window.location.hash,
+            },
             timestamp: Date.now(),
           }),
         }).catch(() => {});
@@ -215,14 +220,19 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         const g = document.querySelector("#programs .programs-grid");
         fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
           method: "POST",
-          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "b0b250" },
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "eab48f" },
           body: JSON.stringify({
-            sessionId: "b0b250",
+            sessionId: "eab48f",
             runId: "pre-fix",
             hypothesisId: "H4",
             location: "smooth-scroll-provider.tsx:after gsap.context",
             message: "programs-grid after scroll animations registered",
-            data: { style: g ? (g as HTMLElement).getAttribute("style") : null, found: Boolean(g) },
+            data: {
+              style: g ? (g as HTMLElement).getAttribute("style") : null,
+              found: Boolean(g),
+              scrollY: window.scrollY,
+              hash: window.location.hash,
+            },
             timestamp: Date.now(),
           }),
         }).catch(() => {});
