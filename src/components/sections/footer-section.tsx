@@ -3,7 +3,7 @@ import { siteConfig } from "../site-data";
 
 export function FooterSection() {
   return (
-    <footer className="border-t border-[var(--border-subtle)] bg-white py-8">
+    <footer className="border-t border-[var(--border-subtle)] bg-background py-8">
       <div className="constraint-content relative z-10">
         <div className="flex w-full flex-col gap-2 text-sm text-[var(--text-muted)] sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">

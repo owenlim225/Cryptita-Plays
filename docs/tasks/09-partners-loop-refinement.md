@@ -27,7 +27,7 @@ Refine the partners logo loop section for cleaner visual polish and better logo 
 - Verify current source of truth for partners section location in homepage composition.
 - Confirm approved visual direction for "darker background" (target contrast intent, not exact color token yet).
 - Confirm whether fades should be CSS mask, gradient overlays, or pseudo-element overlays based on browser support target.
-- Ensure all partner logo assets render correctly before refinement so regressions are obvious.
+- Ensure all partner logo assets render correctly before refinement so regressions are obvious (approved names and file layout: `docs/00-master-context.md` §8, source files under `assets/Partner logo files/…`, web exports under `public/brand/partners/…`).
 
 ## implementation steps (granular)
 1. **Audit current implementation**

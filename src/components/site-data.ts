@@ -47,7 +47,7 @@ export const impactStatements = [
 ];
 
 export const educationalPartners = [
-  { name: "Blockchain4Youth", logo: "/brand/partners/educational/blockchain4youth.png" },
+  { name: "Blockchain4Youth", logo: "/brand/partners/educational/blockchain4youth.gif" },
   { name: "Blockchain4Her", logo: "/brand/partners/educational/blockchain4her.png" },
   { name: "MEXC Foundation", logo: "/brand/partners/educational/mexc-foundation.png" },
   { name: "Avalanche", logo: "/brand/partners/educational/avalanche.png" },
@@ -55,6 +55,8 @@ export const educationalPartners = [
   { name: "OKX Wallet", logo: "/brand/partners/educational/okx-wallet.png" },
   { name: "Coinex Charity", logo: "/brand/partners/educational/coinex-charity.png" },
   { name: "TrustWallet", logo: "/brand/partners/educational/trustwallet.png" },
+  { name: "Gate Web3", logo: "/brand/partners/educational/gate-web3.png" },
+  { name: "Morph", logo: "/brand/partners/educational/morph.png" },
 ];
 
 export const communityPartners = [

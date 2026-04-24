@@ -197,9 +197,9 @@ export function SmoothCursorFollower() {
       <div
         className={cn(
           "absolute rounded-full transition-colors duration-150",
-          contrast === "light" && "bg-black",
+          contrast === "light" && "bg-(--primary)",
           contrast === "dark" && "bg-white",
-          contrast === null && "bg-black dark:bg-white",
+          contrast === null && "bg-(--primary) dark:bg-white",
         )}
         style={{
           width: "8px",
@@ -215,9 +215,9 @@ export function SmoothCursorFollower() {
       <div
         className={cn(
           "absolute rounded-full border transition-colors duration-150",
-          contrast === "light" && "border-black",
+          contrast === "light" && "border-(--primary)",
           contrast === "dark" && "border-white",
-          contrast === null && "border-black dark:border-white",
+          contrast === null && "border-(--primary) dark:border-white",
         )}
         style={{
           width: isHovering ? "44px" : "28px",

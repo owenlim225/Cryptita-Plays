@@ -6,7 +6,7 @@ import { navItems, siteConfig } from "../site-data";
 
 export function HeaderSection() {
   return (
-    <header className="sticky top-0 z-40 border-b border-(--border-subtle) bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-(--border-subtle) bg-background/90 backdrop-blur">
       <div className="constraint-content flex w-full items-center justify-between py-3.5">
         <a href="#" className="inline-flex items-center">
           <Image
@@ -31,7 +31,7 @@ export function HeaderSection() {
           href="#contact"
           className="rounded-full bg-(--primary) px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-(--primary-hover)"
         >
-          Join the Cryptita Plays Initiative
+          Support Us
         </motion.a>
       </div>
     </header>

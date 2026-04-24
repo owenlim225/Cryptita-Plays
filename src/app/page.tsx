@@ -13,7 +13,7 @@ import { ProgramsSection } from "@/components/sections/programs-section";
 
 export default function Home() {
   return (
-    <div className="constraint-shell relative isolate min-h-screen bg-white text-foreground">
+    <div className="constraint-shell relative isolate min-h-screen bg-background text-foreground">
       
 
       <div className="constraint-layer relative z-20">
