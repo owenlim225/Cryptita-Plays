@@ -50,21 +50,33 @@ export const programs = [
     title: "Mini-Library Mission and Outreach Program",
     description:
       "Creates community-based mini libraries with educational books, Web3 learning materials, and QR-based digital resources.",
+    image: "/brand/photos/hero.jpg",
+    photoDate: "Jan 2025",
+    photoLocation: "Batangas, PH",
   },
   {
     title: "Web3 Education and University Programs",
     description:
       "Conducts beginner-friendly seminars and workshops on blockchain basics, digital safety, and responsible participation.",
+    image: "/brand/photos/why.jpg",
+    photoDate: "Feb 2025",
+    photoLocation: "Manila, PH",
   },
   {
     title: "Web3 Learning Materials",
     description:
       "Produces age-appropriate learning content, including books and activity materials for safe and practical digital learning.",
+    image: "/brand/photos/hero.jpg",
+    photoDate: "Mar 2025",
+    photoLocation: "Laguna, PH",
   },
   {
     title: "Adopt-a-Child Iskolar Program (ACIS)",
     description:
       "Provides monthly educational assistance, school supplies and learning materials, and Mini-Library access for selected students.",
+    image: "/brand/photos/why.jpg",
+    photoDate: "Apr 2025",
+    photoLocation: "Quezon, PH",
   },
 ];
 

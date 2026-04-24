@@ -2,13 +2,18 @@
 
 import { motion } from "framer-motion";
 import { TiltedSurface } from "@/components/TiltedCard";
+import BorderGlow from "@/components/BorderGlow";
 import { programs } from "../site-data";
 
 export function ProgramsSection() {
   return (
     <section id="programs" className="bg-[var(--surface-alt)] py-20">
       <div className="constraint-content w-full">
-        <h2 className="text-3xl font-bold text-[var(--foreground)]">Core Programs</h2>
+        <h2 className="text-center text-3xl font-bold text-[var(--foreground)]">Core Programs</h2>
+        <p className="mx-auto mt-3 max-w-2xl text-center text-[var(--text-muted)]">
+          Explore our flagship initiatives designed to equip learners with digital literacy, creativity,
+          and future-ready skills.
+        </p>
         <div className="programs-grid mt-8 grid gap-6">
           {programs.map((program, index) => (
             <motion.article
@@ -17,9 +22,13 @@ export function ProgramsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: index * 0.08 }}
-              className="mx-auto grid w-full max-w-5xl items-center gap-10 rounded-2xl border border-[var(--border-subtle)] bg-white p-6 shadow-sm lg:grid-cols-2 lg:gap-12"
+              className="mx-auto grid w-full max-w-5xl items-center gap-10 py-2 lg:grid-cols-2 lg:gap-12"
             >
-              <div className="mx-auto max-w-4xl text-center lg:mx-0 lg:max-w-none lg:text-left">
+              <div
+                className={`mx-auto max-w-4xl text-center lg:mx-0 lg:max-w-none lg:text-left ${
+                  index % 2 === 0 ? "lg:order-1" : "lg:order-2"
+                }`}
+              >
                 <h3 className="text-xl font-semibold text-[var(--foreground)]">{program.title}</h3>
                 <p className="mt-3 leading-7 text-[var(--text-muted)]">{program.description}</p>
               </div>
@@ -28,27 +37,44 @@ export function ProgramsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.08 }}
-                className="min-w-0"
+                className={`min-w-0 ${index % 2 === 0 ? "lg:order-2" : "lg:order-1"}`}
               >
-                <TiltedSurface
-                  className="relative overflow-hidden rounded-3xl border border-(--primary) bg-(--primary) p-2 shadow-xl"
-                  captionText={`Core Program ${index + 1}`}
-                  rotateAmplitude={12}
-                  scaleOnHover={1.05}
-                  showMobileWarning={false}
-                  showTooltip={false}
+                <BorderGlow
+                  className="rounded-3xl"
+                  edgeSensitivity={34}
+                  glowColor="276 95 74"
+                  backgroundColor="#971ce6"
+                  borderRadius={24}
+                  glowRadius={28}
+                  glowIntensity={0.95}
+                  coneSpread={24}
+                  colors={["#c084fc", "#f472b6", "#38bdf8"]}
+                  fillOpacity={0.45}
                 >
-                  <div
-                    className="pointer-events-none absolute top-0 -right-3 z-10 h-full w-3 bg-size-[10px_10px] text-white/20 bg-[repeating-linear-gradient(315deg,currentColor_0_1px,#0000_0_50%)] md:-right-10 md:w-10"
-                    aria-hidden
-                  />
-                  <div className="relative h-[220px] w-full overflow-hidden rounded-2xl bg-(--primary)">
-                    <div className="absolute inset-0 z-1 flex flex-col justify-end bg-linear-to-t from-(--primary)/95 via-(--primary)/55 to-transparent p-5 md:p-6">
-                      <p className="text-xs font-medium text-white/80">Core Program</p>
-                      <h4 className="mt-2 text-lg font-bold text-white md:text-xl">{program.title}</h4>
+                  <TiltedSurface
+                    className="relative overflow-hidden rounded-3xl border border-(--primary) bg-(--primary) p-2 shadow-xl"
+                    captionText={`Core Program ${index + 1}`}
+                    rotateAmplitude={12}
+                    scaleOnHover={1.05}
+                    showMobileWarning={false}
+                    showTooltip={false}
+                  >
+                    <div
+                      className="pointer-events-none absolute top-0 -right-3 z-10 h-full w-3 bg-size-[10px_10px] text-white/20 bg-[repeating-linear-gradient(315deg,currentColor_0_1px,#0000_0_50%)] md:-right-10 md:w-10"
+                      aria-hidden
+                    />
+                    <div className="relative h-[220px] w-full overflow-hidden rounded-2xl bg-(--primary)">
+                      <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{ backgroundImage: `url(${program.image})` }}
+                      />
+                      <div className="absolute inset-0 z-1 bg-linear-to-t from-black/50 via-black/20 to-black/10" />
+                      <div className="absolute left-4 top-4 z-2 rounded-full bg-black/35 px-2.5 py-1 text-[10px] font-medium tracking-wide text-white/95 md:text-xs">
+                        {program.photoDate} - {program.photoLocation}
+                      </div>
                     </div>
-                  </div>
-                </TiltedSurface>
+                  </TiltedSurface>
+                </BorderGlow>
               </motion.div>
             </motion.article>
           ))}
