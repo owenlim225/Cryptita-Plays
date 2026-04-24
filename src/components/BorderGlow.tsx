@@ -107,6 +107,7 @@ function animateValue({
 type BorderGlowProps = {
   children: ReactNode;
   className?: string;
+  borderWidth?: number;
   edgeSensitivity?: number;
   glowColor?: string;
   backgroundColor?: string;
@@ -122,6 +123,7 @@ type BorderGlowProps = {
 export default function BorderGlow({
   children,
   className = "",
+  borderWidth = 1,
   edgeSensitivity = 30,
   glowColor = "40 80 80",
   backgroundColor = "#120F17",
@@ -251,6 +253,7 @@ export default function BorderGlow({
       style={
         {
           "--card-bg": backgroundColor,
+          "--border-width": `${borderWidth}px`,
           "--edge-sensitivity": edgeSensitivity,
           "--border-radius": `${borderRadius}px`,
           "--glow-padding": `${glowRadius}px`,

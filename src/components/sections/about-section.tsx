@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { TiltedSurface } from "@/components/TiltedCard";
-import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 import { siteConfig } from "../site-data";
 import primaryLogo from "../../../assets/primary logo.png";
 
@@ -57,41 +56,25 @@ export function AboutSection() {
         </div>
         <div id="problem" className="mx-auto mt-14 max-w-5xl rounded-2xl bg-(--surface-alt) p-8">
           <h3 className="text-2xl font-bold text-foreground">The Problem</h3>
-          <div className="mt-6 h-104 md:h-120">
-            <ScrollStack
-              className="rounded-xl"
-              itemDistance={80}
-              itemScale={0.035}
-              itemStackDistance={24}
-              baseScale={0.9}
-              stackPosition="22%"
-              scaleEndPosition="12%"
-            >
-              <ScrollStackItem itemClassName="border border-(--border-subtle) bg-white">
-                <p className="text-lg font-semibold text-foreground">01</p>
-                <p className="mt-3 text-(--text-muted)">
-                  Limited access to quality educational resources.
-                </p>
-              </ScrollStackItem>
-              <ScrollStackItem itemClassName="border border-(--border-subtle) bg-white">
-                <p className="text-lg font-semibold text-foreground">02</p>
-                <p className="mt-3 text-(--text-muted)">
-                  Limited digital literacy and Web3 awareness.
-                </p>
-              </ScrollStackItem>
-              <ScrollStackItem itemClassName="border border-(--border-subtle) bg-white">
-                <p className="text-lg font-semibold text-foreground">03</p>
-                <p className="mt-3 text-(--text-muted)">
-                  High exposure to misinformation and online risks.
-                </p>
-              </ScrollStackItem>
-              <ScrollStackItem itemClassName="border border-(--border-subtle) bg-white">
-                <p className="text-lg font-semibold text-foreground">04</p>
-                <p className="mt-3 text-(--text-muted)">
-                  Financial constraints that disrupt school continuity.
-                </p>
-              </ScrollStackItem>
-            </ScrollStack>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <article className="rounded-xl border border-(--border-subtle) bg-white p-5">
+              <p className="text-lg font-semibold text-foreground">01</p>
+              <p className="mt-3 text-(--text-muted)">Limited access to quality educational resources.</p>
+            </article>
+            <article className="rounded-xl border border-(--border-subtle) bg-white p-5">
+              <p className="text-lg font-semibold text-foreground">02</p>
+              <p className="mt-3 text-(--text-muted)">Limited digital literacy and Web3 awareness.</p>
+            </article>
+            <article className="rounded-xl border border-(--border-subtle) bg-white p-5">
+              <p className="text-lg font-semibold text-foreground">03</p>
+              <p className="mt-3 text-(--text-muted)">High exposure to misinformation and online risks.</p>
+            </article>
+            <article className="rounded-xl border border-(--border-subtle) bg-white p-5">
+              <p className="text-lg font-semibold text-foreground">04</p>
+              <p className="mt-3 text-(--text-muted)">
+                Financial constraints that disrupt school continuity.
+              </p>
+            </article>
           </div>
         </div>
         <div
