@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 
 import BorderGlow from "@/components/BorderGlow";
 import CountUp from "@/components/CountUp";
-import { Magnet } from "@/components/ui/magnet";
 
 const summaryCards: { title: string; copy: ReactNode; cta: string }[] = [
   {
@@ -62,12 +61,7 @@ const summaryCards: { title: string; copy: ReactNode; cta: string }[] = [
 
 function SummaryCard({ title, copy, cta }: { title: string; copy: ReactNode; cta: string }) {
   return (
-    <Magnet
-      magnetStrength={9}
-      padding={48}
-      wrapperClassName="h-full w-full !block min-h-0"
-      innerClassName="h-full min-h-0 w-full"
-    >
+    <div className="h-full w-full min-h-0">
       <BorderGlow
         className="h-full min-h-0 rounded-2xl"
         edgeSensitivity={34}
@@ -102,7 +96,7 @@ function SummaryCard({ title, copy, cta }: { title: string; copy: ReactNode; cta
           <p className="mt-3 flex-1 text-sm leading-6 text-(--text-muted)">{copy}</p>
         </article>
       </BorderGlow>
-    </Magnet>
+    </div>
   );
 }
 
@@ -136,54 +130,54 @@ export function ApproachOverviewSection() {
       className="relative -mt-3 overflow-hidden bg-(--surface-alt) py-12 md:py-18"
     >
       <div className="constraint-content relative z-10 w-full">
-        <div className="grid gap-4 md:grid-cols-2">
-          {summaryCards.map((card) => (
-            <SummaryCard key={card.title} title={card.title} copy={card.copy} cta={card.cta} />
-          ))}
-        </div>
-
-        <aside className="relative mx-auto mt-6 flex w-full max-w-[673px] flex-wrap items-center justify-center gap-12 p-10 text-center">
-            <div className="flex shrink-0 flex-col items-center justify-center text-center">
-              <p className="text-2xl font-extrabold tracking-tight text-(--primary)">
+        <aside className="relative mx-auto mb-6 grid w-full max-w-[673px] grid-cols-3 gap-3 px-4 py-6 text-center md:mb-8 md:gap-6 md:px-12 md:py-8">
+            <div className="flex min-w-0 flex-col items-center justify-center text-center">
+              <p className="text-2xl font-extrabold leading-none tracking-tight text-(--primary) tabular-nums sm:text-4xl md:text-5xl">
                 <CountUp
                   from={0}
                   to={8}
                   direction="up"
                   duration={1}
-                  className="count-up-text"
+                  className="count-up-text inline-block align-middle"
                   separator=","
                 />
               </p>
-              <p className="mt-1 text-2xl font-medium text-(--text-muted)">Years of Service</p>
+              <p className="mt-2 text-pretty text-xs font-medium text-(--text-muted) sm:text-sm md:text-base md:leading-6">Years of Service</p>
             </div>
-            <div className="flex shrink-0 flex-col items-center justify-center text-center">
-              <p className="text-2xl font-extrabold tracking-tight text-(--primary)">
+            <div className="flex min-w-0 flex-col items-center justify-center text-center">
+              <p className="text-2xl font-extrabold leading-none tracking-tight text-(--primary) tabular-nums sm:text-4xl md:text-5xl">
                 <CountUp
                   from={0}
                   to={10_000}
                   direction="up"
                   duration={1}
-                  className="count-up-text"
+                  className="count-up-text inline-block align-middle"
                   separator=","
                 />
               </p>
-              <p className="mt-1 text-2xl font-medium text-(--text-muted)">Beneficiaries</p>
+              <p className="mt-2 text-pretty text-xs font-medium text-(--text-muted) sm:text-sm md:text-base md:leading-6">Beneficiaries</p>
             </div>
-            <div className="flex shrink-0 flex-col items-center justify-center text-center">
-              <p className="text-2xl font-extrabold tracking-tight text-(--primary)">
+            <div className="flex min-w-0 flex-col items-center justify-center text-center">
+              <p className="text-2xl font-extrabold leading-none tracking-tight text-(--primary) tabular-nums sm:text-4xl md:text-5xl">
                 <CountUp
                   from={0}
                   to={500}
                   direction="up"
                   duration={1}
-                  className="count-up-text"
+                  className="count-up-text inline-block align-middle"
                   separator=","
                 />{" "}
-                +
+                <span className="inline-block align-middle">+</span>
               </p>
-              <p className="mt-1 text-2xl font-medium text-(--text-muted)">Events held</p>
+              <p className="mt-2 text-pretty text-xs font-medium text-(--text-muted) sm:text-sm md:text-base md:leading-6">Events held</p>
             </div>
-          </aside>
+        </aside>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {summaryCards.map((card) => (
+            <SummaryCard key={card.title} title={card.title} copy={card.copy} cta={card.cta} />
+          ))}
+        </div>
       </div>
     </section>
   );

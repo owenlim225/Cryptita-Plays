@@ -27,27 +27,35 @@ export function TestimonialsColumn(props: {
           ease: "linear",
           repeatType: "loop",
         }}
-        className="flex flex-col gap-6 bg-background pb-6"
+        className="flex flex-col gap-6 bg-transparent pb-6"
       >
         {new Array(2).fill(0).map((_, index) => (
           <React.Fragment key={index}>
             {props.testimonials.map(({ text, image, name, role }, i) => (
               <div
-                className="w-full max-w-xs rounded-3xl border p-10 shadow-lg shadow-primary/10"
+                className="relative w-full max-w-xs overflow-hidden rounded-2xl border border-(--primary)/20 bg-white/90 p-6 shadow-[0_12px_40px_-12px_rgba(151,28,230,0.15)] ring-1 ring-(--primary)/5 backdrop-blur-sm md:p-7"
                 key={`${name}-${i}`}
               >
-                <div>{text}</div>
-                <div className="mt-5 flex items-center gap-2">
+                <div
+                  className="absolute top-0 left-0 h-full w-1 rounded-l-2xl bg-linear-to-b from-(--primary) to-(--primary-hover)"
+                  aria-hidden
+                />
+                <p className="pl-3 font-sans text-[15px] leading-7 text-(--text-muted)">
+                  {text}
+                </p>
+                <div className="mt-5 flex items-center gap-3 border-t border-(--border-subtle) pt-5 pl-3">
                   <img
                     width={40}
                     height={40}
                     src={image}
-                    alt={name}
-                    className="h-10 w-10 rounded-full object-cover"
+                    alt=""
+                    className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-(--primary)/20"
                   />
-                  <div className="flex flex-col">
-                    <div className="font-medium leading-5 tracking-tight">{name}</div>
-                    <div className="leading-5 tracking-tight opacity-60">{role}</div>
+                  <div className="min-w-0 flex flex-col">
+                    <div className="font-(family-name:--font-space-grotesk) text-sm font-semibold leading-5 text-foreground">
+                      {name}
+                    </div>
+                    <div className="text-xs leading-5 text-(--text-muted)">{role}</div>
                   </div>
                 </div>
               </div>

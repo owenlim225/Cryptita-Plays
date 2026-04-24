@@ -20,6 +20,12 @@ export const metadata: Metadata = {
   title: "Cryptita Plays | Bridging Web3 Education and Social Impact",
   description:
     "Cryptita Plays is a community-driven social impact initiative in the Philippines that bridges Web3 education and social development for youth and underserved communities.",
+  authors: [
+    {
+      name: "Sherwin P. Limosnero",
+      url: "https://www.linkedin.com/in/sherwinlimosnero/",
+    },
+  ],
   icons: {
     icon: "/brand/icon-mark.ico",
   },
