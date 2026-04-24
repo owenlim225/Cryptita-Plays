@@ -10,12 +10,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 type HeroParallaxStageProps = {
   sectionRef: RefObject<HTMLElement | null>;
+  className?: string;
 };
 
 /**
- * Base photo + four AVIF layers, gradients, and scroll exit fade into the next section.
+ * Four AVIF parallax layers (`/parallax/layer_*.avif`) stacked back-to-front, plus mesh
+ * gradients and scroll exit fade. Parent should be sized (e.g. `absolute inset-0` in a
+ * `min-h-dvh` section) so `h-full` fills the hero.
  */
-export function HeroParallaxStage({ sectionRef }: HeroParallaxStageProps) {
+export function HeroParallaxStage({ sectionRef, className }: HeroParallaxStageProps) {
   const exitOverlayRef = useRef<HTMLDivElement>(null);
   const exitScrollTriggerRef = useRef<ReturnType<typeof ScrollTrigger.create> | null>(null);
 
@@ -49,24 +52,22 @@ export function HeroParallaxStage({ sectionRef }: HeroParallaxStageProps) {
 
   return (
     <div
-      className="relative isolate h-[min(72vh,52rem)] w-full min-h-80"
+      className={`relative isolate h-full w-full min-h-0 ${className ?? ""}`}
       data-hero-parallax
       aria-hidden
     >
       <HeroParallaxMesh sectionRef={sectionRef} />
       <ParallaxLayerStack sectionRef={sectionRef} className="z-[5]" />
 
+      {/** Top-only scrim for nav / headline contrast — avoid full-bleed gradients that
+          paint solid background over the whole hero and hide the layered images. */}
       <div
-        className="pointer-events-none absolute inset-0 z-12 bg-linear-to-b from-(--background)/30 from-0% to-transparent to-18%"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 z-14 bg-linear-to-b from-transparent from-40% via-(--background)/45 via-72% to-(--background) to-100%"
+        className="pointer-events-none absolute inset-x-0 top-0 z-12 h-[min(42%,20rem)] bg-linear-to-b from-background/35 to-transparent"
         aria-hidden
       />
       <div
         ref={exitOverlayRef}
-        className="pointer-events-none absolute inset-0 z-18 bg-(--background) opacity-0 will-change-[opacity]"
+        className="pointer-events-none absolute inset-0 z-18 bg-background opacity-0 will-change-[opacity]"
         aria-hidden
       />
     </div>

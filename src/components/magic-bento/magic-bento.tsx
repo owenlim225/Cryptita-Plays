@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useEffect, useCallback, useState, type RefObject, type CSSProperties } from "react";
 import { gsap } from "gsap";
 import "./magic-bento.css";
@@ -508,6 +509,15 @@ function cardBaseStyle(glowColor: string, color: string): CSSProperties {
 function BentoCardBody({ card }: { card: MagicBentoItem }) {
   const centerHero =
     card.titleClassName?.includes("center-hero") || card.titleClassName?.includes("problem-hero");
+  const showPrimaryLogo = card.id === "problem-center";
+
+  const problemCenterLogoMask: CSSProperties = {
+    WebkitMaskImage:
+      "linear-gradient(to bottom, #000 0%, #000 35%, color-mix(in srgb, #000 45%, transparent) 58%, transparent 100%)",
+    maskImage:
+      "linear-gradient(to bottom, #000 0%, #000 35%, color-mix(in srgb, #000 45%, transparent) 58%, transparent 100%)",
+  };
+
   return (
     <>
       {card.label ? (
@@ -521,6 +531,7 @@ function BentoCardBody({ card }: { card: MagicBentoItem }) {
           card.contentClassName,
           !card.label && !card.className?.includes("magic-bento-card--problem-center") && "mt-auto",
           (card.contentClassName?.includes("stack") || centerHero) && "magic-bento-card__content--stack",
+          showPrimaryLogo && "pb-16 sm:pb-20",
         ]
           .filter(Boolean)
           .join(" ")}
@@ -533,6 +544,25 @@ function BentoCardBody({ card }: { card: MagicBentoItem }) {
         </h2>
         {card.description ? <p className="magic-bento-card__description">{card.description}</p> : null}
       </div>
+      {showPrimaryLogo ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-1 flex justify-center overflow-hidden"
+        >
+          <div
+            className="relative w-[min(12rem,58%)] max-w-sm translate-y-[6%] opacity-90 sm:translate-y-0"
+            style={problemCenterLogoMask}
+          >
+            <Image
+              src="/brand/primary-logo.png"
+              alt=""
+              width={360}
+              height={360}
+              className="h-auto w-full object-contain object-bottom"
+            />
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

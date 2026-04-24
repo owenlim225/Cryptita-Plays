@@ -11,7 +11,7 @@ type HeroStageProps = {
 export function HeroStage({ children }: HeroStageProps) {
   return (
     <div className="relative w-full [contain:layout_paint]">
-      <div className="relative w-full min-h-dvh min-h-svh overflow-hidden bg-background">
+      <div className="relative w-full min-h-dvh min-h-svh overflow-hidden bg-transparent">
         <div
           className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[min(50vh,28rem)] overflow-hidden"
           aria-hidden

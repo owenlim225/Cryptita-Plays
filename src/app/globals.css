@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* html height: auto when Lenis is active — required with Tailwind h-full on <html> or max scroll and footer can clip. */
+@import "lenis/dist/lenis.css";
 
 :root {
   --background: #f8fafd;

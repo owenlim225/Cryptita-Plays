@@ -8,9 +8,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const HERO_BASE_SRC = "/brand/photos/hero.jpg" as const;
-
-/** z: base (back) 5, then layer_1.l..layer_4 (front) 10–40. */
+/** Back (layer_1) → front (layer_4), each fully covering the same frame. */
 const AVIF_LAYERS = [
   { src: "/parallax/layer_1.avif" as const, z: 10 },
   { src: "/parallax/layer_2.avif" as const, z: 20 },
@@ -19,12 +17,9 @@ const AVIF_LAYERS = [
 ] as const;
 
 /**
- * [base, layer1..4] — base moves least; layer_4 most.
- * Pixel shift end (scrub) for scroll through the section.
+ * Per-layer Y shift (scrub) while scrolling: back moves least, front most.
  */
-const Y_SHIFTS_PX: readonly [number, number, number, number, number] = [
-  16, 32, 52, 78, 108,
-];
+const Y_SHIFTS_PX: readonly [number, number, number, number] = [28, 48, 72, 108];
 
 type ParallaxLayerStackProps = {
   sectionRef: RefObject<HTMLElement | null>;
@@ -32,12 +27,11 @@ type ParallaxLayerStackProps = {
 };
 
 export function ParallaxLayerStack({ sectionRef, className }: ParallaxLayerStackProps) {
-  const baseRef = useRef<HTMLDivElement>(null);
   const layer1 = useRef<HTMLDivElement>(null);
   const layer2 = useRef<HTMLDivElement>(null);
   const layer3 = useRef<HTMLDivElement>(null);
   const layer4 = useRef<HTMLDivElement>(null);
-  const layerRefs = [baseRef, layer1, layer2, layer3, layer4] as const;
+  const layerRefs = [layer1, layer2, layer3, layer4] as const;
 
   const onLayerLoadingComplete = useCallback(() => {
     ScrollTrigger.refresh();
@@ -88,36 +82,21 @@ export function ParallaxLayerStack({ sectionRef, className }: ParallaxLayerStack
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 select-none ${className ?? ""}`}
+      className={`pointer-events-none absolute inset-0 select-none bg-background ${className ?? ""}`}
       aria-hidden
     >
-      <div
-        ref={baseRef}
-        className="absolute inset-0 will-change-transform bg-(--background)"
-        style={{ zIndex: 5 }}
-      >
-        <Image
-          src={HERO_BASE_SRC}
-          alt=""
-          fill
-          className="object-contain object-center"
-          sizes="100vw"
-          onLoadingComplete={onLayerLoadingComplete}
-          priority
-        />
-      </div>
       {AVIF_LAYERS.map((layer, i) => (
         <div
           key={layer.src}
-          ref={layerRefs[i + 1]}
-          className="absolute inset-0 will-change-transform bg-(--background)"
+          ref={layerRefs[i]}
+          className="absolute inset-0 will-change-transform bg-background"
           style={{ zIndex: layer.z }}
         >
           <Image
             src={layer.src}
             alt=""
             fill
-            className="object-contain object-center"
+            className="object-cover object-center"
             sizes="100vw"
             onLoadingComplete={onLayerLoadingComplete}
             priority={i === 0}

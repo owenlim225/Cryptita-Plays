@@ -23,6 +23,7 @@ type ScrollRuntime = {
   lenis: InstanceType<typeof Lenis>;
   onLenisScroll: () => void;
   tickerCallback: (time: number) => void;
+  onWindowLoad: () => void;
   /** Browser timer id from `window.setTimeout` */
   timer: number | null;
   cancelled: boolean;
@@ -55,6 +56,32 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       };
       gsap.ticker.add(tickerCallback);
       gsap.ticker.lagSmoothing(0);
+
+      ScrollTrigger.scrollerProxy(document.documentElement, {
+        scrollTop(value) {
+          if (typeof value === "number") {
+            lenis.scrollTo(value, { immediate: true });
+          }
+          return lenis.scroll;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+            right: window.innerWidth,
+            bottom: window.innerHeight,
+          };
+        },
+      });
+
+      const onWindowLoad = () => {
+        lenis.resize();
+        ScrollTrigger.refresh();
+      };
+      window.addEventListener("load", onWindowLoad);
+      runtime.onWindowLoad = onWindowLoad;
 
       const context = gsap.context(() => {
         const programsSection = document.querySelector("#programs");
@@ -168,6 +195,9 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     return () => {
       runtime.cancelled = true;
       if (runtime.timer) window.clearTimeout(runtime.timer);
+      if (typeof window !== "undefined" && runtime.onWindowLoad) {
+        window.removeEventListener("load", runtime.onWindowLoad);
+      }
       runtime.context?.revert();
       if (runtime.tickerCallback) {
         gsap.ticker.remove(runtime.tickerCallback);
@@ -178,6 +208,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         }
         runtime.lenis.destroy();
       }
+      ScrollTrigger.scrollerProxy(document.documentElement, null as never);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);

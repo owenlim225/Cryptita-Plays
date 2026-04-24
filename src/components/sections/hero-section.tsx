@@ -1,14 +1,26 @@
 "use client";
 
 import Image from "next/image";
+import { useRef } from "react";
+import { HeroParallaxStage } from "@/components/sections/hero-parallax-stage";
 import { HeroStage } from "@/components/sections/hero-stage";
 import ShinyText from "@/components/shiny-text";
 import SplitText from "@/components/split-text";
 import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
   return (
-    <section id="hero" className="relative overflow-x-clip bg-background pb-0">
+    <section
+      id="hero"
+      ref={sectionRef}
+      className="relative min-h-dvh overflow-x-clip bg-background pb-0"
+    >
+      <div className="pointer-events-none absolute inset-0 min-h-dvh" aria-hidden>
+        <HeroParallaxStage sectionRef={sectionRef} />
+      </div>
+      <div className="relative z-10 min-h-0">
       <HeroStage>
         <div className="flex min-w-0 flex-col items-center text-center">
           <div className="flex items-center justify-center gap-2.5">
@@ -73,6 +85,7 @@ export function HeroSection() {
           </div>
         </div>
       </HeroStage>
+      </div>
     </section>
   );
 }
