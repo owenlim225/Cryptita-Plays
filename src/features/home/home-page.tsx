@@ -27,8 +27,6 @@ export function HomePage() {
           </div>
           <div className="constraint-divider">
             <ImpactSection />
-          </div>
-          <div className="constraint-divider">
             <TestimonialsSection />
             {/* <FounderSection /> */}
             <FaqSection />

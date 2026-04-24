@@ -15,7 +15,7 @@ export function HeroStage({ children, sectionRef }: HeroStageProps) {
     <div className="relative w-full">
       <div
         ref={sectionRef}
-        className="relative h-[1000px] w-full min-h-0 overflow-hidden bg-transparent"
+        className="relative min-h-[max(32rem,56.25vw)] w-full min-h-0 overflow-x-clip overflow-y-visible bg-transparent"
       >
         {/** Underlay is inside the same fixed-height box so % / `h-full` chain cannot collapse. */}
         <HeroParallaxStage sectionRef={sectionRef} />
@@ -39,7 +39,7 @@ export function HeroStage({ children, sectionRef }: HeroStageProps) {
           </div>
         </div>
 
-        <div className="constraint-content relative z-20 mx-auto w-full max-w-5xl pt-16 md:pt-20">
+        <div className="constraint-content relative z-20 mx-auto w-full max-w-5xl pt-[max(4rem,env(safe-area-inset-top,0px)+2.75rem)] pb-10 md:pt-[max(5rem,env(safe-area-inset-top,0px)+2.5rem)] md:pb-14">
           {children}
         </div>
       </div>

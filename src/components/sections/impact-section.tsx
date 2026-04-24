@@ -12,9 +12,8 @@ export function ImpactSection() {
         items={impactGalleryItems}
         title="Impact"
       />
-      <div className="constraint-content mt-8 w-full">
-        <p className="text-lg font-medium text-(--text-muted)">Different ecosystems, one shared mission.</p>
-      </div>
+      <p className="mt-8 text-center text-lg font-medium text-(--text-muted)">Different ecosystems, one shared mission.</p>
+
     </section>
   );
 }

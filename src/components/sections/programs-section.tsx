@@ -96,10 +96,17 @@ export function ProgramsSection() {
             </motion.article>
           ))}
         </div>
-        <div className="mt-10 rounded-2xl border border-[var(--border-subtle)] bg-white p-6 md:p-8">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch">
-            {programs.slice(0, 2).map((program) => (
-              <div key={program.title} className="flex min-w-0 justify-center">
+        <div className="mt-10 rounded-2xl border border-[var(--border-subtle)] bg-white p-6 md:px-6 md:pb-12 md:pt-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch md:gap-3 md:perspective-[1000px]">
+            {programs.slice(0, 2).map((program, index) => (
+              <div
+                key={program.title}
+                className={`transform-3d flex min-w-0 justify-center ${
+                  index === 0
+                    ? "md:transform-[rotateY(20deg)]"
+                    : "md:transform-[rotateY(-20deg)]"
+                }`}
+              >
                 <TiltedCard
                   imageSrc={program.image}
                   altText={program.title}

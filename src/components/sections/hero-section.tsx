@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 import { HeroStage } from "@/components/sections/hero-stage";
@@ -13,7 +14,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-0 overflow-x-clip overflow-y-hidden bg-background pb-0"
+      className="relative min-h-0 overflow-x-clip overflow-y-visible bg-background pb-0"
     >
       <HeroStage sectionRef={sectionRef}>
         <div className="flex min-w-0 flex-col items-center text-center">
@@ -64,18 +65,22 @@ export function HeroSection() {
             textAlign="center"
           />
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
               href="#programs"
-              className="rounded-full bg-(--primary) px-5 py-2.5 text-sm text-white transition hover:bg-(--primary-hover)"
+              className="rounded-full bg-(--primary) px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-(--primary-hover)"
             >
               Sponsor
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
               href="#contact"
               className="rounded-full border border-(--border-subtle) px-5 py-2.5 text-sm text-(--text-muted) transition hover:border-(--primary) hover:text-(--primary)"
             >
               Volunteer
-            </a>
+            </motion.a>
           </div>
         </div>
       </HeroStage>
