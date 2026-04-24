@@ -12,6 +12,29 @@ type SmoothScrollProviderProps = {
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const runId = "run-1";
+    const programsGridAtStart = document.querySelector("#programs .programs-grid");
+    const firstImpactCardAtStart = document.querySelector("#impact .impact-card");
+    // #region agent log
+    fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "250da2" },
+      body: JSON.stringify({
+        sessionId: "250da2",
+        runId,
+        hypothesisId: "H1_H3",
+        location: "smooth-scroll-provider.tsx:16",
+        message: "SmoothScrollProvider effect entry",
+        data: {
+          reduceMotion,
+          readyState: document.readyState,
+          programsGridInlineStyle: programsGridAtStart?.getAttribute("style") ?? null,
+          firstImpactCardInlineStyle: firstImpactCardAtStart?.getAttribute("style") ?? null,
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
     if (reduceMotion) {
       return;
     }
@@ -39,6 +62,23 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       const programsSection = document.querySelector("#programs");
       const programsGrid = document.querySelector("#programs .programs-grid");
       if (programsSection && programsGrid) {
+        // #region agent log
+        fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "250da2" },
+          body: JSON.stringify({
+            sessionId: "250da2",
+            runId,
+            hypothesisId: "H1",
+            location: "smooth-scroll-provider.tsx:48",
+            message: "Before programs fromTo",
+            data: {
+              inlineStyle: programsGrid.getAttribute("style"),
+            },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+        // #endregion
         gsap.fromTo(
           programsGrid,
           { opacity: 0.55, scale: 0.96 },
@@ -54,11 +94,46 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
             },
           }
         );
+        // #region agent log
+        fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "250da2" },
+          body: JSON.stringify({
+            sessionId: "250da2",
+            runId,
+            hypothesisId: "H1",
+            location: "smooth-scroll-provider.tsx:70",
+            message: "After programs fromTo",
+            data: {
+              inlineStyle: programsGrid.getAttribute("style"),
+            },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+        // #endregion
       }
 
       const impactSection = document.querySelector("#impact");
       const impactCards = gsap.utils.toArray<HTMLElement>("#impact .impact-card");
       if (impactSection && impactCards.length > 0) {
+        // #region agent log
+        fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "250da2" },
+          body: JSON.stringify({
+            sessionId: "250da2",
+            runId,
+            hypothesisId: "H1",
+            location: "smooth-scroll-provider.tsx:85",
+            message: "Before impact fromTo batch",
+            data: {
+              impactCardsCount: impactCards.length,
+              firstInlineStyle: impactCards[0]?.getAttribute("style") ?? null,
+            },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+        // #endregion
         impactCards.forEach((card) => {
           gsap.fromTo(
             card,
@@ -77,6 +152,23 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
             }
           );
         });
+        // #region agent log
+        fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "250da2" },
+          body: JSON.stringify({
+            sessionId: "250da2",
+            runId,
+            hypothesisId: "H1",
+            location: "smooth-scroll-provider.tsx:111",
+            message: "After impact fromTo batch",
+            data: {
+              firstInlineStyle: impactCards[0]?.getAttribute("style") ?? null,
+            },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+        // #endregion
       }
 
       const eventsSection = document.querySelector("#events");
