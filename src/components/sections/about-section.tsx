@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { TiltedSurface } from "@/components/TiltedCard";
+import MagicBento from "@/components/magic-bento/magic-bento";
+import { aboutBentoItems } from "@/features/shared-content/data/about-bento-content";
 import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function AboutSection() {
@@ -79,7 +81,7 @@ export function AboutSection() {
         </div>
         <div
           id="approach"
-          className="mx-auto mt-8 max-w-5xl rounded-2xl border border-(--border-subtle) bg-white p-8"
+          className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-2xl border border-(--border-subtle) bg-(--surface-alt) p-6 sm:p-8"
         >
           <h3 className="text-2xl font-bold text-foreground">Our Approach</h3>
           <p className="mt-4 text-(--text-muted)">
@@ -87,6 +89,23 @@ export function AboutSection() {
             workshops, and simplified Web3 materials to keep learning beginner-friendly, safe,
             and community-based.
           </p>
+          <div className="mt-8 min-w-0">
+            <MagicBento
+              className="w-full"
+              items={aboutBentoItems}
+              gridVariant="threeColumnFive"
+              textAutoHide={false}
+              enableStars
+              enableSpotlight
+              enableBorderGlow
+              enableTilt
+              enableMagnetism
+              clickEffect
+              spotlightRadius={330}
+              particleCount={12}
+              glowColor="151, 28, 230"
+            />
+          </div>
         </div>
       </div>
     </section>

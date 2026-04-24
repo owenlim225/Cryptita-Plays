@@ -1,33 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 import { TiltedSurface } from "@/components/TiltedCard";
 import { programs } from "@/features/home/data/content";
 
 export function ProgramsSection() {
-  useEffect(() => {
-    const runId = "run-1";
-    const programsGrid = document.querySelector("#programs .programs-grid");
-    // #region agent log
-    fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "250da2" },
-      body: JSON.stringify({
-        sessionId: "250da2",
-        runId,
-        hypothesisId: "H2_H4",
-        location: "programs-section.tsx:12",
-        message: "ProgramsSection mounted",
-        data: {
-          programsGridInlineStyle: programsGrid?.getAttribute("style") ?? null,
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
-  }, []);
-
   return (
     <section id="programs" className="bg-[var(--surface-alt)] py-20">
       <div className="constraint-content w-full">

@@ -1,8 +1,11 @@
 "use client";
 
-import BorderGlow from "@/components/BorderGlow";
+import type { ReactNode } from "react";
 
-const summaryCards = [
+import BorderGlow from "@/components/BorderGlow";
+import CountUp from "@/components/CountUp";
+
+const summaryCards: { title: string; copy: ReactNode; cta: string }[] = [
   {
     title: "Our Commitments",
     copy:
@@ -11,8 +14,47 @@ const summaryCards = [
   },
   {
     title: "Our Impact",
-    copy:
-      "To date, we have helped over 2 million people in more than 54 countries by committing over $23 million to fund 32 projects.",
+    copy: (
+      <>
+        To date, we have helped over{" "}
+        <CountUp
+          from={0}
+          to={2}
+          direction="up"
+          duration={1.2}
+          className="count-up-text font-semibold text-foreground tabular-nums"
+          separator=""
+        />{" "}
+        million people in more than{" "}
+        <CountUp
+          from={0}
+          to={54}
+          direction="up"
+          duration={1.2}
+          className="count-up-text font-semibold text-foreground tabular-nums"
+          separator=""
+        />{" "}
+        countries by committing over $
+        <CountUp
+          from={0}
+          to={23}
+          direction="up"
+          duration={1.2}
+          className="count-up-text font-semibold text-foreground tabular-nums"
+          separator=""
+        />{" "}
+        million to fund{" "}
+        <CountUp
+          from={0}
+          to={32}
+          direction="up"
+          duration={1.2}
+          className="count-up-text font-semibold text-foreground tabular-nums"
+          separator=""
+        />{" "}
+        projects.
+      </>
+    ),
     cta: "Learn More",
   },
 ];
@@ -42,8 +84,11 @@ const approachItems = [
 
 export function ApproachOverviewSection() {
   return (
-    <section id="approach-overview" className="bg-(--surface-alt) py-14 md:py-18">
-      <div className="constraint-content w-full">
+    <section
+      id="approach-overview"
+      className="relative -mt-3 overflow-hidden bg-(--surface-alt) py-12 md:py-18"
+    >
+      <div className="constraint-content relative z-10 w-full">
         <div className="grid gap-4 md:grid-cols-2">
           {summaryCards.map((card) => (
             <BorderGlow
@@ -92,15 +137,43 @@ export function ApproachOverviewSection() {
             />
             <div className="space-y-7">
               <div>
-                <p className="text-5xl font-extrabold tracking-tight text-(--primary)">2,085,823</p>
+                <p className="text-5xl font-extrabold tracking-tight text-(--primary)">
+                  <CountUp
+                    from={0}
+                    to={2_085_823}
+                    direction="up"
+                    duration={2}
+                    className="count-up-text"
+                    separator=","
+                  />
+                </p>
                 <p className="mt-2 text-sm text-(--text-muted)">Total Beneficiaries</p>
               </div>
               <div>
-                <p className="text-4xl font-extrabold tracking-tight text-(--primary)">12,453</p>
+                <p className="text-4xl font-extrabold tracking-tight text-(--primary)">
+                  <CountUp
+                    from={0}
+                    to={12_453}
+                    direction="up"
+                    duration={2}
+                    className="count-up-text"
+                    separator=","
+                  />
+                </p>
                 <p className="mt-2 text-sm text-(--text-muted)">Amount Donations</p>
               </div>
               <div>
-                <p className="text-4xl font-extrabold tracking-tight text-(--primary)">1,524 BTC</p>
+                <p className="text-4xl font-extrabold tracking-tight text-(--primary)">
+                  <CountUp
+                    from={0}
+                    to={1524}
+                    direction="up"
+                    duration={2}
+                    className="count-up-text"
+                    separator=","
+                  />{" "}
+                  BTC
+                </p>
                 <p className="mt-2 text-sm text-(--text-muted)">Bitcoin Donations Raised</p>
               </div>
             </div>
