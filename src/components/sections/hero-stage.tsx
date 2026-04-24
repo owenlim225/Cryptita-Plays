@@ -1,17 +1,21 @@
 "use client";
 
-import { type ReactNode } from "react";
+import { type RefObject, type ReactNode } from "react";
 import Particles from "@/components/particles";
+import { HeroParallaxStage } from "@/components/sections/hero-parallax-stage";
 
 type HeroStageProps = {
   children: ReactNode;
+  sectionRef: RefObject<HTMLElement | null>;
 };
 
-/** Full-viewport hero background (soft gradients, particles) and content column. */
-export function HeroStage({ children }: HeroStageProps) {
+/** Full-viewport hero: parallax underlay, soft gradients, particles, content column. */
+export function HeroStage({ children, sectionRef }: HeroStageProps) {
   return (
     <div className="relative w-full [contain:layout_paint]">
       <div className="relative w-full min-h-dvh min-h-svh overflow-hidden bg-transparent">
+        {/** Underlay is inside the same `min-h-dvh` box so % / `h-full` chain cannot collapse. */}
+        <HeroParallaxStage sectionRef={sectionRef} />
         <div
           className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[min(50vh,28rem)] overflow-hidden"
           aria-hidden

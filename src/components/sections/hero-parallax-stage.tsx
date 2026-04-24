@@ -4,7 +4,7 @@ import { useEffect, useRef, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HeroParallaxMesh } from "@/components/sections/hero-parallax-mesh";
-import { ParallaxLayerStack } from "@/components/sections/parallax-layer-stack";
+import { ParallaxScrolling } from "@/components/ui/parallax-scrolling";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,9 +14,8 @@ type HeroParallaxStageProps = {
 };
 
 /**
- * Four AVIF parallax layers (`/parallax/layer_*.avif`) stacked back-to-front, plus mesh
- * gradients and scroll exit fade. Parent should be sized (e.g. `absolute inset-0` in a
- * `min-h-dvh` section) so `h-full` fills the hero.
+ * Osmo-style parallax (GSAP timeline + yPercent) over AVIF layers, mesh, and exit fade.
+ * Parent is `absolute inset-0` in `HeroStage` (`min-h-dvh`).
  */
 export function HeroParallaxStage({ sectionRef, className }: HeroParallaxStageProps) {
   const exitOverlayRef = useRef<HTMLDivElement>(null);
@@ -52,12 +51,12 @@ export function HeroParallaxStage({ sectionRef, className }: HeroParallaxStagePr
 
   return (
     <div
-      className={`relative isolate h-full w-full min-h-0 ${className ?? ""}`}
+      className={`pointer-events-none absolute inset-0 isolate z-0 ${className ?? ""}`}
       data-hero-parallax
       aria-hidden
     >
       <HeroParallaxMesh sectionRef={sectionRef} />
-      <ParallaxLayerStack sectionRef={sectionRef} className="z-[5]" />
+      <ParallaxScrolling sectionRef={sectionRef} className="z-5" />
 
       {/** Top-only scrim for nav / headline contrast — avoid full-bleed gradients that
           paint solid background over the whole hero and hide the layered images. */}

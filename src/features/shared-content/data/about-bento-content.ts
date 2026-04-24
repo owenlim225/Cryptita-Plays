@@ -27,7 +27,7 @@ export const aboutBentoItems: MagicBentoItem[] = [
     contentClassName: "magic-bento-card__content--stack",
     title: "The Problem",
     titleClassName: "magic-bento-card__title--problem-hero",
-    description: "Many communities face overlapping barriers:",
+    description: "Many communities face overlapping barriers.",
   },
   {
     id: "barrier-03",

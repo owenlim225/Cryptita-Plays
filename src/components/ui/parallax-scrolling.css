@@ -1,0 +1,105 @@
+/* Osmo-style hero parallax: bottom-anchored artboard + yPercent (see parallax-scrolling.tsx). */
+.parallax--hero-underlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  pointer-events: none;
+  user-select: none;
+  isolation: isolate;
+}
+
+.parallax--hero-underlay .parallax__header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  min-height: min(62vh, 40rem);
+}
+
+.parallax--hero-underlay .parallax__visuals {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: min(58vh, 36rem);
+}
+
+/* Top crop line (Osmo): subtle edge before the layer stack. */
+.parallax--hero-underlay .parallax__black-line-overflow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 24, 40, 0.12), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.parallax--hero-underlay .parallax__layers {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: min(56vh, 34rem);
+  overflow: visible;
+}
+
+.parallax--hero-underlay [data-parallax-layer] {
+  will-change: transform;
+}
+
+/* Bottom-anchored scene: layers share one horizon instead of a “hole” in the middle. */
+.parallax--hero-underlay .parallax__layer-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.parallax--hero-underlay [data-parallax-layer="1"] {
+  z-index: 1;
+}
+.parallax--hero-underlay [data-parallax-layer="2"] {
+  z-index: 2;
+}
+.parallax--hero-underlay [data-parallax-layer="3"] {
+  z-index: 3;
+}
+.parallax--hero-underlay [data-parallax-layer="4"] {
+  z-index: 4;
+}
+
+.parallax--hero-underlay .parallax__layer-img {
+  position: relative;
+  width: min(100%, 64rem);
+  max-width: none;
+  height: auto;
+  max-height: min(52vh, 30rem);
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+/* Soft blend into page background (no hard cut under the stack). */
+.parallax--hero-underlay .parallax__fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: min(40%, 12rem);
+  background: linear-gradient(
+    to top,
+    var(--background) 0%,
+    color-mix(in srgb, var(--background) 55%, transparent) 50%,
+    transparent 100%
+  );
+  z-index: 6;
+  pointer-events: none;
+}

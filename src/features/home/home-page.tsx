@@ -20,9 +20,9 @@ export function HomePage() {
           <HeroSection />
           <ApproachOverviewSection />
           <EducationalPartnersStrip />
-          <CommunityPartnersStrip />
           <div className="constraint-divider">
             <AboutSection />
+          <CommunityPartnersStrip />
           </div>
           <div className="constraint-divider">
             <ProgramsSection />
