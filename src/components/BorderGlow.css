@@ -12,7 +12,7 @@
   isolation: isolate;
   transform: translate3d(0, 0, 0.01px);
   display: grid;
-  border: 1px solid rgb(255 255 255 / 15%);
+  border: var(--border-width, 1px) solid rgb(255 255 255 / 18%);
   background: var(--card-bg, #120f17);
   overflow: visible;
   box-shadow:
@@ -32,7 +32,7 @@
   inset: 0;
   border-radius: inherit;
   transition: opacity 0.25s ease-out;
-  z-index: -1;
+  pointer-events: none;
 }
 
 .border-glow-card:not(:hover):not(.sweep-active)::before,
@@ -43,7 +43,8 @@
 }
 
 .border-glow-card::before {
-  border: 1px solid transparent;
+  z-index: 0;
+  border: var(--border-width, 1px) solid transparent;
   background:
     linear-gradient(var(--card-bg, #120f17) 0 100%) padding-box,
     linear-gradient(rgb(255 255 255 / 0%) 0 100%) border-box,
@@ -66,7 +67,8 @@
 }
 
 .border-glow-card::after {
-  border: 1px solid transparent;
+  z-index: 0;
+  border: var(--border-width, 1px) solid transparent;
   background:
     var(--gradient-one, radial-gradient(at 80% 55%, hsl(268deg 100% 76%) 0, transparent 50%)) padding-box,
     var(--gradient-two, radial-gradient(at 69% 34%, hsl(349deg 100% 74%) 0, transparent 50%)) padding-box,
@@ -132,5 +134,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  border-radius: inherit;
+  overflow: hidden;
 }

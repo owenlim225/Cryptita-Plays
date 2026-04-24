@@ -1,4 +1,4 @@
-import { impactStatements } from "../site-data";
+import { impactStatements } from "@/features/home/data/content";
 
 export function ImpactSection() {
   return (

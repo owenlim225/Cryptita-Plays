@@ -10,9 +10,6 @@ const toCssLength = value => (typeof value === 'number' ? `${value}px` : (value 
 
 const useResizeObserver = (callback, elements, dependencies) => {
   useEffect(() => {
-    // #region agent log
-    fetch('http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5d98cb'},body:JSON.stringify({sessionId:'5d98cb',runId:'pre-fix',hypothesisId:'H4',location:'LogoLoop.jsx:11',message:'useResizeObserver effect entered',data:{hasResizeObserver:!!window.ResizeObserver},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
     if (!window.ResizeObserver) {
       const handleResize = () => callback();
       window.addEventListener('resize', handleResize);
@@ -139,9 +136,6 @@ export const LogoLoop = memo(
     className,
     style
   }) => {
-    // #region agent log
-    fetch('http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'5d98cb'},body:JSON.stringify({sessionId:'5d98cb',runId:'pre-fix',hypothesisId:'H3',location:'LogoLoop.jsx:140',message:'LogoLoop render entered',data:{logosCount:logos?.length ?? 0,pauseOnHover:pauseOnHover ?? null,direction},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
     const containerRef = useRef(null);
     const trackRef = useRef(null);
     const seqRef = useRef(null);

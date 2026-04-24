@@ -173,7 +173,7 @@ Only display partner names approved in `docs/00-master-context.md`, and use logo
 
 **Source library:** `assets/Partner logo files/Educational Partners/` and `assets/Partner logo files/Community Partners/` (see `docs/00-master-context.md` §8 for the name-to-filename table).
 
-**Site delivery:** `public/brand/partners/educational/` and `public/brand/partners/community/`; UI lists `name` and `/brand/partners/...` paths in `src/components/site-data.ts`.
+**Site delivery:** `public/brand/partners/educational/` and `public/brand/partners/community/`; UI lists `name` and `/brand/partners/...` paths in `src/features/home/data/content.ts`.
 
 Educational partners (approved, with a source file in the Educational Partners folder):
 - Blockchain4Youth
@@ -283,7 +283,7 @@ If new files appear under `assets/Partner logo files/…` that are not listed in
 ### Image Delivery
 - Photos: `JPG` or `WEBP` (quality tuned for web)
 - Logos/icons: `SVG` primary, `PNG` fallback
-- Keep originals archived in `assets/` and production-optimized versions in web static/public directories
+- Keep originals archived in `assets/` and production-optimized versions in `public/` directories used by runtime pages
 
 ## Content Compliance Checklist
 - Program names match canonical wording from master context.

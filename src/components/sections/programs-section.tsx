@@ -2,14 +2,13 @@
 
 import { motion } from "framer-motion";
 import { TiltedSurface } from "@/components/TiltedCard";
-import BorderGlow from "@/components/BorderGlow";
-import { programs } from "../site-data";
+import { programs } from "@/features/home/data/content";
 
 export function ProgramsSection() {
   return (
     <section id="programs" className="bg-[var(--surface-alt)] py-20">
       <div className="constraint-content w-full">
-        <h2 className="text-center text-3xl font-bold text-[var(--foreground)]">Core Programs</h2>
+        <h2 className="text-center text-3xl font-bold text-[var(--primary)]">Core Programs</h2>
         <p className="mx-auto mt-3 max-w-2xl text-center text-[var(--text-muted)]">
           Explore our flagship initiatives designed to equip learners with digital literacy, creativity,
           and future-ready skills.
@@ -29,7 +28,7 @@ export function ProgramsSection() {
                   index % 2 === 0 ? "lg:order-1" : "lg:order-2"
                 }`}
               >
-                <h3 className="text-xl font-semibold text-[var(--foreground)]">{program.title}</h3>
+                <h3 className="text-xl font-semibold text-[var(--primary)]">{program.title}</h3>
                 <p className="mt-3 leading-7 text-[var(--text-muted)]">{program.description}</p>
               </div>
               <motion.div
@@ -39,48 +38,28 @@ export function ProgramsSection() {
                 transition={{ duration: 0.6, delay: index * 0.08 }}
                 className={`min-w-0 ${index % 2 === 0 ? "lg:order-2" : "lg:order-1"}`}
               >
-                <BorderGlow
-                  className="rounded-3xl"
-                  edgeSensitivity={34}
-                  glowColor="276 95 74"
-                  backgroundColor="#971ce6"
-                  borderRadius={24}
-                  glowRadius={28}
-                  glowIntensity={0.95}
-                  coneSpread={24}
-                  colors={["#c084fc", "#f472b6", "#38bdf8"]}
-                  fillOpacity={0.45}
+                <TiltedSurface
+                  className="relative overflow-hidden rounded-3xl shadow-lg"
+                  captionText={`Core Program ${index + 1}`}
+                  rotateAmplitude={12}
+                  scaleOnHover={1.05}
+                  showMobileWarning={false}
+                  showTooltip={false}
                 >
-                  <TiltedSurface
-                    className="relative overflow-hidden rounded-3xl border border-(--primary) bg-(--primary) p-2 shadow-xl"
-                    captionText={`Core Program ${index + 1}`}
-                    rotateAmplitude={12}
-                    scaleOnHover={1.05}
-                    showMobileWarning={false}
-                    showTooltip={false}
-                  >
-                    <div
-                      className="pointer-events-none absolute top-0 -right-3 z-10 h-full w-3 bg-size-[10px_10px] text-white/20 bg-[repeating-linear-gradient(315deg,currentColor_0_1px,#0000_0_50%)] md:-right-10 md:w-10"
-                      aria-hidden
+                  <div className="relative h-[228px] w-full overflow-hidden rounded-3xl">
+                    <img
+                      src={program.image}
+                      alt={program.title}
+                      className="h-full w-full object-cover"
                     />
-                    <div className="relative h-[220px] w-full overflow-hidden rounded-2xl bg-(--primary)">
-                      <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${program.image})` }}
-                      />
-                      <div className="absolute inset-0 z-1 bg-linear-to-t from-black/50 via-black/20 to-black/10" />
-                      <div className="absolute left-4 top-4 z-2 rounded-full bg-black/35 px-2.5 py-1 text-[10px] font-medium tracking-wide text-white/95 md:text-xs">
-                        {program.photoDate} - {program.photoLocation}
-                      </div>
-                    </div>
-                  </TiltedSurface>
-                </BorderGlow>
+                  </div>
+                </TiltedSurface>
               </motion.div>
             </motion.article>
           ))}
         </div>
         <div id="materials" className="mt-10 rounded-2xl border border-[var(--border-subtle)] bg-white p-8">
-          <h3 className="text-2xl font-bold text-[var(--foreground)]">Educational Materials</h3>
+          <h3 className="text-2xl font-bold text-[var(--primary)]">Educational Materials</h3>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-[var(--text-muted)]">
             <li>Barya to Blockchain: Young Learners Encyclopedia</li>
             <li>Web3 activity books for kids</li>
@@ -92,7 +71,7 @@ export function ProgramsSection() {
           id="acis"
           className="mt-8 rounded-2xl border border-[var(--primary)] bg-[var(--primary-soft)] p-8"
         >
-          <h3 className="text-2xl font-bold text-[var(--foreground)]">Adopt-a-Child Iskolar Program (ACIS)</h3>
+          <h3 className="text-2xl font-bold text-[var(--primary)]">Adopt-a-Child Iskolar Program (ACIS)</h3>
           <p className="mt-3 text-[var(--text-muted)]">
             Provides selected students with monthly educational assistance, school supplies and
             learning materials, and access to Mini-Library resources.
