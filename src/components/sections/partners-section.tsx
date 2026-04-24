@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { communityPartners, educationalPartners } from "../site-data";
+import { communityPartners, educationalPartners } from "@/features/home/data/content";
 
 export function PartnersSection() {
   const partnerCardClassName =

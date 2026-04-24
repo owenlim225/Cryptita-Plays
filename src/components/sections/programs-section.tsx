@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { TiltedSurface } from "@/components/TiltedCard";
-import { programs } from "../site-data";
+import { programs } from "@/features/home/data/content";
 
 export function ProgramsSection() {
   return (

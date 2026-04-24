@@ -79,28 +79,6 @@ export function SmoothCursorFollower() {
   const contrastRef = useRef<CursorContrast>(null);
 
   useEffect(() => {
-    // #region agent log
-    fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "d9b104" },
-      body: JSON.stringify({
-        sessionId: "d9b104",
-        runId: "pre-fix",
-        hypothesisId: "H2_H4",
-        location: "smooth-cursor-follower.tsx:26",
-        message: "SmoothCursorFollower effect mounted",
-        data: {
-          interactiveSelector: INTERACTIVE_SELECTOR,
-          dotSmoothness: DOT_SMOOTHNESS,
-          borderSmoothness: BORDER_DOT_SMOOTHNESS,
-          splashCanvasCount: document.querySelectorAll("canvas.pointer-events-none.fixed.inset-0.z-10").length,
-          followerNodeCount: document.querySelectorAll("[data-cursor-follower='v2']").length,
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
-
     const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
 
     const updateContrast = () => {
@@ -115,21 +93,6 @@ export function SmoothCursorFollower() {
 
     const handleMouseMove = (event: MouseEvent) => {
       if (!isVisible) {
-        // #region agent log
-        fetch("http://127.0.0.1:7282/ingest/c5064a4c-f1b4-4fcd-801c-1edd4355fe1e", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "d9b104" },
-          body: JSON.stringify({
-            sessionId: "d9b104",
-            runId: "pre-fix",
-            hypothesisId: "H3",
-            location: "smooth-cursor-follower.tsx:52",
-            message: "First mousemove toggles follower visibility",
-            data: { x: event.clientX, y: event.clientY },
-            timestamp: Date.now(),
-          }),
-        }).catch(() => {});
-        // #endregion
         setIsVisible(true);
       }
 

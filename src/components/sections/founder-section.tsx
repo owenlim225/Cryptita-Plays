@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { founder } from "../site-data";
+import { founder } from "@/features/home/data/content";
 
 export function FounderSection() {
   return (

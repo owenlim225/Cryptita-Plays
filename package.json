@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:assets": "node scripts/check-no-runtime-assets-imports.mjs",
+    "check:all": "npm run check:assets && npm run lint"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

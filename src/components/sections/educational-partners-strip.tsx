@@ -1,4 +1,4 @@
-import { educationalPartners } from "../site-data";
+import { educationalPartners } from "@/features/home/data/content";
 import LogoLoop from "../LogoLoop";
 
 const headingId = "educational-partners-strip-heading";

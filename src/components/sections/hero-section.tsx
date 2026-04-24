@@ -4,7 +4,7 @@ import Image from "next/image";
 import Particles from "@/components/particles";
 import ShinyText from "@/components/shiny-text";
 import SplitText from "@/components/split-text";
-import { siteConfig } from "../site-data";
+import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function HeroSection() {
   return (

@@ -1,4 +1,4 @@
-import { communityPartners } from "../site-data";
+import { communityPartners } from "@/features/home/data/content";
 import LogoLoop from "../LogoLoop";
 
 const headingId = "community-partners-strip-heading";

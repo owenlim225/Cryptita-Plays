@@ -3,8 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { TiltedSurface } from "@/components/TiltedCard";
-import { siteConfig } from "../site-data";
-import primaryLogo from "../../../assets/primary logo.png";
+import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function AboutSection() {
   return (
@@ -36,7 +35,7 @@ export function AboutSection() {
               />
               <div className="relative h-[220px] w-full overflow-hidden rounded-2xl bg-(--primary)">
                 <Image
-                  src={primaryLogo}
+                  src="/brand/primary-logo.png"
                   alt=""
                   fill
                   className="object-contain object-right p-6 opacity-[0.10] brightness-0 invert"

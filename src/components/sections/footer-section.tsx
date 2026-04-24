@@ -5,8 +5,8 @@ import {
   footerInfoLinks,
   footerSitemapLinks,
   footerSocialLinks,
-  siteConfig,
-} from "../site-data";
+} from "@/features/shared-content/data/footer";
+import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function FooterSection() {
   const currentYear = new Date().getFullYear();

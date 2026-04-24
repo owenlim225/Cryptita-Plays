@@ -1,10 +1,18 @@
 <div align="center">
-  <img src="assets/banner.png" alt="Cryptita Plays banner: stylized character with purple headphones beside the CRYPTITA PLAYS wordmark on a black background" width="100%" />
+  <img src="public/brand/banner.png" alt="Cryptita Plays banner: stylized character with purple headphones beside the CRYPTITA PLAYS wordmark on a black background" width="100%" />
 </div>
 
 # Cryptita Plays
 
 Cryptita Plays is a community-driven social impact initiative bridging Web3 education and social development for underserved communities in the Philippines.
+
+## Project Structure Standards
+
+- Runtime web assets live in `public/` (for example `public/brand/...`).
+- `assets/` is source/archive only and must not be imported from files in `src/`.
+- Frontend and backend are integrated using standard Next.js App Router:
+  - UI routes under `src/app/*`
+  - API route handlers under `src/app/api/*`
 
 ## About
 

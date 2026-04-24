@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { navItems, siteConfig } from "../site-data";
+import { navItems } from "@/features/shared-content/data/navigation";
+import { siteConfig } from "@/features/shared-content/data/site-config";
 
 export function HeaderSection() {
   return (
