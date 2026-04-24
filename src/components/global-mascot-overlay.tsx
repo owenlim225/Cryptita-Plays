@@ -290,15 +290,23 @@ function MascotOverlayPortal() {
   return createPortal(inner, document.body);
 }
 
+function shouldRenderMascot(pathname: string | null): boolean {
+  if (pathname == null) return true;
+  if (pathname === "/") return false;
+  if (pathname === "/our-story") return false;
+  if (pathname.startsWith("/our-story/")) return false;
+  return true;
+}
+
 /**
  * Full-viewport fixed overlay: mascot stays visible, tilts to pointer, moves and
  * shrinks on scroll. Rendered in a `document.body` portal; does not use pin.
- * Omitted on the home route (`/`) so the hero stays mascot-free; other routes
- * get the same overlay as before.
+ * Omitted on the home route (`/`) and on `/our-story` (and sub-routes) so those
+ * pages stay mascot-free; other routes get the same overlay as before.
  */
 export function GlobalMascotOverlay() {
   const pathname = usePathname();
-  if (pathname === "/") return null;
+  if (!shouldRenderMascot(pathname)) return null;
   return <MascotOverlayPortal />;
 }
 

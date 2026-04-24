@@ -64,7 +64,8 @@ export function HeroParallaxStage({ sectionRef, className }: HeroParallaxStagePr
       aria-hidden
     >
       <HeroParallaxMesh sectionRef={sectionRef} />
-      <ParallaxScrolling sectionRef={sectionRef} className="z-5" />
+      {/** Multi-layer yPercent parallax: see `parallax-scrolling.tsx` (ScrollTrigger + GSAP, scrub). */}
+      <ParallaxScrolling sectionRef={sectionRef} />
 
       {/** Top-only scrim for nav / headline contrast — avoid full-bleed gradients that
           paint solid background over the whole hero and hide the layered images. */}

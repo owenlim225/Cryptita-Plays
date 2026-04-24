@@ -1,9 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+
+const LenisContext = createContext<InstanceType<typeof Lenis> | null>(null);
+
+export function useLenis() {
+  return useContext(LenisContext);
+}
 
 type SmoothScrollProviderProps = {
   children: React.ReactNode;
@@ -30,6 +36,8 @@ type ScrollRuntime = {
 };
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
+  const [lenis, setLenis] = useState<InstanceType<typeof Lenis> | null>(null);
+
   useEffect(() => {
     const runtime: Partial<ScrollRuntime> = { timer: null, cancelled: false };
     const timer = scheduleAfterHydration(() => {
@@ -226,11 +234,13 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       runtime.onLenisScroll = onLenisScroll;
       runtime.tickerCallback = tickerCallback;
 
+      setLenis(lenis);
       ScrollTrigger.refresh();
     });
     runtime.timer = timer;
 
     return () => {
+      setLenis(null);
       runtime.cancelled = true;
       if (runtime.timer) window.clearTimeout(runtime.timer);
       if (typeof window !== "undefined" && runtime.onWindowLoad) {
@@ -251,5 +261,5 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     };
   }, []);
 
-  return children;
+  return <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>;
 }

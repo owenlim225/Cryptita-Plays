@@ -14,7 +14,7 @@ import "./parallax-scrolling.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-/** Back (1) → front (4), matching `public/parallax/layer_*.png`. yPercent = scroll parallax. offsetYPx = static nudge. */
+/** Back (1) → front (4), matching `public/parallax/layer_*.png`. yPercent = scroll-driven parallax (scrub, distinct per layer). offsetYPx = static layout nudge. */
 const LAYERS: {
   id: "1" | "2" | "3" | "4";
   yPercent: number;
@@ -22,10 +22,10 @@ const LAYERS: {
   src: StaticImageData;
   alt: string;
 }[] = [
-  { id: "1", yPercent: 100, offsetYPx: 250, src: layer1, alt: "" },
-  { id: "2", yPercent: 155, offsetYPx: 400, src: layer2, alt: "" },
-  { id: "3", yPercent: 100, offsetYPx: 500, src: layer3, alt: "" },
-  { id: "4", yPercent: 10, offsetYPx: 400, src: layer4, alt: "" },
+  { id: "1", yPercent: 22, offsetYPx: 250, src: layer1, alt: "" },
+  { id: "2", yPercent: 42, offsetYPx: 400, src: layer2, alt: "" },
+  { id: "3", yPercent: 64, offsetYPx: 500, src: layer3, alt: "" },
+  { id: "4", yPercent: 86, offsetYPx: 400, src: layer4, alt: "" },
 ];
 
 type ParallaxScrollingProps = {
@@ -61,8 +61,10 @@ export function ParallaxScrolling({ sectionRef, className }: ParallaxScrollingPr
       layersSpec.forEach((layerObj, idx) => {
         const targets = triggerElement.querySelectorAll(`[data-parallax-layer="${layerObj.id}"]`);
         if (targets.length === 0) return;
-        tl.to(
+        /* Same scroll range for all; different end yPercent = visible depth / parallax offset per layer. */
+        tl.fromTo(
           targets,
+          { yPercent: 0 },
           {
             yPercent: layerObj.yPercent,
             ease: "none",
