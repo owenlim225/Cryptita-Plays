@@ -2,14 +2,8 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { TiltedSurface } from "@/components/TiltedCard";
-import {
-  type CarouselApi,
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 import { programs } from "@/features/home/data/content";
 import { cn } from "@/lib/utils";
 
@@ -26,42 +20,24 @@ const programSubcardTiltClass = cn(
 
 const MATERIALS_IMAGE = {
   imageSrc: "/brand/young-learners-encyclopedia.png",
-  imageAlt:
-    "Barya to Blockchain: Young Learners Encyclopedia — Web3 Young Learners book cover",
+  imageAlt: "Cover of Barya to Blockchain: Young Learners Encyclopedia",
 } as const;
 
-/** One step per line from the original “Educational Materials” card; same cover for each. */
+const MATERIALS_TITLE = "Barya to Blockchain: Young Learners Encyclopedia" as const;
+
+/** Same cover art; carousel swaps supporting lines only. */
 const MATERIALS_SLIDES = [
   {
-    bullets: ["Young Learners Encyclopedia & Web3 activity books for kids"] as const,
+    bullets: ["Web3 activity books and resources for kids"] as const,
   },
   {
     bullets: ["Coloring, storytelling, and digital safety handouts"] as const,
   },
 ] as const;
 
-const EMBLA_SMOOTH_OPTS = { loop: true, duration: 40 } as const;
-const EMBLA_REDUCE_MOTION_OPTS = { loop: true, duration: 18 } as const;
-
 function ProgramMaterialsCarouselCard({ id, staticTiltClassName }: { id: string; staticTiltClassName: string }) {
-  const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const reduceMotion = useReducedMotion();
-  const emblaOpts = reduceMotion ? EMBLA_REDUCE_MOTION_OPTS : EMBLA_SMOOTH_OPTS;
-
-  useEffect(() => {
-    if (!api) {
-      return;
-    }
-    const onSelect = () => {
-      setCurrent(api.selectedScrollSnap());
-    };
-    onSelect();
-    api.on("select", onSelect);
-    return () => {
-      api.off("select", onSelect);
-    };
-  }, [api]);
 
   const active = MATERIALS_SLIDES[current] ?? MATERIALS_SLIDES[0];
   const textTransition = reduceMotion
@@ -84,32 +60,19 @@ function ProgramMaterialsCarouselCard({ id, staticTiltClassName }: { id: string;
         showTooltip={false}
       >
         <div className="absolute inset-0 z-0 min-h-0">
-          <Carousel
-            setApi={setApi}
-            opts={emblaOpts}
-            className="h-full min-h-0 w-full"
-            aria-label="Educational materials book carousel"
-          >
-            <CarouselContent className="ml-0 h-full min-h-0 will-change-transform">
-              {MATERIALS_SLIDES.map((_, index) => (
-                <CarouselItem key={index} className="h-full min-h-0 basis-full pl-0">
-                  <div className="relative h-full min-h-0 w-full">
-                    <Image
-                      src={MATERIALS_IMAGE.imageSrc}
-                      alt={MATERIALS_IMAGE.imageAlt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 40vw"
-                      priority={index === 0}
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+          <div className="relative h-full w-full min-h-0">
+            <Image
+              src={MATERIALS_IMAGE.imageSrc}
+              alt={MATERIALS_IMAGE.imageAlt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 40vw"
+              priority
+            />
+          </div>
         </div>
         <div
-          className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-t from-[#0f0518]/96 via-(--primary)/20 to-(--primary)/5"
+          className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-t from-[#120618]/90 via-[#120618]/40 to-[#120618]/10"
           aria-hidden
         />
         <p className="sr-only" aria-live="polite">
@@ -117,6 +80,9 @@ function ProgramMaterialsCarouselCard({ id, staticTiltClassName }: { id: string;
         </p>
         <div className="absolute inset-0 z-2 flex min-h-0 flex-col justify-end p-4 sm:p-5">
           <div className="pointer-events-none min-w-0">
+            <h3 className="text-base font-bold leading-snug text-white drop-shadow-sm sm:text-lg md:text-xl">
+              {MATERIALS_TITLE}
+            </h3>
             <motion.div
               key={current}
               className="min-w-0"
@@ -125,9 +91,6 @@ function ProgramMaterialsCarouselCard({ id, staticTiltClassName }: { id: string;
               exit={{ opacity: 0 }}
               transition={textTransition}
             >
-              <h3 className="text-base font-bold text-white drop-shadow-sm sm:text-lg md:text-xl">
-                Educational Materials
-              </h3>
               <ul className="mt-2 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-white/90 marker:text-(--primary) sm:text-[0.9375rem]">
                 {active.bullets.map((line) => (
                   <li key={line}>{line}</li>
@@ -147,7 +110,7 @@ function ProgramMaterialsCarouselCard({ id, staticTiltClassName }: { id: string;
                   type="button"
                   aria-label={`${isActive ? "Current slide: " : "Go to slide "}${i + 1} of ${MATERIALS_SLIDES.length}`}
                   aria-current={isActive ? "true" : undefined}
-                  onClick={() => api?.scrollTo(i)}
+                  onClick={() => setCurrent(i)}
                   className={cn(
                     "inline-flex h-9 min-w-9 shrink-0 items-center justify-center rounded-full p-0",
                     "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80",
