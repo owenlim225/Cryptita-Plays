@@ -18,10 +18,10 @@ export function HomePage() {
         <HeaderSection />
         <main>
           <HeroSection />
-          <ApproachOverviewSection />
           <EducationalPartnersStrip />
           <CommunityPartnersStrip />
-          <div className="constraint-divider constraint-divider--no-top-line">
+          {/* <ApproachOverviewSection /> */}
+          <div className="constraint-divider">
             <AboutSection />
           </div>
           <div className="constraint-divider">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { PageLoadSplash } from "@/components/page-load-splash";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import { SmoothCursorFollower } from "@/components/smooth-cursor-follower";
 import "./globals.css";
@@ -37,6 +38,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <SmoothCursorFollower />
           {children}
+          <PageLoadSplash />
         </SmoothScrollProvider>
       </body>
     </html>

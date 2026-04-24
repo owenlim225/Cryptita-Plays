@@ -142,7 +142,7 @@ export function ApproachOverviewSection() {
                     from={0}
                     to={2_085_823}
                     direction="up"
-                    duration={2}
+                    duration={1}
                     className="count-up-text"
                     separator=","
                   />
@@ -155,7 +155,7 @@ export function ApproachOverviewSection() {
                     from={0}
                     to={12_453}
                     direction="up"
-                    duration={2}
+                    duration={1}
                     className="count-up-text"
                     separator=","
                   />
@@ -168,7 +168,7 @@ export function ApproachOverviewSection() {
                     from={0}
                     to={1524}
                     direction="up"
-                    duration={2}
+                    duration={1}
                     className="count-up-text"
                     separator=","
                   />{" "}

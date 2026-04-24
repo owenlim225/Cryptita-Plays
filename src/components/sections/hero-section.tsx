@@ -105,11 +105,11 @@ export function HeroSection() {
         </div>
       </div>
 
-      <HeroFeatureCards />
+      {/* <HeroFeatureCards />
 
       <div className="relative z-10 mt-6 w-full md:mt-8">
         <HeroParallaxStage sectionRef={sectionRef} />
-      </div>
+      </div> */}
     </section>
   );
 }
