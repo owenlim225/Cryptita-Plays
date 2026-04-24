@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TiltedSurface } from "@/components/TiltedCard";
+import TiltedCard, { TiltedSurface } from "@/components/TiltedCard";
 import { programs } from "@/features/home/data/content";
 
 export function ProgramsSection() {
@@ -57,6 +57,26 @@ export function ProgramsSection() {
               </motion.div>
             </motion.article>
           ))}
+        </div>
+        <div className="mt-10 rounded-2xl border border-[var(--border-subtle)] bg-white p-6 md:p-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch">
+            {programs.slice(0, 2).map((program) => (
+              <div key={program.title} className="flex min-w-0 justify-center">
+                <TiltedCard
+                  imageSrc={program.image}
+                  altText={program.title}
+                  containerWidth="100%"
+                  containerHeight="auto"
+                  imageWidth="100%"
+                  imageHeight="260px"
+                  rotateAmplitude={12}
+                  scaleOnHover={1.05}
+                  showMobileWarning={false}
+                  showTooltip={false}
+                />
+              </div>
+            ))}
+          </div>
         </div>
         <div id="materials" className="mt-10 rounded-2xl border border-[var(--border-subtle)] bg-white p-8">
           <h3 className="text-2xl font-bold text-[var(--primary)]">Educational Materials</h3>

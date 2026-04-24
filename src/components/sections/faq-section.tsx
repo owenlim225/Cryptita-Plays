@@ -21,11 +21,27 @@ const FAQ_ITEMS = [
     answer:
       "We focus on repeat engagement—Mini-Library communities, materials that stay useful, and partnerships (including the ACIS coverage model) that help more students get sustained access over time rather than one-off events.",
   },
+  {
+    question: "Are your programs and events free to attend?",
+    answer:
+      "Many community and learning sessions are offered at no cost to participants, especially when we run them with school or nonprofit partners. When there is a fee, we say so up front and aim to keep access fair.",
+  },
+  {
+    question: "What kinds of programs do you run?",
+    answer:
+      "We run workshops, study circles, and youth-facing sessions on Web3 basics, digital literacy, and responsible participation—plus Mini-Library style hubs where people can keep learning after a single event.",
+  },
+  {
+    question: "Can I volunteer or mentor?",
+    answer:
+      "Yes. We welcome people who can facilitate sessions, share their journey in Web3, or help with logistics and local coordination. Tell us your skills and availability and we can match you where it makes sense.",
+  },
+  {
+    question: "Where can I follow updates and announcements?",
+    answer:
+      "Follow our official channels and partner announcements for new workshops, community calls, and program milestones. We also share highlights from partners when we run joint initiatives.",
+  },
 ] as const;
-
-/** Stock photo: workspace / design — `photo-1555212697-194d092e3b8f` on Unsplash. */
-const FAQ_IMAGE =
-  "https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&w=830&h=844&auto=format&fit=crop";
 
 export function FaqSection() {
   return (
@@ -38,8 +54,6 @@ export function FaqSection() {
           title="Looking for answers?"
           description="Quick answers about who we are, how to get involved, and how our education and community programs work."
           items={[...FAQ_ITEMS]}
-          imageSrc={FAQ_IMAGE}
-          imageAlt="Person reviewing notes and laptop at a desk"
         />
       </div>
     </section>

@@ -7,6 +7,7 @@ export function ImpactSection() {
   return (
     <section id="impact" className="py-20">
       <Gallery4
+        contained
         description="Reach, education, and partnerships that grow with every program we run."
         items={impactGalleryItems}
         title="Impact"

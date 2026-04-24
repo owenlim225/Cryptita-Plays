@@ -32,9 +32,7 @@ export function HomePage() {
           </div>
           <div className="constraint-divider">
             <TestimonialsSection />
-            <FounderSection />
-          </div>
-          <div className="constraint-divider">
+            {/* <FounderSection /> */}
             <FaqSection />
           </div>
         </main>

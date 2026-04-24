@@ -23,6 +23,8 @@ export interface Gallery4Props {
   description?: string;
   items: Gallery4Item[];
   className?: string;
+  /** When true, keep the track inside the same centered column as the title (e.g. under `.constraint-divider`). */
+  contained?: boolean;
 }
 
 const cardLinkClass =
@@ -52,12 +54,16 @@ function CardLink({
   );
 }
 
+const fullBleedTrackClassName =
+  "ml-0 2xl:ml-[max(2rem,calc(50vw-33rem))] 2xl:mr-[max(0rem,calc(50vw-33rem))]";
+
 const Gallery4 = ({
   id,
   title = "Case Studies",
   description = "Discover how leading companies and developers are leveraging modern web technologies to build exceptional digital experiences. These case studies showcase real-world applications and success stories.",
   items,
   className,
+  contained = false,
 }: Gallery4Props) => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -118,7 +124,12 @@ const Gallery4 = ({
           </div>
         </div>
       </div>
-      <div className="w-full">
+      <div
+        className={cn(
+          "min-w-0",
+          contained ? "constraint-content w-full" : "w-full"
+        )}
+      >
         <Carousel
           setApi={setCarouselApi}
           opts={{
@@ -129,7 +140,7 @@ const Gallery4 = ({
             },
           }}
         >
-          <CarouselContent className="ml-0 2xl:ml-[max(2rem,calc(50vw-33rem))] 2xl:mr-[max(0rem,calc(50vw-33rem))]">
+          <CarouselContent className={contained ? "ml-0" : fullBleedTrackClassName}>
             {items.map((item) => (
               <CarouselItem
                 key={item.id}
