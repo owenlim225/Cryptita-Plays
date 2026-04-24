@@ -9,11 +9,40 @@ export const siteConfig = {
 };
 
 export const navItems = [
-  { label: "Who We Are", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Impact", href: "#impact" },
-  { label: "Partners", href: "#partners" },
-  { label: "Contact", href: "#contact" },
+  { label: "Who We Are", href: "/#about" },
+  { label: "Programs", href: "/#programs" },
+  { label: "Impact", href: "/#impact" },
+  { label: "Partners", href: "/#partners" },
+  { label: "Contact", href: "/#contact" },
+  { label: "Our Story", href: "/our-story" },
+];
+
+export const footerSitemapLinks = [
+  { label: "Who We Are", href: "/#about" },
+  { label: "Programs", href: "/#programs" },
+  { label: "Impact", href: "/#impact" },
+  { label: "Partners", href: "/#partners" },
+  { label: "Our Story", href: "/our-story" },
+];
+
+export const footerInfoLinks = [
+  { label: "Mission", href: "/#about" },
+  { label: "Approach", href: "/#programs" },
+  { label: "Commitments", href: "/#impact" },
+  { label: "Contact", href: "/#contact" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+];
+
+export const footerContactLinks = [
+  { label: "General Inquiry", href: "mailto:cryptitaplays@gmail.com" },
+  { label: "Partnership Inquiry", href: "mailto:cryptitaplays@gmail.com" },
+];
+
+export const footerSocialLinks = [
+  { label: "Twitter", href: "https://twitter.com/BinanceBCF" },
+  { label: "Instagram", href: "https://www.instagram.com/cryptitaplays" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/binance-charity-foundation" },
+  { label: "Telegram", href: "https://t.me/joinchat/tscsriF31lk1ZWJh" },
 ];
 
 export const programs = [
